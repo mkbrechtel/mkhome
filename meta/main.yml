@@ -1,0 +1,9 @@
+dependencies:
+  #- name: hostname
+  - name: debian_repos
+    when: ansible_distribution == 'Debian'
+  - name: system_upgrade
+  - name: debian_packages
+    when: ansible_distribution == 'Debian'
+  - name: locales
+  #- name: timezone
