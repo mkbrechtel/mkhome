@@ -1,0 +1,16 @@
+---
+
+- apt:
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+    - xserver-xorg
+    - xserver-xorg-video-all
+    - xserver-xorg-input-all
+    - slim
+    - x11-xserver-utils
+
+- service:
+    name: slim
+    state: started
+    enabled: yes
