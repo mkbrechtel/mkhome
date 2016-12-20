@@ -1,9 +1,10 @@
 dependencies:
-  #- name: hostname
+  - name: hostname
   - name: debian_repos
-    when: ansible_distribution == 'Debian'
-  - name: system_upgrade
   - name: debian_packages
-    when: ansible_distribution == 'Debian'
+  - name: debian_backports_kernel
+    when: debian_jessie_backports_kernel is defined and debian_jessie_backports_kernel
+  - name: system_upgrade
   - name: locales
-  #- name: timezone
+  - name: timezone
+  - name: keyboard_configuration
