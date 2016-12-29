@@ -1,9 +1,10 @@
 dependencies:
   - name: hostname
+    when: ansible_connection != "lxc"
   - name: debian_repos
   - name: debian_packages
-  - name: debian_backports_kernel
-    when: debian_jessie_backports_kernel is defined and debian_jessie_backports_kernel
+  #- name: debian_backports_kernel
+  #  when: debian_jessie_backports_kernel is defined and debian_jessie_backports_kernel
   - name: system_upgrade
   - name: locales
   - name: timezone
