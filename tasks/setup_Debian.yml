@@ -1,13 +1,11 @@
 ---
 
-- name: apt preferences
+- name: pin ansible for backports
   copy:
     src: apt-preferences
     dest: /etc/apt/preferences.d/ansible
 
-- name: apt packages installed
+- name: install ansible
   apt:
-    pkg: "{{item}}"
+    pkg: ansible
     state: present
-  with_items:
-    - ansible
