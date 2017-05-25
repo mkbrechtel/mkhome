@@ -1,0 +1,13 @@
+---
+
+- name: apt preferences
+  copy:
+    src: apt-preferences
+    dest: /etc/apt/preferences.d/ansible
+
+- name: apt packages installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - ansible
