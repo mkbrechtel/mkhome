@@ -1,0 +1,16 @@
+---
+# tasks file for desktop
+
+- include_role:
+    name: basic_desktop
+
+- include: kde.yml
+- include: libreoffice.yml
+
+- include: audio.yml
+- include: bluetooth.yml
+- include: gvim.yml
+#- include: youtube-dl.yml
+- include: voip-client.yml
+- include: mail.yml
+- include: scanner.yml

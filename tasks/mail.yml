@@ -1,0 +1,10 @@
+---
+# tasks file for desktop
+
+- name: install icedove
+  apt: name={{ item }} state=latest
+  with_items:
+    - icedove
+    - icedove-l10n-de
+
+    

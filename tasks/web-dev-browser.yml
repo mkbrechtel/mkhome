@@ -1,0 +1,4 @@
+---
+# tasks file for web-dev-browser
+- name: uninstall xul-ext-greasemonkey
+  apt: name=xul-ext-greasemonkey state=absent

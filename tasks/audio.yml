@@ -1,0 +1,5 @@
+---
+# tasks file for desktop-audio
+
+- name: install pavucontrol
+  apt: name=pavucontrol state=latest

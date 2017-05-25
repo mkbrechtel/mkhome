@@ -1,0 +1,9 @@
+---
+# tasks file for desktop
+
+- name: install scan software
+  apt: name={{ item }} state=latest
+  with_items:
+    - simple-scan
+
+    

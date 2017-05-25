@@ -1,0 +1,16 @@
+---
+# tasks file for desktop
+
+- name: install kde desktop
+  apt: name={{ item }} state=latest
+  with_items:
+    - kdm
+    - task-kde-desktop
+    - task-german
+    - task-german-desktop
+    - task-german-kde-desktop
+    - kio-mtp
+    - gwenview
+    - kipi-plugins
+    - kde-config-gtk-style
+    - qtcurve
