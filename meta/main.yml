@@ -8,3 +8,4 @@ dependencies:
   - name: timezone
   - name: keyboard_configuration
   - name: network
+  - name: ssh_root_access
