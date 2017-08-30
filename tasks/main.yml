@@ -1,12 +1,5 @@
 ---
 
-- name: delete depecrated packages
-  apt:
-    pkg: "{{ item }}"
-    state: absent
-  with_items:
-    - slim
-
 - name: install packages
   apt:
     pkg: "{{ item }}"
@@ -16,8 +9,3 @@
     - xserver-xorg-video-all
     - xserver-xorg-input-all
     - x11-xserver-utils
-
-- service:
-    name: slim
-    state: stopped
-    enabled: no
