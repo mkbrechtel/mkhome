@@ -1,2 +1,4 @@
-- name: install sflphone
-  apt: name=sflphone-kde state=latest
+#- name: install sflphone
+#  apt:
+#    name: sflphone-kde
+#    state: present

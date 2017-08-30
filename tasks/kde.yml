@@ -4,11 +4,10 @@
 - name: install kde desktop
   apt: name={{ item }} state=latest
   with_items:
-    - kdm
     - task-kde-desktop
     - task-german
     - task-german-desktop
-    - task-german-kde-desktop
+    - kde-l10n-de
     - kio-mtp
     - gwenview
     - kipi-plugins
