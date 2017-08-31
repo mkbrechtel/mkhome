@@ -17,3 +17,4 @@
   with_items:
     - ipv6calc
     - uuid
+    - git
