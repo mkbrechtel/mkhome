@@ -1,10 +1,5 @@
 ---
 
-- name: pin ansible for backports
-  copy:
-    src: apt-preferences
-    dest: /etc/apt/preferences.d/ansible
-
 - name: install ansible
   apt:
     pkg: ansible
