@@ -1,0 +1,11 @@
+---
+
+- name: connection plugin directory
+  file:
+    path: /usr/share/ansible/plugins/connection
+    state: directory
+
+- name: clone ansible-lxc-ssh
+  git:
+    repo: https://github.com/chifflier/ansible-lxc-ssh
+    dest: /usr/share/ansible/plugins/connection

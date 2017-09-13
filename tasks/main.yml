@@ -1,3 +1,5 @@
 ---
 
 - include: setup_Debian.yml
+
+- include: connection_plugin_lxc_ssh.yml
