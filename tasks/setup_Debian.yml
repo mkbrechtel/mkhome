@@ -1,15 +1,12 @@
 ---
 
-- name: install ansible
-  apt:
-    pkg: ansible
-    state: present
-
-- name: install other tools
+- name: install packages
   apt:
     pkg: "{{item}}"
     state: present
   with_items:
+    - ansible
     - ipv6calc
     - uuid
     - git
+    - python-jmespath
