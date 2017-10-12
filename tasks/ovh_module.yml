@@ -1,0 +1,17 @@
+---
+
+- name: debian packages
+  apt:
+    pkg: "{{item}}"
+  with_items:
+    - python-pip
+
+- name: python ovh client
+  pip:
+    name: ovh
+
+- name: ansible ovh module
+  git:
+    repo: https://github.com/cornelius-keller/ansible-ovh.git
+    version: master
+    dest: /usr/share/ansible/modules/ovh/
