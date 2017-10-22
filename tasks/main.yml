@@ -9,3 +9,9 @@
     - xserver-xorg-video-all
     - xserver-xorg-input-all
     - x11-xserver-utils
+    - lightdm
+
+- name: lightdm started
+  service:
+    name: lightdm
+    state: started
