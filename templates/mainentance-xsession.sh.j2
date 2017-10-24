@@ -1,4 +1,5 @@
 #!/bin/bash
+{{ ansible_managed | comment }}
 xset -dpms
 xset s off
 exec yad --no-buttons --no-escape --image-on-top --center --borders 50 --image="{{display_manager_mainentance_icon}}" --text="{{display_manager_mainentance_text}}"
