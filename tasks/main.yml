@@ -29,10 +29,12 @@
   notify: restart lightdm
 
 - include: mainentance.yml
+  when: display_manager_state == 'mainentance'
 
 - name: lightdm started
   service:
     name: lightdm
     state: started
+    enabled: yes
 
 - meta: flush_handlers
