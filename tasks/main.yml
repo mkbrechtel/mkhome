@@ -1,5 +1,15 @@
 ---
 
+- name: make sure no other display managers are installed
+  apt:
+    pkg: "{{ item }}"
+    state: absent
+  with_items:
+    - slim
+    - gdm3
+    - kdm
+    - sddm
+
 - name: install packages
   apt:
     pkg: "{{ item }}"
@@ -10,8 +20,19 @@
     - xserver-xorg-input-all
     - x11-xserver-utils
     - lightdm
+    - yad
+
+- name: lightdm configuration
+  template:
+    src: lightdm.conf.j2
+    dest: /etc/lightdm/lightdm.conf
+  notify: restart lightdm
+
+- include: mainentance.yml
 
 - name: lightdm started
   service:
     name: lightdm
     state: started
+
+- meta: flush_handlers

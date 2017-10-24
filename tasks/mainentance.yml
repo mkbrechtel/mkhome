@@ -1,0 +1,24 @@
+---
+
+- name: mainentance user
+  user:
+    name: mainentance
+    system: yes
+    createhome: yes
+    home: /var/lib/mainentance
+
+- name: mainentance directory
+  file:
+    path: /usr/local/share/mainentance
+    state: directory
+
+- name: mainentance xsession desktop
+  template:
+    src: mainentance.desktop.j2
+    dest: /usr/local/share/mainentance/mainentance.desktop
+
+- name: mainentance xsession script
+  template:
+    src: mainentance-xsession.sh.j2
+    dest: /usr/local/share/mainentance/xsession
+    mode: u=rwx,g=rx,o=rx
