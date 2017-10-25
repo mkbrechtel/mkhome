@@ -1,0 +1,11 @@
+---
+
+- name: Install ARA with pip
+  pip:
+    name: ara
+    state: present
+
+- name: Get ARA's installed location
+  shell: python -c "import os,ara; print(os.path.dirname(ara.__file__))"
+  register: ara_location
+  changed_when: false

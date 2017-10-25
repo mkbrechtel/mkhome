@@ -1,0 +1,17 @@
+[defaults]
+nocows = 1
+stdout_callback = skippy
+
+# fix https://github.com/ansible/ansible/issues/20332
+remote_tmp     = $HOME/.ansible/tmp
+local_tmp      = $HOME/.ansible/tmp
+
+library = /usr/share/ansible/modules
+
+retry_files_enabled = False
+
+callback_plugins = {{ ara_location.stdout }}/plugins/callbacks
+
+[ssh_connection]
+ssh_args = -o CheckHostIP=no -o StrictHostKeyChecking=yes
+pipelining = True
