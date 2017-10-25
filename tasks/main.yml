@@ -20,8 +20,16 @@
     - xserver-xorg-input-all
     - x11-xserver-utils
     - lightdm
+    - lightdm-gtk-greeter
     - yad
     - xbindkeys
+
+- name: uninstall wrong lightdm greeters
+  apt:
+    pkg: "{{ item }}"
+    state: absent
+  with_items:
+    - lightdm-kde-greeter
 
 - include: mainentance.yml
   when: display_manager_state == 'mainentance'
