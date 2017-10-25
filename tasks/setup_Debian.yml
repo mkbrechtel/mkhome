@@ -6,6 +6,7 @@
     state: present
   with_items:
     - ansible
+    - python-pip
     - ipv6calc
     - uuid
     - git
