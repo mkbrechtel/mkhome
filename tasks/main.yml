@@ -21,15 +21,16 @@
     - x11-xserver-utils
     - lightdm
     - yad
+    - xbindkeys
+
+- include: mainentance.yml
+  when: display_manager_state == 'mainentance'
 
 - name: lightdm configuration
   template:
     src: lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
   notify: restart lightdm
-
-- include: mainentance.yml
-  when: display_manager_state == 'mainentance'
 
 - name: lightdm started
   service:
