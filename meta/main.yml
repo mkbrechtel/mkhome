@@ -9,3 +9,5 @@ dependencies:
   - name: keyboard_configuration
   - name: network
   - name: ssh_root_access
+  - name: root_user
+  - name: history
