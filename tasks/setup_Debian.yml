@@ -19,4 +19,5 @@
     - libxslt-dev
     - python-dev
     - python-setuptools
+    - python-pymysql
     #- which
