@@ -1,13 +1,25 @@
 dependencies:
+
+  # user setup
+  - name: root_user
+  - name: users
+  - name: fish
+
+  # system setup
   - name: hostname
     when: ansible_connection != "lxc"
-  - name: debian_repos
-  - name: debian_packages
-  - name: system_upgrade
   - name: locales
   - name: timezone
   - name: keyboard_configuration
-  - name: network
-  - name: ssh_root_access
-  - name: root_user
-  - name: history
+
+  # packages setup
+  - name: debian_repos
+  - name: debian_packages
+  - name: system_upgrade
+
+  # network setup
+  # IDEA: merge netif and network_interfaces to role network
+  - name: netif
+  - name: network_interfaces
+  - name: fastd
+  - name: babeld
