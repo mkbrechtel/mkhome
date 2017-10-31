@@ -22,4 +22,6 @@ dependencies:
   - name: netif
   - name: network_interfaces
   - name: fastd
+    when: ( netif | json_query("*|[?type=='fastd']") | length ) > 0
   - name: babeld
+    when: ( netif | json_query("*|[?babeld==true]") | length ) > 0
