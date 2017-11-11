@@ -5,6 +5,9 @@ dependencies:
   - name: users
   - name: fish
 
+  # network setup
+  - name: network
+
   # system setup
   - name: hostname
     when: ansible_connection != "lxc"
@@ -16,12 +19,3 @@ dependencies:
   - name: debian_repos
   - name: debian_packages
   - name: system_upgrade
-
-  # network setup
-  # IDEA: merge netif and network_interfaces to role network
-  - name: netif
-  - name: network_interfaces
-  - name: fastd
-    when: ( netifs | json_query("*|[?type=='fastd']") | length ) > 0
-  - name: babeld
-    when: ( netifs | json_query("*|[?babeld==true]") | length ) > 0
