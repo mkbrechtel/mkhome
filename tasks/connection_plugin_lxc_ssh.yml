@@ -7,6 +7,7 @@
 
 - name: clone ansible-lxc-ssh
   git:
-    repo: https://github.com/chifflier/ansible-lxc-ssh
+    #repo: https://github.com/chifflier/ansible-lxc-ssh.git
+    repo: https://github.com/andreasscherbaum/ansible-lxc-ssh.git
     dest: /usr/share/ansible/plugins/connection/lxc_ssh
     version: master
