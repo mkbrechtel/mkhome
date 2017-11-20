@@ -1,16 +1,16 @@
 ---
 
-- include: setup_Debian.yml
+- include_tasks: setup_Debian.yml
 
-- include: ara.yml
+- include_tasks: ara.yml
 
-- include: connection_plugin_lxc_ssh.yml
+- include_tasks: connection_plugin_lxc_ssh.yml
 
-- include: ovh_module.yml
+- include_tasks: ovh_module.yml
 
 - name: ansible config
   template:
     src: ansible.cfg.j2
     dest: /etc/ansible/ansible.cfg
 
-- include: roles.yml
+- include_tasks: roles.yml
