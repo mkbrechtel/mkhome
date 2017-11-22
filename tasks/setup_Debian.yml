@@ -5,7 +5,6 @@
     pkg: "{{item}}"
     state: present
   with_items:
-    - ansible
     - python-pip
     - ipv6calc
     - uuid
@@ -21,6 +20,11 @@
     - python-setuptools
     - python-pymysql
     #- which
+
+- name: uninstall debian ansible module
+  apt:
+    pkg: ansible
+    state: absent
 
 - name: install ansible via pip
   pip:
