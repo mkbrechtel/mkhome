@@ -8,6 +8,11 @@
 
 - include_tasks: ovh_module.yml
 
+- name: ansible etc directory
+  file:
+    path: /etc/ansible
+    state: directory
+
 - name: ansible config
   template:
     src: ansible.cfg.j2
