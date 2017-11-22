@@ -7,7 +7,8 @@
 
 - name: clone ansible-lxc-ssh
   git:
-    #repo: https://github.com/chifflier/ansible-lxc-ssh.git
-    repo: https://github.com/andreasscherbaum/ansible-lxc-ssh.git
+    #repo: https://github.com/chifflier/ansible-lxc-ssh.git # this wirks for ansible 2.2 with depecration warnings
+    #repo: https://github.com/andreasscherbaum/ansible-lxc-ssh.git # this wirks for ansible 2.2 without warnings but not for anisble 2.4
+    repo: https://github.com/lgeorget/ansible-lxc-ssh.git # this works for ansible 2.4
     dest: /usr/share/ansible/plugins/connection/lxc_ssh
     version: master
