@@ -2,7 +2,7 @@
 
 - include_tasks: setup_Debian.yml
 
-- include_tasks: ara.yml
+#- include_tasks: ara.yml
 
 - include_tasks: connection_plugin_lxc_ssh.yml
 
