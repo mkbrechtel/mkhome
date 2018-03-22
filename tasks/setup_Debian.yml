@@ -30,4 +30,4 @@
 - name: install ansible via pip
   pip:
     name: ansible
-    version: 2.4.1
+    version: 2.4.3
