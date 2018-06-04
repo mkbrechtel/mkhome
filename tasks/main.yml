@@ -23,13 +23,8 @@
     - lightdm-gtk-greeter
     - yad
     - xbindkeys
-
-- name: uninstall wrong lightdm greeters
-  apt:
-    pkg: "{{ item }}"
-    state: absent
-  with_items:
-    - lightdm-kde-greeter
+    - onboard
+  notify: restart lightdm
 
 - include: mainentance.yml
   when: display_manager_state == 'mainentance'
@@ -39,6 +34,18 @@
     src: lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
   notify: restart lightdm
+
+- name: lightdm gtk-greeter configuration
+  template:
+    src: lightdm-gtk-greeter.conf.j2
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+  #notify: restart lightdm
+
+- name: download background image
+  get_url:
+    url: https://upload.wikimedia.org/wikipedia/commons/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg
+    dest: /usr/share/lightdm/background.jpg
+    checksum: sha256:df1106e46a2cb9ec46fb50c415f9648270bafb11c0762072f9804f8d1705e4b5
 
 - name: lightdm started
   service:

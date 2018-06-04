@@ -74,6 +74,8 @@ sessions-directory=/usr/local/share/mainentance
 # exit-on-failure = True if the daemon should exit if this seat fails
 #
 [Seat:*]
+greeter-session=lightdm-gtk-greeter
+
 {% if display_manager_state == "mainentance" %}
 autologin-user=mainentance
 autologin-user-timeout=0
