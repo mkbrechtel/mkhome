@@ -43,9 +43,9 @@
 
 - name: download background image
   get_url:
-    url: https://upload.wikimedia.org/wikipedia/commons/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg
-    dest: /usr/share/lightdm/background.jpg
-    checksum: sha256:df1106e46a2cb9ec46fb50c415f9648270bafb11c0762072f9804f8d1705e4b5
+    url: "{{display_manager_background_image_url}}"
+    dest: "{{display_manager_background_image_path}}"
+    checksum: "{{display_manager_background_image_checksum}}"
 
 - name: lightdm started
   service:

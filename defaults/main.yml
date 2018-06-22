@@ -2,3 +2,7 @@ display_manager_state: multiuser
 
 display_manager_mainentance_text: Wartungsmodus – bitte nicht abschalten!
 display_manager_mainentance_icon: preferences-system
+
+display_manager_background_image_url: https://upload.wikimedia.org/wikipedia/commons/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg
+display_manager_background_image_path: /usr/share/lightdm/background.jpg
+display_manager_background_image_checksum: sha256:df1106e46a2cb9ec46fb50c415f9648270bafb11c0762072f9804f8d1705e4b5
