@@ -21,9 +21,10 @@
     - x11-xserver-utils
     - lightdm
     - lightdm-gtk-greeter
+    - onboard
     - yad
     - xbindkeys
-    - onboard
+    - feh
   notify: restart lightdm
 
 - include: mainentance.yml

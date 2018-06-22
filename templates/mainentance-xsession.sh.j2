@@ -2,5 +2,6 @@
 {{ ansible_managed | comment }}
 xset -dpms
 xset s off
+feh --bg-scale "{{display_manager_background_image_path}}"
 xbindkeys -f /usr/local/share/mainentance/xbindkeys &
 exec yad --no-buttons --no-escape --image-on-top --center --borders 50 --image="{{display_manager_mainentance_icon}}" --text="{{display_manager_mainentance_text}}"
