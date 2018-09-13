@@ -82,6 +82,9 @@ autologin-user-timeout=0
 user-session=mainentance
 {% endif %}
 
+{% if display_setup_commands is defined %}
+display-setup-script=/etc/lightdm/display-setup.sh
+{% endif %}
 #
 # XDMCP Server configuration
 #

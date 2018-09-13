@@ -40,7 +40,15 @@
   template:
     src: lightdm-gtk-greeter.conf.j2
     dest: /etc/lightdm/lightdm-gtk-greeter.conf
-  #notify: restart lightdm
+  notify: restart lightdm
+
+- name: lightdm display setup script
+  template:
+    src: display-setup.sh.j2
+    dest: /etc/lightdm/display-setup.sh
+    mode: u=rwx,g=rx,o=rx
+  when: display_setup_commands is defined
+  notify: restart lightdm
 
 - name: download background image
   get_url:
