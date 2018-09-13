@@ -50,11 +50,15 @@
   when: display_setup_commands is defined
   notify: restart lightdm
 
-- name: download background image
-  get_url:
-    url: "{{display_manager_background_image_url}}"
-    dest: "{{display_manager_background_image_path}}"
-    checksum: "{{display_manager_background_image_checksum}}"
+- name: background image directory
+  file:
+    path: /usr/share/lightdm/background
+    state: directory
+
+- name: background image
+  copy:
+    src: "{{display_manager_background_image}}"
+    dest: "/usr/share/lightdm/background/{{display_manager_background_image}}"
 
 - name: lightdm started
   service:
