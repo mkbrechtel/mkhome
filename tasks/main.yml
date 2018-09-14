@@ -22,9 +22,6 @@
     - lightdm
     - lightdm-gtk-greeter
     - onboard
-    - yad
-    - xbindkeys
-    - feh
   notify: restart lightdm
 
 - include: mainentance.yml

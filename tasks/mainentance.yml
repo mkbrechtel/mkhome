@@ -1,5 +1,15 @@
 ---
 
+- name: install mainentance mode packages
+  apt:
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+    - yad
+    - xbindkeys
+    - feh
+  notify: restart lightdm
+
 - name: mainentance user
   user:
     name: mainentance
