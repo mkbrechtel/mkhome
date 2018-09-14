@@ -20,8 +20,8 @@
 # backup-logs = True to move add a .old suffix to old log files when opening new ones
 #
 [LightDM]
-{% if display_manager_state == "mainentance" %}
-sessions-directory=/usr/local/share/mainentance
+{% if display_manager_state == "maintenance" %}
+sessions-directory=/usr/local/share/maintenance
 {% endif %}
 
 #
@@ -76,10 +76,10 @@ sessions-directory=/usr/local/share/mainentance
 [Seat:*]
 greeter-session=lightdm-gtk-greeter
 
-{% if display_manager_state == "mainentance" %}
-autologin-user=mainentance
+{% if display_manager_state == "maintenance" %}
+autologin-user=maintenance
 autologin-user-timeout=0
-user-session=mainentance
+user-session=maintenance
 {% endif %}
 
 {% if display_setup_commands is defined %}

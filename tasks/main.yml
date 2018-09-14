@@ -24,8 +24,8 @@
     - onboard
   notify: restart lightdm
 
-- include: mainentance.yml
-  when: display_manager_state == 'mainentance'
+- import_tasks: maintenance.yml
+  when: display_manager_state == 'maintenance'
 
 - name: lightdm configuration
   template:
@@ -64,3 +64,5 @@
     enabled: yes
 
 - meta: flush_handlers
+
+- import_tasks: cleanup-litter.yaml

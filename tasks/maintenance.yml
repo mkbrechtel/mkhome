@@ -1,0 +1,44 @@
+---
+
+- name: install maintenance mode packages
+  apt:
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+    - yad
+    - xbindkeys
+    - feh
+  notify: restart lightdm
+
+- name: maintenance user
+  user:
+    name: maintenance
+    system: yes
+    createhome: yes
+    home: /var/lib/maintenance
+  notify: restart lightdm
+
+- name: maintenance directory
+  file:
+    path: /usr/local/share/maintenance
+    state: directory
+  notify: restart lightdm
+
+- name: maintenance xsession desktop
+  template:
+    src: maintenance.desktop.j2
+    dest: /usr/local/share/maintenance/maintenance.desktop
+  notify: restart lightdm
+
+- name: maintenance xsession script
+  template:
+    src: maintenance-xsession.sh.j2
+    dest: /usr/local/share/maintenance/xsession
+    mode: u=rwx,g=rx,o=rx
+  notify: restart lightdm
+
+- name: maintenance xbindkeys
+  template:
+    src: maintenance.xbindkeys.j2
+    dest: /usr/local/share/maintenance/xbindkeys
+  notify: restart lightdm
