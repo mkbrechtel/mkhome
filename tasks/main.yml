@@ -1,5 +1,10 @@
 ---
 
+- name: assert valid state
+  assert:
+    that: display_manager_state in _display_manager_valid_states
+    msg: "'display_manager_state' must be one of: {{_display_manager_valid_states | join(', ') }}"
+
 - name: make sure no other display managers are installed
   apt:
     pkg: "{{ item }}"
