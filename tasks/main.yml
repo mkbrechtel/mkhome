@@ -54,7 +54,7 @@
 
 - name: background image directory
   file:
-    path: /usr/share/lightdm/background
+    path: /opt/backgrounds
     state: directory
 
 - name: background image
