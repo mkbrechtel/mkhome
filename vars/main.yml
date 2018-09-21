@@ -2,4 +2,4 @@ _display_manager_valid_states:
   - multiuser
   - maintenance
 
-display_manager_background_image_path: /usr/share/lightdm/background/{{display_manager_background_image}}
+display_manager_background_image_path: /usr/share/lightdm/background/{{display_manager_background_image|basename}}
