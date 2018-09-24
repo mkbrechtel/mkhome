@@ -5,12 +5,8 @@ dependencies:
   - name: users
   - name: fish
 
-  # network setup
-  - name: network
-
   # system setup
   - name: hostname
-    when: ansible_connection != "lxc"
   - name: locales
   - name: timezone
   - name: keyboard_configuration
