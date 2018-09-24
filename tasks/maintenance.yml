@@ -2,8 +2,7 @@
 
 - name: install maintenance mode packages
   apt:
-    pkg: "{{ item }}"
-    state: installed
+    name: "{{ item }}"
   with_items:
     - yad
     - xbindkeys

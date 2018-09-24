@@ -7,7 +7,7 @@
 
 - name: make sure no other display managers are installed
   apt:
-    pkg: "{{ item }}"
+    name: "{{ item }}"
     state: absent
   with_items:
     - slim
