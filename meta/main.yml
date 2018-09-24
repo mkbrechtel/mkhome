@@ -15,3 +15,4 @@ dependencies:
   - name: debian_repos
   - name: debian_packages
   - name: system_upgrade
+  - name: unattended-upgrades
