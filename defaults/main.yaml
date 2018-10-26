@@ -1,0 +1,3 @@
+ansible_use_ara: false
+ansible_use_mitogen: true
+ansible_with_ovh_module: true

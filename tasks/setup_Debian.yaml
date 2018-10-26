@@ -20,8 +20,3 @@
       #- which
       - python-libcloud
       - python-netaddr
-
-- name: uninstall debian ansible module
-  apt:
-    pkg: ansible
-    state: absent

@@ -1,0 +1,29 @@
+---
+
+- name: cleanup debian ansible package
+  apt:
+    pkg: ansible
+    state: absent
+
+- name: cleanup ansible lxc_ssh plugin
+  file:
+    path: /usr/share/ansible/plugins/connection/lxc_ssh
+    state: absent
+
+- name: cleanup ansible ovh module
+  file:
+    path: /usr/share/ansible/modules/ovh
+    state: absent
+  when: not ansible_with_ovh_module
+
+- name: cleanup ara pip package
+  pip:
+    name: ara
+    state: absent
+  when: not ansible_use_ara
+
+- name: cleanup mitogen pip package
+  pip:
+    name: mitogen
+    state: absent
+  when: not ansible_use_mitogen
