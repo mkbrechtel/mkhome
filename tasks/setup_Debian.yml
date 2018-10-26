@@ -2,33 +2,26 @@
 
 - name: install packages
   apt:
-    pkg: "{{item}}"
-    state: present
-  with_items:
-    - python-pip
-    - ipv6calc
-    - uuid
-    - git
-    - python-jmespath
-    # ara required_packages:
-    - gcc
-    - libffi-dev
-    - libssl-dev
-    - libxml2-dev
-    - libxslt-dev
-    - python-dev
-    - python-setuptools
-    - python-pymysql
-    #- which
-    - python-libcloud
-    - python-netaddr
+    pkg:
+      - python-pip
+      - ipv6calc
+      - uuid
+      - git
+      - python-jmespath
+      # ara required_packages:
+      - gcc
+      - libffi-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt-dev
+      - python-dev
+      - python-setuptools
+      - python-pymysql
+      #- which
+      - python-libcloud
+      - python-netaddr
 
 - name: uninstall debian ansible module
   apt:
     pkg: ansible
     state: absent
-
-- name: install ansible via pip
-  pip:
-    name: ansible
-    state: latest
