@@ -15,6 +15,9 @@ retry_files_enabled = False
 callback_plugins = {{ _ara_location.stdout }}/plugins/callbacks
 {% endif %}
 
+{% if not ansible_use_mitogen %}
 [ssh_connection]
-ssh_args = -o CheckHostIP=no -o StrictHostKeyChecking=yes
+{% if ansible_use_ssh_pipelining %}
 pipelining = True
+{% endif %}
+{% endif %}
