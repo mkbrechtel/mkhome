@@ -27,3 +27,8 @@
     name: mitogen
     state: absent
   when: not ansible_use_mitogen
+
+- name: cleanup ansible ovh module
+  file:
+    path: /usr/share/ansible/modules/ovh/
+    state: absent

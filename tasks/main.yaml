@@ -10,9 +10,6 @@
 - include_tasks: ara.yaml
   when: ansible_use_ara
 
-- include_tasks: ovh_module.yaml
-  when: ansible_with_ovh_module
-
 - import_tasks: config.yaml
 
 - import_tasks: cleanup.yaml
