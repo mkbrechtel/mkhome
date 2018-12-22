@@ -2,7 +2,7 @@
 nocows = 1
 stdout_callback = yaml
 
-library = /usr/share/ansible/modules
+library = /usr/share/ansible/library
 
 {% if ansible_use_mitogen %}
 strategy_plugins = {{ _ansible_mitogen_location.stdout }}/plugins/strategy
