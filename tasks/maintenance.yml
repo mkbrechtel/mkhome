@@ -2,11 +2,10 @@
 
 - name: install maintenance mode packages
   apt:
-    name: "{{ item }}"
-  with_items:
-    - yad
-    - xbindkeys
-    - feh
+    name:
+      - yad
+      - xbindkeys
+      - feh
   notify: restart lightdm
 
 - name: maintenance user

@@ -7,25 +7,23 @@
 
 - name: make sure no other display managers are installed
   apt:
-    name: "{{ item }}"
+    pkg:
+      - slim
+      - gdm3
+      - kdm
+      - sddm
     state: absent
-  with_items:
-    - slim
-    - gdm3
-    - kdm
-    - sddm
 
 - name: install packages
   apt:
-    pkg: "{{ item }}"
-  with_items:
-    - xserver-xorg
-    - xserver-xorg-video-all
-    - xserver-xorg-input-all
-    - x11-xserver-utils
-    - lightdm
-    - lightdm-gtk-greeter
-    - onboard
+    pkg:
+      - xserver-xorg
+      - xserver-xorg-video-all
+      - xserver-xorg-input-all
+      - x11-xserver-utils
+      - lightdm
+      - lightdm-gtk-greeter
+      - onboard
   notify: restart lightdm
 
 - import_tasks: maintenance.yml
