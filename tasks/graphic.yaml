@@ -1,0 +1,11 @@
+---
+
+- name: graphic editors packages
+  apt:
+    pkg:
+      - gimp
+      - gimp-help-de
+      - inkscape
+      - gthumb
+      - krita
+      - krita-l10n

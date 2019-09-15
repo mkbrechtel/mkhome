@@ -1,3 +1,0 @@
----
-- name: install xpra
-  apt: pkg=xpra state=latest

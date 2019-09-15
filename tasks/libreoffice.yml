@@ -1,6 +1,0 @@
----
-- name: install libreoffice
-  apt: pkg={{item}} state=latest
-  with_items:
-  - libreoffice
-  - libreoffice-l10n-de

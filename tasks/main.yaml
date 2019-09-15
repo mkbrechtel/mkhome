@@ -1,0 +1,16 @@
+---
+
+- import_role:
+    name: basic_desktop
+
+- import_role:
+    name: libreoffice
+
+- import_tasks: xfce.yaml
+- import_tasks: audio.yaml
+- import_tasks: bluetooth.yaml
+- import_tasks: editors.yaml
+- import_tasks: graphic.yaml
+- import_tasks: mail.yaml
+- import_tasks: scanner.yaml
+- import_tasks: multimedia.yaml

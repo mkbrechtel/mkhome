@@ -1,0 +1,11 @@
+---
+
+- name: multimedia packages
+  apt:
+    pkg:
+      - vlc
+      - vlc-l10n
+      - libdvd-pkg
+      - libdvdread4
+      - openshot
+      - openshot-doc

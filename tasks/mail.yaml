@@ -1,0 +1,7 @@
+---
+
+- name: thunderbird
+  apt:
+    pkg:
+      - thunderbird
+      - thunderbird-l10n-de

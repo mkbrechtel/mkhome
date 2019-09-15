@@ -1,0 +1,9 @@
+---
+# tasks file for desktop-audio
+
+- name: audio packages
+  apt:
+    pkg:
+      - pavucontrol
+      - pasystray
+      - audacity

@@ -1,4 +1,0 @@
-#- name: install sflphone
-#  apt:
-#    name: sflphone-kde
-#    state: present
