@@ -1,1 +1,22 @@
 ---
+
+- name: debian package requirements
+  apt:
+    pkg:
+      - apt-transport-https
+
+- name: download riot-im keyring
+  get_url:
+    dest: /usr/share/keyrings/riot-im-archive-keyring.gpg
+    url: https://packages.riot.im/debian/riot-im-archive-keyring.gpg
+    checksum: sha256:7b9cb51017218a0c849a6c76c63eea4aa44237568f6e4d7cc935cdb009edb381
+
+- name: riot-im apt repo
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/riot-im-archive-keyring.gpg] https://packages.riot.im/debian/ {{ansible_distribution_release}} main
+    filename: riot-im
+
+- name: riot-im package
+  apt:
+    pkg: riot-web
+    state: latest
