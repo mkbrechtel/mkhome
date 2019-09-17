@@ -5,10 +5,6 @@
   apt:
     pkg:
       - xfce4
-      - task-desktop
-      - task-xfce-desktop
-      - task-german
-      - task-german-desktop
       - dmz-cursor-theme
       - gnome-brave-icon-theme
       - gnome-dust-icon-theme
