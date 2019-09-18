@@ -6,11 +6,11 @@
   apt:
     pkg: bluetooth
 
-- name: enable bluetooth service
-  service:
-    name: bluetooth
-    enabled: yes
-    state: started
+# - name: enable bluetooth service
+#   service:
+#     name: bluetooth
+#     enabled: yes
+#     state: started
 
 - name: bluetooth gui packages
   apt:
