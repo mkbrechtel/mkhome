@@ -4,6 +4,4 @@
 - name: audio packages
   apt:
     pkg:
-      - pavucontrol
-      - pasystray
       - audacity
