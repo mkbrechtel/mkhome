@@ -1,0 +1,32 @@
+---
+
+  # user setup
+  - import_role:
+      name: root_user
+  - import_role:
+      name: users
+  - import_role:
+      name: fish
+
+  # system setup
+  - import_role:
+      name: hostname
+  - import_role:
+      name: locales
+  - import_role:
+      name: timezone
+  - import_role:
+      name: keyboard_configuration
+
+  # packages setup
+  - import_role:
+      name: debian_repos
+    when:
+      - ansible_distribution == "Debian"
+      - ansible_lsb.id != "Raspbian"
+  - import_role:
+      name: debian_packages
+  - import_role:
+      name: system_upgrade
+  - import_role:
+      name: unattended-upgrades
