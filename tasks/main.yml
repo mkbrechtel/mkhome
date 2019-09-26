@@ -49,6 +49,11 @@
   when: display_setup_commands is defined
   notify: restart lightdm
 
+- name: lightdm pam.d configuration fix
+  copy:
+    src: pam.d/lightdm
+    dest: /etc/pam.d/lightdm
+
 - name: background image directory
   file:
     path: /opt/backgrounds
