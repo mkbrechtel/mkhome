@@ -9,3 +9,5 @@
       - libdvdread4
       - openshot
       - openshot-doc
+      - ogmrip
+      - ogmrip-plugins

@@ -5,3 +5,4 @@
   apt:
     pkg:
       - audacity
+      - sound-juicer
