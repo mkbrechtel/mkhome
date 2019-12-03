@@ -5,3 +5,4 @@
     pkg:
       - thunderbird
       - thunderbird-l10n-de
+      - hunspell-de-de
