@@ -14,3 +14,4 @@
 - import_tasks: mail.yaml
 - import_tasks: scanner.yaml
 - import_tasks: multimedia.yaml
+- import_tasks: mindmap.yaml
