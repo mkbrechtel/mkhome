@@ -77,7 +77,10 @@ user-authority-in-system-dir=true
 [Seat:*]
 greeter-session=lightdm-gtk-greeter
 
-{% if display_manager_state == "maintenance" %}
+{% if display_manager_state == "autologin" %}
+autologin-user={{autologin_user}}
+autologin-user-timeout=0
+{% elif display_manager_state == "maintenance" %}
 autologin-user=maintenance
 autologin-user-timeout=0
 user-session=maintenance

@@ -1,5 +1,6 @@
 _display_manager_valid_states:
   - multiuser
   - maintenance
+  - autologin
 
 display_manager_background_image_path: /opt/backgrounds/{{display_manager_background_image|basename}}
