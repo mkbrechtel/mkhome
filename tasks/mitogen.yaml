@@ -4,8 +4,9 @@
   pip:
     name: mitogen
     state: latest
+    executable: pip3
 
 - name: get ansible_mitogen location
-  shell: python -c "import os,ansible_mitogen; print(os.path.dirname(ansible_mitogen.__file__))"
+  shell: python3 -c "import os,ansible_mitogen; print(os.path.dirname(ansible_mitogen.__file__))"
   register: _ansible_mitogen_location
   changed_when: false

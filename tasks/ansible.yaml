@@ -4,3 +4,4 @@
   pip:
     name: ansible
     state: latest
+    executable: pip3

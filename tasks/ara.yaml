@@ -4,8 +4,9 @@
   pip:
     name: ara
     state: present
+    executable: pip3
 
 - name: get ara location
-  shell: python -c "import os,ara; print(os.path.dirname(ara.__file__))"
+  shell: python3 -c "import os,ara; print(os.path.dirname(ara.__file__))"
   register: _ara_location
   changed_when: false

@@ -3,6 +3,7 @@
 - name: python ovh client
   pip:
     name: ovh
+    executable: pip3
 
 - name: ansible ovh module
   git:
