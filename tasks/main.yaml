@@ -1,15 +1,14 @@
 ---
+- import_tasks: cleanup.yaml
 
-- include_tasks: setup_Debian.yaml
+- import_tasks: setup_Debian.yaml
 
-- include_tasks: ansible.yaml
+- import_tasks: ansible.yaml
 
-- include_tasks: mitogen.yaml
+- import_tasks: mitogen.yaml
   when: ansible_use_mitogen
 
-- include_tasks: ara.yaml
+- import_tasks: ara.yaml
   when: ansible_use_ara
 
 - import_tasks: config.yaml
-
-- import_tasks: cleanup.yaml
