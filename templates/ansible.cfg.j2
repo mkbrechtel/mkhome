@@ -10,6 +10,7 @@ strategy = mitogen_linear
 {% endif %}
 
 retry_files_enabled = False
+force_handlers = True
 
 {% if ansible_use_ara %}
 callback_plugins = {{ _ara_location.stdout }}/plugins/callbacks
