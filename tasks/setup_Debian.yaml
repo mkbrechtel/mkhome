@@ -3,7 +3,7 @@
 - name: install packages
   apt:
     pkg:
-      - python-pip
+      - python3-pip
       - ipv6calc
       - uuid
       - git
