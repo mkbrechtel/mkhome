@@ -5,11 +5,6 @@
     pkg: ansible
     state: absent
 
-- name: cleanup ansible lxc_ssh plugin
-  file:
-    path: /usr/share/ansible/plugins/connection/lxc_ssh
-    state: absent
-
 - name: cleanup ansible ovh module
   file:
     path: /usr/share/ansible/modules/ovh
@@ -29,32 +24,3 @@
     state: absent
     executable: pip3
   when: not ansible_use_mitogen
-
-- name: cleanup ansible ovh module
-  file:
-    path: /usr/share/ansible/modules/ovh/
-    state: absent
-
-- name: make sure old python2 ansible pip package is absent
-  pip:
-    name: ansible
-    state: absent
-    executable: pip2
-
-- name: make sure old python2 ara pip package is absent
-  pip:
-    name: ara
-    state: absent
-    executable: pip2
-
-- name: make sure old python2 ovh client package is absent
-  pip:
-    name: ovh
-    executable: pip2
-    state: absent
-
-- name: make sure old python2 mitogen pip package is absent
-  pip:
-    name: mitogen
-    state: absent
-    executable: pip2
