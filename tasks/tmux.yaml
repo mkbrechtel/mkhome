@@ -1,0 +1,7 @@
+---
+
+- name: tmux config
+  template:
+    src: tmux.conf.j2
+    dest: ~/.tmux.conf
+    mode: 0755

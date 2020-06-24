@@ -1,0 +1,11 @@
+---
+home_copy_pulseaudio_cookie: false
+home_eralitex: false
+home_access_to_hosts: []
+home_vnc_client_low_bandwidth: false
+home_remote_workspace_config: false
+home_kanboard_api_settings: false
+kanboard_api_settings: "{{ lookup('file', '~/.eralitex/kanboard_api_settings.json' | from_json) }}"
+#  kanboard_api_url: https://kanboard.katyx.net/jsonrpc.php
+#  kanboard_api_user: ka
+#  kanboard_api_key: xxx

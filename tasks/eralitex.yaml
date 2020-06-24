@@ -1,0 +1,30 @@
+---
+
+- import_role:
+    name: eralitex
+
+- name: other workspace focus script
+  template:
+    src: other-workspace-focus.fish.j2
+    dest: ~/.eralitex/workspace-cmd/other-focus
+    mode: 0755
+
+- name: remote workspace focus scripts
+  template:
+    src: remote-workspace-focus.fish.j2
+    dest: ~/.eralitex/workspace-cmd/{{workspace}}.focus
+    mode: 0755
+  with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vdesk'].key\") }}"
+  loop_control:
+    loop_var: workspace
+  when: home_remote_workspace_config
+
+- name: remote workspace space shortcut scripts
+  template:
+    src: remote-workspace-space.fish.j2
+    dest: ~/.eralitex/workspace-cmd/{{workspace}}.space
+    mode: 0755
+  with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vdesk'||value.type=='tmux'].key\") }}"
+  loop_control:
+    loop_var: workspace
+  when: home_remote_workspace_config

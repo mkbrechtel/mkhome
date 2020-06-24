@@ -1,0 +1,32 @@
+---
+
+- name: vnc directory
+  file:
+    path: ~/.vnc
+    state: directory
+    mode: 0700
+
+- name: vnc passwd
+  copy:
+    content: "{{ lookup('pipe','pwgen 24 1' )}}"
+    dest: ~/.vnc/passwd
+    mode: 0600
+    force: no
+
+- name: fetch vnc passwd
+  fetch:
+    src: ~/.vnc/passwd
+    dest: ~/.vnc/passwd.{{inventory_hostname}}
+    flat: yes
+
+- name: copy vnc passwd files
+  copy:
+    src: ~/.vnc/passwd.{{item}}
+    dest: ~/.vnc/passwd.{{item}}
+  with_items: "{{ home_access_to_hosts }}"
+
+- name: vnc options
+  template:
+    src: vnc-options.fish.j2
+    dest: ~/.eralitex/workspace-cmd/vnc-options
+    mode: 0755

@@ -1,0 +1,8 @@
+---
+
+- name: pulse cookie
+  copy:
+    src: ~/.pulse-cookie
+    dest: ~/.pulse-cookie
+    mode: 0600
+  when: home_copy_pulseaudio_cookie

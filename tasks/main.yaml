@@ -1,4 +1,10 @@
 ---
 
-- import_role:
-    name: eralitex
+- import_tasks: ssh.yaml
+- import_tasks: vnc.yaml
+- import_tasks: tmux.yaml
+- import_tasks: pulseaudio.yaml
+- import_tasks: git.yaml
+
+- import_tasks: eralitex.yaml
+  when: home_eralitex

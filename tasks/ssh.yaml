@@ -1,0 +1,7 @@
+---
+
+- name: ssh-keys
+  copy:
+    src: ~/ssh-keys/
+    dest: ~/ssh-keys
+    mode: u=rw,g=,o=
