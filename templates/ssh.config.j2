@@ -1,4 +1,6 @@
 {% for hostname in groups.vms %}
 Host {{hostname}}
+{% if 'external_ip' in hostvars[hostname] %}
   HostName {{hostvars[hostname].external_ip}}
+{% endif %}
 {% endfor %}
