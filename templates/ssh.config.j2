@@ -1,0 +1,4 @@
+{% for hostname in groups.vms %}
+Host {{hostname}}
+  HostName {{hostvars[hostname].external_ip}}
+{% endfor %}
