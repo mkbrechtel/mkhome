@@ -24,9 +24,3 @@
     src: ~/.vnc/passwd.{{item}}
     dest: ~/.vnc/passwd.{{item}}
   with_items: "{{ home_access_to_hosts }}"
-
-- name: vnc options
-  template:
-    src: vnc-options.fish.j2
-    dest: ~/.eralitex/workspace-cmd/vnc-options
-    mode: 0755

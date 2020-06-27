@@ -28,3 +28,9 @@
   loop_control:
     loop_var: workspace
   when: home_remote_workspace_config
+
+- name: vnc options
+  template:
+    src: vnc-options.fish.j2
+    dest: ~/.eralitex/workspace-cmd/vnc-options
+    mode: 0755
