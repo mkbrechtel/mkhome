@@ -5,3 +5,18 @@
     src: tmux.conf.j2
     dest: ~/.tmux.conf
     mode: 0755
+
+- name: systemd user config directory
+  file:
+    path: ~/.config/systemd/user
+    state: directory
+- name: tmux systemd user service unit
+  template:
+    src: tmux@.service.j2
+    dest: ~/.config/systemd/user/tmux@.service
+  notify: systemd daemon-reload
+- name: tmux systemd user service unit
+  template:
+    src: tmux@.service.j2
+    dest: ~/.config/systemd/user/tmux@.service
+  notify: systemd daemon-reload
