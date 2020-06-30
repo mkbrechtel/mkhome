@@ -1,0 +1,11 @@
+---
+
+- name: ~/bin directory
+  file:
+    path: ~/bin
+    state: directory
+
+- name: systemd user config directory
+  file:
+    path: ~/.config/systemd/user
+    state: directory

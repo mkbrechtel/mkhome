@@ -1,0 +1,8 @@
+#!/usr/bin/fish
+
+switch $argv[1]
+  case "activity"
+    /opt/activity/select_activity
+  case "end"
+    /opt/activity/activity
+end

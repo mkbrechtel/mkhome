@@ -1,0 +1,6 @@
+---
+
+- name: xsessionrc
+  copy:
+    content: exec fish {{eralitex_directory}}/active-profile/xsession
+    dest: ~/.xsessionrc

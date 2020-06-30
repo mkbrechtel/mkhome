@@ -1,0 +1,17 @@
+#!/usr/bin/fish
+
+if count $argv
+  set ws $argv[1]
+else
+  set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name')
+end
+set script ~/.eralitex/workspace-cmd/$ws.focus
+set oscript ~/.eralitex/workspace-cmd/other-focus
+
+if type -q $script
+  $script
+else
+  if type -q $oscript
+    $oscript
+  end
+end

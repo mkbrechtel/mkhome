@@ -1,7 +1,115 @@
 ---
 
-- import_role:
-    name: eralitex
+- name: eralitex directory
+  file:
+    path: "{{eralitex_directory}}"
+    state: directory
+
+- name: profile directories
+  file:
+    path: "{{eralitex_directory}}/{{item}}"
+    state: directory
+  with_items: "{{ eralitex_profiles }}"
+
+- name: i3 config
+  template:
+    src: i3.config.j2
+    dest: "{{eralitex_directory}}/{{item}}/i3.config"
+  with_items: "{{ eralitex_profiles }}"
+
+- name: check i3 config
+  command: i3 -c {{eralitex_directory}}/{{item}}/i3.config -C
+  with_items: "{{ eralitex_profiles }}"
+  changed_when: false
+
+- name: i3blocks config
+  template:
+    src: i3blocks.config.j2
+    dest: "{{eralitex_directory}}/{{item}}/i3blocks.config"
+  with_items: "{{ eralitex_profiles }}"
+
+- name: xsession scripts
+  template:
+    src: xsession.sh.j2
+    dest: "{{eralitex_directory}}/{{item}}/xsession"
+    mode: 0755
+  with_items: "{{ eralitex_profiles }}"
+
+- name: session reload scripts
+  template:
+    src: reload.sh.j2
+    dest: "{{eralitex_directory}}/{{item}}/reload"
+    mode: 0755
+  with_items: "{{ eralitex_profiles }}"
+
+- name: rofi themes
+  template:
+    src: rofi.theme.j2
+    dest: "{{eralitex_directory}}/{{item}}/rofi.theme"
+    mode: 0755
+  with_items: "{{ eralitex_profiles }}"
+
+- name: Xmodmap
+  template:
+    src: Xmodmap.j2
+    dest: "{{eralitex_directory}}/Xmodmap"
+
+- name: urxvt Xresources system config
+  template:
+    src: urxvt.Xresources.j2
+    dest: "{{eralitex_directory}}/urxvt.Xresources"
+
+- name: eralitex bin directory
+  copy:
+    src: bin/
+    dest: "{{eralitex_directory}}/bin/"
+    mode: 0755
+
+- name: link selected profile as active
+  file:
+    dest: "{{eralitex_directory}}/active-profile"
+    src: "{{eralitex_profile}}"
+    state: link
+
+- name: vdesk user service
+  template:
+    src: eralitex-vdesk.service.j2
+    dest: ~/.config/systemd/user/eralitex@.service
+
+- name: link etx cli utility from users bin
+  file:
+    dest: ~/bin/etx
+    src: "{{eralitex_directory}}/bin/etx"
+    state: link
+
+- name: link selected profile as active
+  file:
+    dest: "{{eralitex_directory}}/active-profile"
+    src: "{{eralitex_profile}}"
+    state: link
+
+- name: points counter
+  copy:
+    content: 0
+    dest: "{{eralitex_directory}}/points"
+    force: no
+
+- name: background image directory
+  file:
+    path: "{{eralitex_directory}}/backgrounds"
+    state: directory
+  when: eralitex_background_image is defined
+
+- name: background image
+  copy:
+    src: "{{eralitex_background_image}}"
+    dest: "{{eralitex_background_image_path}}"
+  when: eralitex_background_image is defined
+
+- name: workspace-cmd directory
+  file:
+    path: "{{eralitex_directory}}/workspace-cmd"
+    state: directory
 
 - name: other workspace focus script
   template:
@@ -34,3 +142,14 @@
     src: vnc-options.fish.j2
     dest: ~/.eralitex/workspace-cmd/vnc-options
     mode: 0755
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: enable and start eralitex vdesk user service
+  systemd:
+    name: eralitex@:16.service
+    state: started
+    enabled: true
+    user: true
+  when: home_eralitex_vdesk_started_and_enabled

@@ -1,0 +1,34 @@
+! set font to Terminus
+urxvt*font: xft:Terminus:pixelsize=14
+urxvt*boldFont: xft:Terminus:pixelsize=14
+
+! set colors
+URxvt*background: black
+URxvt*foreground: white
+
+! save number lines in the scrollback buffer
+URxvt.saveLines: 10000
+
+! disable scrollbar
+URxvt*scrollBar: false
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! scrollback buffer in secondary screen
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+{% if not ansible_lsb.id == "Raspbian" %}
+! fake transparency
+urxvt*transparent: true
+urxvt*shading: 30
+! https://bbs.archlinux.org/viewtopic.php?id=222070
+URxvt*ineheritPixmap: true
+{% endif %}

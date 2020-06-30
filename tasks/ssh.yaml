@@ -17,3 +17,11 @@
     line: Include config.auto
     insertbefore: BOF
     create: true
+
+- name: enable and start ssh-agent user service
+  systemd:
+    name: ssh-agent.service
+    state: started
+    enabled: true
+    user: true
+  when: home_eralitex_vdesk_started_and_enabled

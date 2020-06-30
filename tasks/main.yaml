@@ -1,5 +1,6 @@
 ---
 
+- import_tasks: structure.yaml
 - import_tasks: ssh.yaml
 - import_tasks: vnc.yaml
 - import_tasks: tmux.yaml
@@ -7,4 +8,6 @@
 - import_tasks: git.yaml
 
 - import_tasks: eralitex.yaml
+  when: home_eralitex
+- import_tasks: x11.yaml
   when: home_eralitex

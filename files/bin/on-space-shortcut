@@ -1,0 +1,8 @@
+#!/usr/bin/fish
+
+set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name')
+set script ~/.eralitex/workspace-cmd/$ws.space
+
+if type -q $script
+  $script
+end

@@ -10,11 +10,13 @@
   file:
     path: ~/.config/systemd/user
     state: directory
+
 - name: tmux systemd user service unit
   template:
     src: tmux@.service.j2
     dest: ~/.config/systemd/user/tmux@.service
   notify: systemd daemon-reload
+
 - name: tmux systemd user service unit
   template:
     src: tmux@.service.j2

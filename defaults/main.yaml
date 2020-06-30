@@ -9,3 +9,43 @@ kanboard_api_settings: "{{ lookup('file', '~/.eralitex/kanboard_api_settings.jso
 #  kanboard_api_url: https://kanboard.katyx.net/jsonrpc.php
 #  kanboard_api_user: ka
 #  kanboard_api_key: xxx
+home_eralitex_vdesk_started_and_enabled: false
+
+eralitex_directory: ~/.eralitex
+
+eralitex_profile: desktop
+
+eralitex_terminal: urxvt
+eralitex_browser: firefox
+
+# feature flags
+eralitex_with_activity: false
+
+eralitex_applications:
+  a: atom
+  w: lowriter
+  c: localc
+  i: loimpress
+  d: lodraw
+  F: catfish # search
+  j: "{{eralitex_jupyter_console_command}}"
+  s: xfce4-screenshooter
+  l: catfish
+  f: "{{eralitex_file_browser_command}}" # files
+  m: "{{eralitex_mail_command}}"
+  r: arandr
+
+
+eralitex_lock_command: /usr/local/bin/screensaver-lock
+eralitex_enable_screensaver_command: /usr/local/bin/screensaver-enable
+eralitex_disable_screensaver_command: /usr/local/bin/screensaver-disable
+eralitex_suspend_command: systemctl suspend
+eralitex_reboot_command: systemctl reboot
+eralitex_poweroff_command: systemctl poweroff
+
+eralitex_file_browser_command: thunar
+eralitex_calculator_command: "{{eralitex_jupyter_console_command}}"
+eralitex_jupyter_console_command: jupyter qtconsole --no-confirm-exit
+eralitex_mail_command: thunderbird
+
+eralitex_background_image: false

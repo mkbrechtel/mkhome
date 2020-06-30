@@ -1,0 +1,119 @@
+eralitex_profiles:
+  - desktop
+  - vdesk
+  - presentation
+
+eralitex_numbered_workspace_keymaps:
+  - keysym: 1
+    workspace: 1
+  - keysym: 2
+    workspace: 2
+  - keysym: 3
+    workspace: 3
+  - keysym: 4
+    workspace: 4
+  - keysym: 5
+    workspace: 5
+  - keysym: 6
+    workspace: 6
+  - keysym: 7
+    workspace: 7
+  - keysym: 8
+    workspace: 8
+  - keysym: 9
+    workspace: 9
+  - keysym: 0
+    workspace: 10
+  - keysym: F1
+    workspace: 11
+  - keysym: F2
+    workspace: 12
+  - keysym: F3
+    workspace: 13
+  - keysym: F4
+    workspace: 14
+  - keysym: F5
+    workspace: 15
+  - keysym: F6
+    workspace: 16
+  - keysym: F7
+    workspace: 17
+  - keysym: F8
+    workspace: 18
+  - keysym: F9
+    workspace: 19
+  - keysym: F10
+    workspace: 20
+  - keysym: F11
+    workspace: 21
+  - keysym: F12
+    workspace: 22
+
+
+eralitex_letter_workspace_keymaps:
+  - keysym: a
+    workspace: 23:a
+  - keysym: b
+    workspace: 24:b
+  - keysym: c
+    workspace: 25:c
+  - keysym: d
+    workspace: 26:d
+  - keysym: e
+    workspace: 27:e
+  - keysym: f
+    workspace: 28:f
+  - keysym: g
+    workspace: 29:g
+  - keysym: h
+    workspace: 30:h
+  - keysym: i
+    workspace: 31:i
+  - keysym: j
+    workspace: 32:j
+  - keysym: k
+    workspace: 33:k
+  - keysym: l
+    workspace: 34:l
+  - keysym: m
+    workspace: 35:m
+  - keysym: n
+    workspace: 36:n
+  - keysym: o
+    workspace: 37:o
+  - keysym: p
+    workspace: 38:p
+  - keysym: q
+    workspace: 39:q
+  - keysym: r
+    workspace: 40:r
+  # - keysym: s
+  #   workspace: 41:s
+  # - keysym: t
+  #   workspace: 42:t
+  - keysym: u
+    workspace: 43:u
+  - keysym: v
+    workspace: 44:v
+  #- keysym: w
+  #  workspace: 45:w
+  - keysym: x
+    workspace: 46:x
+  - keysym: y
+    workspace: 47:y
+  - keysym: z
+    workspace: 48:z
+  - keysym: adiaeresis
+    workspace: 49:ä
+  - keysym: odiaeresis
+    workspace: 50:ö
+  - keysym: udiaeresis
+    workspace: 51:ü
+  - keysym: ssharp
+    workspace: 52:ß
+
+eralitex_points_up_command: fish -c "echo (expr (cat  ~/.eralitex/points) + 1 > ~/.eralitex/points) (i3-nagbar -m (cat  ~/.eralitex/points)\ €)"
+eralitex_points_down_command: fish -c "echo (expr (cat  ~/.eralitex/points) - 1 > ~/.eralitex/points) (i3-nagbar -m (cat  ~/.eralitex/points)\ €)"
+
+eralitex_background_image_path: "{{eralitex_directory}}/backgrounds/{{eralitex_background_image|basename}}"
+eralitex_background_command: feh --no-fehbg --bg-fill {{eralitex_background_image_path}}
