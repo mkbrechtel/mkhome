@@ -1,0 +1,18 @@
+---
+
+- name: i3 config
+  template:
+    src: i3.config.j2
+    dest: "{{eralitex_directory}}/{{item}}/i3.config"
+  with_items: "{{ eralitex_profiles }}"
+
+- name: check i3 config
+  command: i3 -c {{eralitex_directory}}/{{item}}/i3.config -C
+  with_items: "{{ eralitex_profiles }}"
+  changed_when: false
+
+- name: i3blocks config
+  template:
+    src: i3blocks.config.j2
+    dest: "{{eralitex_directory}}/{{item}}/i3blocks.config"
+  with_items: "{{ eralitex_profiles }}"
