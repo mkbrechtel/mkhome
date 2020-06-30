@@ -1,0 +1,7 @@
+---
+
+- name: points counter
+  copy:
+    content: 0
+    dest: "{{eralitex_directory}}/points"
+    force: no

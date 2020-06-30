@@ -88,11 +88,6 @@
     src: "{{eralitex_profile}}"
     state: link
 
-- name: points counter
-  copy:
-    content: 0
-    dest: "{{eralitex_directory}}/points"
-    force: no
 
 - name: background image directory
   file:
