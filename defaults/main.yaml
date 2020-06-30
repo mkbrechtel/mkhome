@@ -1,6 +1,6 @@
 ---
 home_copy_pulseaudio_cookie: false
-home_eralitex: false
+home_desktop: false
 home_access_to_hosts: []
 home_vnc_client_low_bandwidth: false
 home_remote_workspace_config: false

@@ -10,6 +10,9 @@
 - import_tasks: points.yaml
 
 - import_tasks: eralitex.yaml
-  when: home_eralitex
+  when: home_desktop
 - import_tasks: x11.yaml
-  when: home_eralitex
+  when: home_desktop
+
+- import_tasks: vdesk.yaml
+  when: home_desktop

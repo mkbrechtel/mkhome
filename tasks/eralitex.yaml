@@ -71,10 +71,6 @@
     src: "{{eralitex_profile}}"
     state: link
 
-- name: vdesk user service
-  template:
-    src: eralitex-vdesk.service.j2
-    dest: ~/.config/systemd/user/eralitex@.service
 
 - name: link etx cli utility from users bin
   file:
@@ -137,14 +133,3 @@
     src: vnc-options.fish.j2
     dest: ~/.eralitex/workspace-cmd/vnc-options
     mode: 0755
-
-- name: flush handlers
-  meta: flush_handlers
-
-- name: enable and start eralitex vdesk user service
-  systemd:
-    name: eralitex@:16.service
-    state: started
-    enabled: true
-    user: true
-  when: home_eralitex_vdesk_started_and_enabled
