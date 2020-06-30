@@ -154,8 +154,8 @@ mode "remote" {
 
 ### Applications mode
 mode "apps" {
-{% for key, app in eralitex_applications.iteritems() %}
-  bindsym {{key}} exec {{app}}; mode "default"
+{% for a in eralitex_applications | dict2items %}
+  bindsym {{a.key}} exec {{a.value}}; mode "default"
 {% endfor %}
   bindsym Escape mode "default"
 }
