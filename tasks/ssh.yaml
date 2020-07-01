@@ -24,4 +24,3 @@
     state: started
     enabled: true
     user: true
-  when: home_eralitex_vdesk_started_and_enabled
