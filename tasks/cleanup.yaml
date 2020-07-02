@@ -5,12 +5,6 @@
     pkg: ansible
     state: absent
 
-- name: cleanup ansible ovh module
-  file:
-    path: /usr/share/ansible/modules/ovh
-    state: absent
-  when: not ansible_with_ovh_module
-
 - name: cleanup ara pip package
   pip:
     name: ara
