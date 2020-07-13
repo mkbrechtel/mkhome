@@ -15,3 +15,4 @@
 - import_tasks: scanner.yaml
 - import_tasks: multimedia.yaml
 - import_tasks: mindmap.yaml
+- import_tasks: notifications.yaml

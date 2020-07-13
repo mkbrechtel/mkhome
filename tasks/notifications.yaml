@@ -1,0 +1,10 @@
+---
+
+- name: notify-osd package
+  apt:
+    pkg: notify-osd
+
+- name: dunst package absent
+  apt:
+    pkg: dunst
+    state: absent
