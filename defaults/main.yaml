@@ -36,7 +36,7 @@ eralitex_applications:
   r: arandr
 
 
-eralitex_lock_command: /usr/local/bin/screensaver-lock
+eralitex_lock_command: xset s activate
 eralitex_enable_screensaver_command: /usr/local/bin/screensaver-enable
 eralitex_disable_screensaver_command: /usr/local/bin/screensaver-disable
 eralitex_suspend_command: systemctl suspend
