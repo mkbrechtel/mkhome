@@ -9,3 +9,14 @@
   file:
     path: ~/.config/systemd/user
     state: directory
+
+- name: eralitex directory
+  file:
+    path: "{{eralitex_directory}}"
+    state: directory
+
+- name: profile directories
+  file:
+    path: "{{eralitex_directory}}/{{item}}"
+    state: directory
+  with_items: "{{ eralitex_profiles }}"
