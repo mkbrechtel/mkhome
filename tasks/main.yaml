@@ -20,3 +20,14 @@
 
 - import_tasks: vdesk.yaml
   when: home_desktop
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: enable and start vdesk user service
+  systemd:
+    name: vdesk@:16.service
+    state: started
+    enabled: true
+    scope: user
+  when: home_vdesk_started_and_enabled

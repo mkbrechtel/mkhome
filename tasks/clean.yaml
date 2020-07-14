@@ -1,1 +1,14 @@
 ---
+
+- name: disable and stop eralitex vdesk user service
+  systemd:
+    name: eralitex@:16.service
+    state: stopped
+    enabled: false
+    scope: user
+  failed_when: false
+
+- name: remove eralitex user service
+  file:
+    path: ~/.config/systemd/user/eralitex@.service
+    state: absent
