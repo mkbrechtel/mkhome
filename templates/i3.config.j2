@@ -39,6 +39,7 @@ bindsym XF86Calculator exec {{eralitex_calculator_command}}
 ## Special modes
 bindsym $mod+t mode timer
 bindsym $mod+s mode session
+bindsym $mod+S mode session
 bindsym $mod+c mode clipboard
 bindcode $mod+49 mode "remote"
 
@@ -166,6 +167,7 @@ mode "apps" {
 mode "session" {
   bindsym q exit
   bindsym r reload; exec --no-startup-id {{eralitex_directory}}/{{item}}/reload; mode "default"; {{on_focus_workspace}}
+  bindsym R reload; exec --no-startup-id {{eralitex_directory}}/{{item}}/reload; mode "default"; {{on_focus_workspace}}
   bindsym s exec --no-startup-id {{eralitex_lock_command}}; exec --no-startup-{{eralitex_suspend_command}}; mode "default"; {{on_focus_workspace}}
   bindsym x exec --no-startup-id {{eralitex_lock_command}}; mode "default"; {{on_focus_workspace}}
   bindsym e exec --no-startup-id {{eralitex_enable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
