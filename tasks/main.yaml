@@ -23,7 +23,7 @@
     name: debian_repos
   when:
     - ansible_distribution == "Debian"
-    - ansible_lsb.id != "Raspbian"
+    - not ansible_lsb.id is defined or ansible_lsb.id != "Raspbian"
 - import_role:
     name: debian_packages
 - import_role:
