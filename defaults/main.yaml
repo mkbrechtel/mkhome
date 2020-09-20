@@ -35,6 +35,7 @@ eralitex_applications:
   m: "{{eralitex_mail_command}}"
   r: arandr
 
+ssh_over_tor: false
 
 eralitex_lock_command: xset s activate
 eralitex_enable_screensaver_command: /usr/local/bin/screensaver-enable
