@@ -4,6 +4,12 @@
     name: basic_desktop
 
 - import_role:
+    name: firefox
+
+- import_role:
+    name: chromium
+
+- import_role:
     name: libreoffice
 
 - import_tasks: xfce.yaml
