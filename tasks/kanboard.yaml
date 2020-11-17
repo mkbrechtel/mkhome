@@ -3,5 +3,5 @@
 - name: kanboard api settings
   copy:
     content: "{{ kanboard_api_settings | to_json }}"
-    dest: ~/.eralitex/kanboard_api_settings.json
+    dest: ~/.kanboard_api_settings.json
   when: home_kanboard_api_settings

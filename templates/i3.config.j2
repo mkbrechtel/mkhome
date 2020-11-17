@@ -5,11 +5,21 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 {% set workspace_switcher = "exec fish -c \"i3-msg workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p workspace )\"" %}
-{% set on_focus_workspace = "exec --no-startup-id " + eralitex_directory + "/bin/on-focus-workspace" %}
-
+{% set on_focus_workspace = "exec --no-startup-id ~/bin/on-focus-workspace" %}
 
 ### Font
-font pango:Terminus 14px
+#font pango:DejaVu Sans Mono 12
+#font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+#font pango:Droid Sans Mono Dotted 12
+#font pango:DroidSansMono 13
+#font pango:Sans 13
+#font pango:hermit 12
+#font pango:Inconsolata 14
+font pango:monospace 10
+#font pango:SourceCodePro-SemiBold 11
+#font pango:Source Code Pro for Powerline, FontAwesome Regular, Icons 9
+#font pango:Terminus 14px
+#font pango:UbuntuMono-regular 12
 
 
 
@@ -31,10 +41,10 @@ set $right odiaeresis
 ### default/local mode
 
 ## special keys
-bindsym XF86Sleep exec {{eralitex_lock_command}}
-bindsym XF86Mail exec {{eralitex_mail_command}}
-bindsym XF86HomePage exec {{eralitex_browser}}
-bindsym XF86Calculator exec {{eralitex_calculator_command}}
+bindsym XF86Sleep exec {{session_lock_command}}
+bindsym XF86Mail exec {{mail_command}}
+bindsym XF86HomePage exec {{default_browser}}
+bindsym XF86Calculator exec {{calculator_command}}
 
 ## Special modes
 bindsym $mod+t mode timer
@@ -44,17 +54,17 @@ bindcode $mod+49 mode "remote"
 
 
 ## Applications
-bindsym $mod+Return exec "{{eralitex_terminal}}"
-bindsym $mod+b exec "{{eralitex_browser}}"
+bindsym $mod+Return exec "{{default_terminal}}"
+bindsym $mod+b exec "{{default_browser}}"
 bindsym $mod+d exec rofi -show drun -show-icons
 bindsym $mod+e exec rofi -show run
 bindsym $mod+a mode "apps"
-bindsym $mod+space exec "{{eralitex_directory}}/bin/on-space-shortcut"
+bindsym $mod+space exec "~/bin/on-space-shortcut"
 
 
 ## Workspaces
 bindsym $mod+w {{workspace_switcher}}
-{% for ws in eralitex_numbered_workspace_keymaps %}
+{% for ws in i3_number_workspace_keymaps %}
 bindsym $mod+{{ws.keysym}} workspace "{{ws.workspace}}"
 {% endfor %}
 # focus workspace
@@ -98,6 +108,8 @@ bindsym $mod+x exec xkill
 # points
 bindsym $mod+minus exec {{points_down_command}}
 bindsym $mod+plus exec {{points_up_command}}
+bindsym $mod+KP_Subtract exec {{points_down_command}}
+bindsym $mod+KP_Add exec {{points_up_command}}
 
 # unlearn
 #exec {{points_down_command}}
@@ -106,15 +118,15 @@ bindsym $mod+plus exec {{points_up_command}}
 ## stuff that is available in default and remote mode
 {% macro overall() %}
 
-  {% if item == "desktop" %}
-    bindsym $plexmod+space exec "{{eralitex_directory}}/bin/on-space-shortcut"
+  {% if home_profile == "desktop" %}
+    bindsym $plexmod+space exec ~/bin/on-space-shortcut
     bindsym $plexmod+BackSpace kill
     bindsym $plexmod+w {{workspace_switcher}}
 
-    {% for ws in eralitex_numbered_workspace_keymaps %}
+    {% for ws in i3_number_workspace_keymaps %}
     bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
     {% endfor %}
-    {% for ws in eralitex_letter_workspace_keymaps %}
+    {% for ws in i3_letter_workspace_keymaps %}
     bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
     {% endfor %}
     # focus workspace
@@ -141,7 +153,7 @@ bindsym $mod+plus exec {{points_up_command}}
 mode "remote" {
 
   bindcode $mod+9 mode "default"
-  bindsym XF86Sleep exec {{eralitex_lock_command}}
+  bindsym XF86Sleep exec {{session_lock_command}}
 
   # The middle button over a titlebar kills the window
   bindsym --release button2 kill
@@ -154,7 +166,7 @@ mode "remote" {
 
 ### Applications mode
 mode "apps" {
-{% for a in eralitex_applications | dict2items %}
+{% for a in application_shortcuts | dict2items %}
   bindsym {{a.key}} exec {{a.value}}; mode "default"
 {% endfor %}
   bindsym Escape mode "default"
@@ -165,15 +177,15 @@ mode "apps" {
 ### Session
 mode "session" {
   bindsym q exit
-  bindsym r reload; exec --no-startup-id {{eralitex_directory}}/{{item}}/reload; mode "default"; {{on_focus_workspace}}
-  bindsym R reload; exec --no-startup-id {{eralitex_directory}}/{{item}}/reload; mode "default"; {{on_focus_workspace}}
-  bindsym s exec --no-startup-id {{eralitex_lock_command}}; exec --no-startup-{{eralitex_suspend_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym x exec --no-startup-id {{eralitex_lock_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym e exec --no-startup-id {{eralitex_enable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym d exec --no-startup-id {{eralitex_disable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym r reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
+  bindsym R reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
+  bindsym s exec --no-startup-id {{session_lock_command}}; exec --no-startup {{system_suspend_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym x exec --no-startup-id {{session_lock_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym e exec --no-startup-id {{session_enable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym d exec --no-startup-id {{session_disable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
   bindsym b exec --no-startup-id xsetroot -solid black; mode "default"; {{on_focus_workspace}}
-  bindsym Shift+R exec --no-startup-id {{eralitex_reboot_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym Shift+P exec --no-startup-id {{eralitex_poweroff_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym Shift+R exec --no-startup-id {{system_reboot_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym Shift+P exec --no-startup-id {{system_poweroff_command}}; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
@@ -182,10 +194,10 @@ mode "session" {
 
 ### Timer
 mode "timer" {
-  bindsym a exec "{{eralitex_directory}}/bin/timer activity"; mode "default"; {{on_focus_workspace}}
-  bindsym e exec "{{eralitex_directory}}/bin/timer end"; mode "default"; {{on_focus_workspace}}
-  bindsym r exec "{{eralitex_directory}}/bin/timer update"; mode "default"; {{on_focus_workspace}}
-  bindsym u exec "/opt/activity/activity 'Arbeit:Uniklinik Köln'"; mode "default"; {{on_focus_workspace}}
+  bindsym a exec "~/bin/timer activity"; mode "default"; {{on_focus_workspace}}
+  bindsym e exec "~/bin/timer end"; mode "default"; {{on_focus_workspace}}
+  bindsym r exec "~/bin/timer update"; mode "default"; {{on_focus_workspace}}
+  bindsym r exec "~/bin/timer uniklinik"; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
@@ -237,7 +249,7 @@ mode "move" {
   bindsym $right move right
 
   # move window to workspace
-{% for ws in eralitex_numbered_workspace_keymaps %}
+{% for ws in i3_number_workspace_keymaps %}
   bindsym {{ws.keysym}} move container to workspace "{{ws.workspace}}"; mode "default"
 {% endfor %}
   bindsym w exec fish -c "i3-msg move container to workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p 'move to workspace' )"; mode "default"
@@ -308,7 +320,7 @@ bar {
 
   tray_output primary
 
-  status_command "i3blocks -c {{eralitex_directory}}/{{item}}/i3blocks.config"
+  status_command i3blocks
 
   colors {
     background #000000
@@ -316,15 +328,15 @@ bar {
     separator #666666
 
     # <colorclass> <border> <background> <text>
-    {% if item == "desktop" %}
+    {% if home_profile == "desktop" %}
     # lila: Farbton 274
     focused_workspace  #774C99 #552877 #ffffff
     {% endif %}
-    {% if item == "vdesk" %}
+    {% if home_profile == "vdesk" %}
     # grün: Farbton 110
     focused_workspace  #4D994C #357728 #ffffff
     {% endif %}
-    {% if item == "presentation" %}
+    {% if home_profile == "presentation" %}
     # gelb: Farbton 60
     focused_workspace  #99994C #777728 #ffffff
     {% endif %}
@@ -340,15 +352,15 @@ bar {
 ### Design
 
 # class     border  backgr. text    indicator child_border
-{% if item == "desktop" %}
+{% if home_profile == "desktop" %}
 # lila: Farbton 274
 client.focused    #784C99 #552877 #ffffff #9E2EF4   #552877
 {% endif %}
-{% if item == "vdesk" %}
+{% if home_profile == "vdesk" %}
 # grün: Farbton 110
 client.focused    #59994C #357728 #ffffff #4FF42E   #357728
 {% endif %}
-{% if item == "presentation" %}
+{% if home_profile == "presentation" %}
 # gelb: Farbton 60
 client.focused    #99994C #777728 #ffffff #F4F42E   #777728
 {% endif %}
@@ -373,6 +385,7 @@ focus_on_window_activation urgent
 ### Application specific rule
 
 for_window [class="^Vncviewer$"] border none
+for_window [class="^TigerVNC Viewer$"] border none
 for_window [window_role="^About$"] floating enable
 for_window [class="^Pavu"] floating enable
 for_window [class="^Paman$"] floating enable
@@ -383,11 +396,9 @@ for_window [class="^URxvt$" title="^tmux-workspace$"] border none
 
 ### Autostart
 
-exec "{{eralitex_terminal}}"
+exec "{{default_terminal}}"
 
-{% if item == "desktop" %}
-exec --no-startup-id "{{eralitex_directory}}/bin/i3-watchers"
-{% endif %}
+exec --no-startup-id "~/bin/i3-watchers"
 
 ### free keys
 # $mod+i

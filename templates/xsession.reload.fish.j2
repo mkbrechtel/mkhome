@@ -1,0 +1,23 @@
+#!/usr/bin/fish
+
+# keymap
+setxkbmap de
+xmodmap ~/.Xmodmap
+setxkbmap -option caps:hyper
+xmodmap ~/.Xmodmap
+xkbset nullify lock
+
+# background
+xsetroot -solid black
+{% if background_image is defined %}
+{{background_command}}
+{% endif %}
+
+# Xresources
+xrdb -merge ~/.Xresources
+
+# rofi
+rofi -theme ~/.config/rofi/theme -dump-xresources > ~/.config/rofi/config
+
+# screensaver settings
+/usr/local/bin/screensaver-settings

@@ -1,6 +1,28 @@
 ---
 
+- name: Xresources
+  template:
+    src: Xresources.j2
+    dest: ~/.Xresources
+
+- name: Xmodmap
+  template:
+    src: Xmodmap.j2
+    dest: ~/.Xmodmap
+
+- name: xsession script
+  template:
+    src: xsession.fish.j2
+    dest: ~/.xsession.fish
+    mode: 0755
+
+- name: xsession reload script
+  template:
+    src: xsession.reload.fish.j2
+    dest: ~/.xsession.reload.fish
+    mode: 0755
+
 - name: xsessionrc
   copy:
-    content: exec fish {{eralitex_directory}}/active-profile/xsession
+    content: exec fish ~/.xsession.fish
     dest: ~/.xsessionrc

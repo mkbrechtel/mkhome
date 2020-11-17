@@ -12,3 +12,8 @@
   file:
     path: ~/.config/systemd/user/eralitex@.service
     state: absent
+
+- name: remove old eralitex directory
+  file:
+    path: ~/.eralitex
+    state: absent

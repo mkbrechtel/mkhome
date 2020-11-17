@@ -1,6 +1,19 @@
-! set font to Terminus
-urxvt*font: xft:Terminus:pixelsize=14
-urxvt*boldFont: xft:Terminus:pixelsize=14
+! {{ansible_managed}}
+
+! DPI
+Xft.dpi: {{home_xft_dpi}}
+
+! These might also be useful depending on your monitor and personal preference:
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! set fonts
+URxvt.font:xft:Monospace:pixelsize=15
+URxvt.boldfont:xft:Monospace-Bold:pixelsize=15
 
 ! set colors
 URxvt*background: black

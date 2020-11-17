@@ -24,3 +24,9 @@
     src: ~/.vnc/passwd.{{item}}
     dest: ~/.vnc/passwd.{{item}}
   with_items: "{{ home_access_to_hosts }}"
+
+- name: default vnc client options
+  template:
+    src: tigervnc.default.j2
+    dest: ~/.vnc/default.tigervnc
+    mode: 0755

@@ -5,13 +5,10 @@ if count $argv
 else
   set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name')
 end
-set script ~/.eralitex/workspace-cmd/$ws.focus
-set oscript ~/.eralitex/workspace-cmd/other-focus
+set script ~/.workspaces/$ws.focus
 
 if type -q $script
   $script
 else
-  if type -q $oscript
-    $oscript
-  end
+  i3-msg mode default
 end

@@ -1,9 +1,4 @@
-eralitex_profiles:
-  - desktop
-  - vdesk
-  - presentation
-
-eralitex_numbered_workspace_keymaps:
+i3_number_workspace_keymaps:
   - keysym: 1
     workspace: 1
   - keysym: 2
@@ -50,7 +45,7 @@ eralitex_numbered_workspace_keymaps:
     workspace: 22
 
 
-eralitex_letter_workspace_keymaps:
+i3_letter_workspace_keymaps:
   - keysym: a
     workspace: 23:a
   - keysym: b
@@ -112,8 +107,8 @@ eralitex_letter_workspace_keymaps:
   - keysym: ssharp
     workspace: 52:ß
 
-points_up_command: fish -c "echo (expr (cat  ~/.eralitex/points) + 1 > ~/.eralitex/points) (i3-nagbar -m (cat  ~/.eralitex/points)\ Ω)"
-points_down_command: fish -c "echo (expr (cat  ~/.eralitex/points) - 1 > ~/.eralitex/points) (i3-nagbar -m (cat  ~/.eralitex/points)\ Ω)"
+points_up_command: fish -c "echo (expr (cat  ~/.points) + 1 > ~/.points) (rofi -m (cat  ~/.points)\ Ω)"
+points_down_command: fish -c "echo (expr (cat  ~/.points) - 1 > ~/.points) (rofi -m (cat  ~/.points)\ Ω)"
 
-eralitex_background_image_path: "{{eralitex_directory}}/backgrounds/{{eralitex_background_image|basename}}"
-eralitex_background_command: feh --no-fehbg --bg-fill {{eralitex_background_image_path}}
+background_image_path: ~/.backgrounds/{{background_image|basename}}
+background_command: feh --no-fehbg --bg-fill {{background_image_path}}

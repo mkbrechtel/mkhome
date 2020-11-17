@@ -1,22 +1,17 @@
 ---
 
-- name: ~/bin directory
+- name: bin directory
   file:
     path: ~/bin
     state: directory
+
+- name: binaries
+  copy:
+    src: bin/
+    dest: ~/bin
+    mode: 0755
 
 - name: systemd user config directory
   file:
     path: ~/.config/systemd/user
     state: directory
-
-- name: eralitex directory
-  file:
-    path: "{{eralitex_directory}}"
-    state: directory
-
-- name: profile directories
-  file:
-    path: "{{eralitex_directory}}/{{item}}"
-    state: directory
-  with_items: "{{ eralitex_profiles }}"

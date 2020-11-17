@@ -1,18 +1,25 @@
 ---
 
+- name: i3 config directory
+  file:
+    path: ~/.config/i3
+    state: directory
+
 - name: i3 config
   template:
     src: i3.config.j2
-    dest: "{{eralitex_directory}}/{{item}}/i3.config"
-  with_items: "{{ eralitex_profiles }}"
+    dest: ~/.config/i3/config
 
 - name: check i3 config
-  command: i3 -c {{eralitex_directory}}/{{item}}/i3.config -C
-  with_items: "{{ eralitex_profiles }}"
+  command: i3 -c ~/.config/i3/config -C
   changed_when: false
+
+- name: i3blocks config directory
+  file:
+    path: ~/.config/i3blocks
+    state: directory
 
 - name: i3blocks config
   template:
     src: i3blocks.config.j2
-    dest: "{{eralitex_directory}}/{{item}}/i3blocks.config"
-  with_items: "{{ eralitex_profiles }}"
+    dest: ~/.config/i3blocks/config

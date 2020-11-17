@@ -11,17 +11,17 @@
 #    `loginctl enable-linger username`
 #
 # 3. The server can be enabled and started like this once configured:
-#    `systemctl --user start eralitex@:<display>.service`
-#    `systemctl --user enable eralitex@:<display>.service`
+#    `systemctl --user start vdesk@:<display>.service`
+#    `systemctl --user enable vdesk@:<display>.service`
 
 [Unit]
-Description=eralitex vdesk service - display %i
+Description=vdesk service - display %i
 After=syslog.target network.target
 
 [Service]
 Type=forking
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
-ExecStart=/usr/bin/fish -c "/usr/bin/vncserver -xstartup {{eralitex_directory}}/vdesk/xsession %i"
+ExecStart=/usr/bin/fish -c "/usr/bin/vncserver -xstartup ~/.xsession.fish %i"
 ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]

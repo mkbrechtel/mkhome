@@ -2,29 +2,27 @@
 
 {{ ansible_managed | comment }}
 
-
-
 # set PATH so it includes users
 # private bin directory if it exists
 if test -d "$HOME/bin"
   set -x PATH "$HOME/bin:$PATH"
 end
 
-# reload script
-source {{eralitex_directory}}/{{item}}/reload
+# xsession reload script
+source ~/.xsession-reload.fish
 
-{% if item != "vdesk" %}
+{% if home_profile != "vdesk" %}
 blueman-applet &
 pasystray &
 nm-applet &
 {% endif %}
 
-{% if item != "presentation" and item != "vdesk" %}
+{% if home_profile != "presentation" and home_profile != "vdesk" %}
 /usr/local/bin/screensaver-start &
 {% endif %}
 
-{% if item == "presentation" %}
+{% if home_profile == "presentation" %}
 unclutter &
 {% endif %}
 
-exec /usr/bin/i3 -c {{eralitex_directory}}/{{item}}/i3.config
+exec /usr/bin/i3

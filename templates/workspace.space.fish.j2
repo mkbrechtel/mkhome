@@ -1,8 +1,12 @@
 #!/usr/bin/fish
 {{ ansible_managed | comment }}
+
 {% if workspaces[workspace].type == "vdesk" %}
-source (dirname (status --current-filename))/vnc-options
+
 xtigervncviewer localhost:{{workspaces[workspace].display|default(16)}} -via {{workspaces[workspace].host}} -PasswordFile ~/.vnc/passwd.{{workspaces[workspace].host}}
+
 {% elif workspaces[workspace].type == "tmux" %}
+
 urxvt -title tmux-workspace -e fish -c 'ssh -t {{workspaces[workspace].host}} tmux attach -d -t {{workspaces[workspace].session}}'
+
 {% endif %}

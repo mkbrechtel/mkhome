@@ -3,6 +3,8 @@
 switch $argv[1]
   case "activity"
     /opt/activity/select_activity
+  case "uniklinik"
+    /opt/activity/activity 'Arbeit:Uniklinik Köln'
   case "end"
     /opt/activity/activity
 end
