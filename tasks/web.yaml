@@ -1,0 +1,11 @@
+---
+- name: desktop web packages
+  apt:
+    pkg:
+      - webext-ublock-origin
+
+- import_role:
+    name: firefox
+
+- import_role:
+    name: chromium
