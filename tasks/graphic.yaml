@@ -1,6 +1,5 @@
 ---
-
-- name: graphic editors packages
+- name: desktop graphic packages
   apt:
     pkg:
       - gimp
@@ -9,3 +8,5 @@
       - gthumb
       - krita
       - krita-l10n
+      - eog
+      - xfce4-screenshooter

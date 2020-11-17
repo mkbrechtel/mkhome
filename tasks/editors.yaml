@@ -1,6 +1,5 @@
 ---
-
-- name: install editors
+- name: desktop editor packages
   apt:
     pkg:
       - vim-gtk

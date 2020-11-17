@@ -1,18 +1,6 @@
 ---
-
-# https://wiki.debian.org/BluetoothUser#Preparation
-
-- name: bluetooth system packages
-  apt:
-    pkg: bluetooth
-
-# - name: enable bluetooth service
-#   service:
-#     name: bluetooth
-#     enabled: yes
-#     state: started
-
-- name: bluetooth gui packages
+- name: desktop bluetooth packages
   apt:
     pkg:
+      - bluetooth
       - blueman

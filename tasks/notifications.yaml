@@ -4,7 +4,7 @@
   apt:
     pkg: notify-osd
 
-- name: dunst package absent
+- name: ensure dunst package is absent
   apt:
     pkg: dunst
     state: absent

@@ -1,6 +1,5 @@
 ---
-
-- name: thunderbird
+- name: desktop mail client packages
   apt:
     pkg:
       - thunderbird

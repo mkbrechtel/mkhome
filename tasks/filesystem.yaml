@@ -1,0 +1,13 @@
+---
+- name: desktop filesystem packages
+  apt:
+    pkg:
+      - gvfs
+      - gvfs-backends
+      - gvfs-bin
+      - gvfs-fuse
+      - zip
+      - unzip
+      - baobab
+      - thunar
+      - catfish

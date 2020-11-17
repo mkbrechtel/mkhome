@@ -1,9 +1,6 @@
 ---
 
 - import_role:
-    name: basic_desktop
-
-- import_role:
     name: firefox
 
 - import_role:
@@ -13,6 +10,7 @@
     name: libreoffice
 
 - import_tasks: xfce.yaml
+- import_tasks: filesystem.yaml
 - import_tasks: audio.yaml
 - import_tasks: bluetooth.yaml
 - import_tasks: editors.yaml

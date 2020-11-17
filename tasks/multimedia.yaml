@@ -1,6 +1,5 @@
 ---
-
-- name: multimedia packages
+- name: desktop multimedia packages
   apt:
     pkg:
       - vlc

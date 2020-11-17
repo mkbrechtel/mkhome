@@ -1,4 +1,4 @@
 ---
-- name: mindmapping software
+- name: desktop mindmapping software packages
   apt:
     pkg: vym

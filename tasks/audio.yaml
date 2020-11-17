@@ -1,8 +1,11 @@
 ---
-# tasks file for desktop-audio
-
-- name: audio packages
+- name: desktop audio packages
   apt:
     pkg:
       - audacity
       - sound-juicer
+      - pulseaudio
+      - pavucontrol
+      - pasystray
+      - pavumeter
+      - paprefs
