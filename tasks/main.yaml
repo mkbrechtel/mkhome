@@ -13,4 +13,5 @@
 - import_tasks: notifications.yaml
 - import_tasks: office.yaml
 - import_tasks: scanner.yaml
+- import_tasks: tools.yaml
 - import_tasks: web.yaml
