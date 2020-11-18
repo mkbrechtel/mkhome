@@ -76,6 +76,8 @@ user-authority-in-system-dir=true
 #
 [Seat:*]
 greeter-session=lightdm-gtk-greeter
+greeter-hide-users=true
+greeter-show-manual-login=true
 
 {% if display_manager_state == "autologin" %}
 autologin-user={{autologin_user}}
