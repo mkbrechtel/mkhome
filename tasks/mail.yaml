@@ -1,7 +1,17 @@
 ---
-- name: desktop mail client packages
+- name: desktop mail client debian packages
   apt:
     pkg:
       - thunderbird
       - thunderbird-l10n-de
       - hunspell-de-de
+  when: ansible_distribution == 'Debian'
+
+- name: desktop mail client ubuntu packages
+  apt:
+    pkg:
+      - thunderbird
+      - thunderbird-locale-de
+      - thunderbird-locale-en
+      - hunspell-de-de
+  when: ansible_distribution == 'Ubuntu'
