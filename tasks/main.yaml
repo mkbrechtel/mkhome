@@ -26,6 +26,7 @@
     - not ansible_lsb.id is defined or ansible_lsb.id != "Raspbian"
 - import_role:
     name: debian_packages
+  when: ansible_distribution == "Debian"
 - import_role:
     name: system_upgrade
 - import_role:
