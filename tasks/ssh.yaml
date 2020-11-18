@@ -8,7 +8,7 @@
 
 - name: ssh auto config
   template:
-    src: ssh.config.j2
+    src: ssh/ssh.config.j2
     dest: ~/.ssh/config.auto
 
 - name: include ssh auto config

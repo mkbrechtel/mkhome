@@ -7,6 +7,6 @@
 
 - name: rofi theme
   template:
-    src: rofi.theme.j2
+    src: rofi/rofi.theme.j2
     dest: ~/.config/rofi/theme
     mode: 0755

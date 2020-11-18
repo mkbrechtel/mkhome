@@ -27,6 +27,6 @@
 
 - name: default vnc client options
   template:
-    src: tigervnc.default.j2
+    src: vnc/default.tigervnc.j2
     dest: ~/.vnc/default.tigervnc
     mode: 0755

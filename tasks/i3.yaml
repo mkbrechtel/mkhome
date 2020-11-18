@@ -7,7 +7,7 @@
 
 - name: i3 config
   template:
-    src: i3.config.j2
+    src: i3/i3.config.j2
     dest: ~/.config/i3/config
 
 - name: check i3 config
@@ -21,5 +21,5 @@
 
 - name: i3blocks config
   template:
-    src: i3blocks.config.j2
+    src: i3/i3blocks.config.j2
     dest: ~/.config/i3blocks/config

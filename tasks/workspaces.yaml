@@ -7,7 +7,7 @@
 
 - name: workspace focus scripts
   template:
-    src: workspace.focus.fish.j2
+    src: workspaces/workspace.focus.fish.j2
     dest: ~/.workspaces/{{workspace}}.focus
     mode: 0755
   with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vdesk'].key\") }}"
@@ -16,7 +16,7 @@
 
 - name: workspace space shortcut scripts
   template:
-    src: workspace.space.fish.j2
+    src: workspaces/workspace.space.fish.j2
     dest: ~/.workspaces/{{workspace}}.space
     mode: 0755
   with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vdesk'||value.type=='tmux'].key\") }}"
