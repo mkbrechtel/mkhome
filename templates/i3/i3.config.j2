@@ -351,18 +351,7 @@ bar {
     separator #666666
 
     # <colorclass> <border> <background> <text>
-    {% if home_profile == "desktop" %}
-    # lila: Farbton 274
-    focused_workspace  #774C99 #552877 #ffffff
-    {% endif %}
-    {% if home_profile == "vdesk" %}
-    # grün: Farbton 110
-    focused_workspace  #4D994C #357728 #ffffff
-    {% endif %}
-    {% if home_profile == "presentation" %}
-    # gelb: Farbton 60
-    focused_workspace  #99994C #777728 #ffffff
-    {% endif %}
+    focused_workspace  {{home_base_color_hue|hsv2rgb(50,60)}} {{home_base_color_hue|hsv2rgb(66,47)}} #ffffff
     active_workspace   #333333 #696969 #ffffff
     inactive_workspace #333333 #222222 #888888
     urgent_workspace   #2f343a #900000 #ffffff
@@ -375,18 +364,7 @@ bar {
 ### Design
 
 # class     border  backgr. text    indicator child_border
-{% if home_profile == "desktop" %}
-# lila: Farbton 274
-client.focused    #784C99 #552877 #ffffff #9E2EF4   #552877
-{% endif %}
-{% if home_profile == "vdesk" %}
-# grün: Farbton 110
-client.focused    #59994C #357728 #ffffff #4FF42E   #357728
-{% endif %}
-{% if home_profile == "presentation" %}
-# gelb: Farbton 60
-client.focused    #99994C #777728 #ffffff #F4F42E   #777728
-{% endif %}
+client.focused    {{home_base_color_hue|hsv2rgb(50,60)}} {{home_base_color_hue|hsv2rgb(66,47)}} #ffffff {{home_base_color_hue|hsv2rgb(81,91)}}   {{home_base_color_hue|hsv2rgb(66,47)}}
 client.focused_inactive #333333 #6A6A6A #ffffff #505050   #6A6A6A
 client.unfocused  #333333 #222222 #888888 #2E2E2E   #222222
 client.urgent     #2f343a #900000 #ffffff #900000   #900000

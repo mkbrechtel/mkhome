@@ -24,18 +24,8 @@
     active-background: #6A6A6A;
 
     selected-urgent-background: #2f343a;
-    {% if home_profile == "desktop" %}
-    selected-normal-background: #552877;
-    selected-active-background: #784C99;
-    {% endif %}
-    {% if home_profile == "vdesk" %}
-    selected-normal-background: #357728;
-    selected-active-background: #59994C;
-    {% endif %}
-    {% if home_profile == "presentation" %}
-    selected-normal-background: #99994C;
-    selected-active-background: #777728;
-    {% endif %}
+    selected-normal-background: {{home_base_color_hue|hsv2rgb(66,47)}};
+    selected-active-background: {{home_base_color_hue|hsv2rgb(50,60)}};
 
     spacing: 2;
 
