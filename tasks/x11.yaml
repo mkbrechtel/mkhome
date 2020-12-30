@@ -26,3 +26,4 @@
   template:
     src: x11/xsessionrc.j2
     dest: ~/.xsessionrc
+    mode: 0755
