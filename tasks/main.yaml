@@ -18,5 +18,5 @@
 
 - name: riot-im package
   apt:
-    pkg: riot-web
+    pkg: element-desktop
     state: latest
