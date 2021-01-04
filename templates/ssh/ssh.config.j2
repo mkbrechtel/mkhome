@@ -6,4 +6,7 @@ Host {{hostname}}
 {% elif 'external_ip' in hostvars[hostname] %}
   HostName {{hostvars[hostname].external_ip}}
 {% endif %}
+{% if 'ssh_proxy_jump' in hostvars[hostname] %}
+  ProxyJump {{hostvars[hostname].ssh_proxy_jump}}
+{% endif %}
 {% endfor %}
