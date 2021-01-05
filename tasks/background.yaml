@@ -11,3 +11,9 @@
     src: "{{background_image}}"
     dest: "{{background_image_path}}"
   when: background_image is defined
+
+- name: copy all background images
+  synchronize:
+    src: ~/.backgrounds/
+    dest: ~/.backgrounds/
+  when: home_copy_all_background_images

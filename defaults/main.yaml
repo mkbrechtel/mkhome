@@ -48,3 +48,4 @@ calculator_command: "{{default_browser}} --new-window https://www.geogebra.org/c
 mail_command: thunderbird
 
 background_image: false
+home_copy_all_background_images: false
