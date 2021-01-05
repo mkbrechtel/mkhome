@@ -3,3 +3,4 @@
   apt:
     pkg:
       - redshift-gtk
+      - barrier
