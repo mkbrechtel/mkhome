@@ -91,7 +91,7 @@ i3_letter_workspace_keymaps:
   - keysym: v
     workspace: 44:v
   - keysym: w
-   workspace: 45:w
+    workspace: 45:w
   - keysym: x
     workspace: 46:x
   - keysym: y
