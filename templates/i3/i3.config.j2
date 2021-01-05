@@ -47,7 +47,7 @@ bindsym XF86HomePage exec {{default_browser}}
 bindsym XF86Calculator exec {{calculator_command}}
 
 ## Special modes
-bindsym $mod+t mode timer
+bindsym $mod+less mode timer
 bindsym $mod+s mode session
 bindsym $mod+c mode clipboard
 bindcode $mod+49 mode "remote"
@@ -118,6 +118,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+l
 # $mod+n
 # $mod+o
+# $mod+t
 # $mod+u
 # $mod+adiaeresis
 # $mod+odiaeresis
@@ -132,7 +133,6 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+Insert
 # $mod+Print
 # $mod+Scroll_Lock
-# $mod+less
 
 ## unlearn
 #exec {{points_down_command}}
@@ -144,7 +144,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
   {% if home_profile == "desktop" %}
     bindsym $plexmod+space exec ~/bin/on-space-shortcut
     bindsym $plexmod+BackSpace kill
-    bindsym $plexmod+w {{workspace_switcher}}
+    bindsym $plexmod+Tab {{workspace_switcher}}
 
     {% for ws in i3_number_workspace_keymaps %}
     bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
@@ -166,7 +166,8 @@ bindsym $mod+KP_Add exec {{points_up_command}}
   bindsym $plexmod+Right focus output right
 
   # Special modes
-  bindsym $plexmod+s mode session
+  bindcode $plexmod+49 mode "session"
+  bindsym $plexmod+less mode timer
 {% endmacro %}
 {{ overall() }}
 

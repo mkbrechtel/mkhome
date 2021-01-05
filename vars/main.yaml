@@ -82,16 +82,16 @@ i3_letter_workspace_keymaps:
     workspace: 39:q
   - keysym: r
     workspace: 40:r
-  # - keysym: s
-  #   workspace: 41:s
+  - keysym: s
+    workspace: 41:s
   - keysym: t
     workspace: 42:t
   - keysym: u
     workspace: 43:u
   - keysym: v
     workspace: 44:v
-  #- keysym: w
-  #  workspace: 45:w
+  - keysym: w
+   workspace: 45:w
   - keysym: x
     workspace: 46:x
   - keysym: y
