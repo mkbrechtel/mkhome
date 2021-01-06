@@ -11,7 +11,7 @@
     name: ansible
     state: absent
     executable: pip3
-  when: "{{ ansible_installed_version is version('2.10', '<') }}"
+  when: ansible_installed_version is version('2.10', '<')
 
 - name: ansible pip package
   pip:
