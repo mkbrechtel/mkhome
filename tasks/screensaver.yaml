@@ -1,0 +1,10 @@
+---
+
+- name: screensaver graphical-session service enabled
+  systemd:
+    name: screensaver.service
+    enabled: true
+    scope: user
+  when:
+    - home_profile != "presentation"
+    - home_profile != "vdesk"
