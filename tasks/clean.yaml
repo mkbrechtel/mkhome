@@ -17,3 +17,8 @@
   file:
     path: ~/.eralitex
     state: absent
+
+- name: remove old xsession fish script
+  file:
+    path: ~/.xsession.fish
+    state: absent

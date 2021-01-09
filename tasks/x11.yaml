@@ -10,12 +10,6 @@
     src: x11/Xmodmap.j2
     dest: ~/.Xmodmap
 
-- name: xsession script
-  template:
-    src: x11/xsession.fish.j2
-    dest: ~/.xsession.fish
-    mode: 0755
-
 - name: xsession reload script
   template:
     src: x11/xsession.reload.fish.j2
