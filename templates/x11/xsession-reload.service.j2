@@ -1,0 +1,11 @@
+[Unit]
+Description=X session reload settings
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.xsession.reload.fish
+#Restart=always
+#RestartSec=60s
+
+[Install]
+WantedBy=graphical-session.target
