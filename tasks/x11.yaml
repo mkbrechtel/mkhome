@@ -22,6 +22,12 @@
     dest: ~/.xsession.reload.fish
     mode: 0755
 
+- name: xsession systemd target
+  template:
+    src: x11/xsession.target.j2
+    dest: ~/.config/systemd/user/xsession.target
+  notify: systemd daemon-reload
+
 - name: xsessionrc
   template:
     src: x11/xsessionrc.j2

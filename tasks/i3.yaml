@@ -19,7 +19,14 @@
     path: ~/.config/i3blocks
     state: directory
 
-- name: i3blocks config
+- name: i3wm graphical-session service
   template:
-    src: i3/i3blocks.config.j2
-    dest: ~/.config/i3blocks/config
+    src: i3/i3wm.service.j2
+    dest: ~/.config/systemd/user/i3wm.service
+  notify: systemd daemon-reload
+
+- name: i3wm graphical-session service enabled
+  systemd:
+    name: i3wm.service
+    enabled: true
+    scope: user
