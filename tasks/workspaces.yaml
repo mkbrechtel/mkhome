@@ -17,7 +17,7 @@
     src: workspaces/workspace.focus.fish.j2
     dest: ~/.workspaces/{{workspace}}.focus
     mode: 0755
-  with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vdesk'].key\") }}"
+  with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vncviewer'].key\") }}"
   loop_control:
     loop_var: workspace
 
