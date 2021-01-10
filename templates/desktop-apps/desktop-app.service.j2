@@ -3,6 +3,7 @@
 [Unit]
 Description=desktop app
 PartOf=graphical-session.target
+After=xsession-reload.service
 
 [Service]
 ExecStart=%i

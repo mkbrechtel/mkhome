@@ -5,6 +5,7 @@ Description=X session reload settings
 PartOf=graphical-session.target
 
 [Service]
+Type=oneshot
 ExecStart=%h/.xsession.reload.fish
 #Restart=always
 #RestartSec=60s
