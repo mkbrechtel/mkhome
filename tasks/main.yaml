@@ -28,7 +28,7 @@
 
 - name: enable and start vdesk user service
   systemd:
-    name: vdesk@:16.service
+    name: vdesk@:{{home_vdesk_display_number}}.service
     state: started
     enabled: true
     scope: user

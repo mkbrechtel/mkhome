@@ -22,3 +22,10 @@
   file:
     path: ~/.xsession.fish
     state: absent
+
+- name: disable and stop vdesk user service at display 16
+  systemd:
+    name: vdesk@:16.service
+    state: stopped
+    enabled: false
+    scope: user
