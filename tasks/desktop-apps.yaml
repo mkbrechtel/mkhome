@@ -10,33 +10,30 @@
 - name: autostart terminal
   systemd:
     name: desktop-app@{{default_terminal}}.service
-    enabled: true
+    enabled: "{{ home_autostart_terminal }}"
     scope: user
 
 - name: autostart nm-applet
   systemd:
     name: desktop-app@nm-applet.service
-    enabled: true
+    enabled: "{{ home_autostart_nm_applet }}"
     scope: user
-  when: home_profile != "vdesk"
 
 - name: autostart blueman-applet
   systemd:
     name: desktop-app@blueman-applet.service
-    enabled: true
+    enabled: "{{ home_autostart_blueman_applet }}"
     scope: user
-  when: home_profile != "vdesk"
 
 - name: autostart pasystray
   systemd:
     name: desktop-app@pasystray.service
-    enabled: true
+    enabled: "{{ home_autostart_pasystray }}"
     scope: user
-  when: home_profile != "vdesk"
+  when:
 
-- name: do not autostart unclutter
+- name: autostart unclutter
   systemd:
     name: desktop-app@unclutter.service
-    enabled: false
+    enabled: "{{ home_autostart_unclutter }}"
     scope: user
-  when: home_profile == "presentation"
