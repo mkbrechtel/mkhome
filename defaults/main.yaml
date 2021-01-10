@@ -13,6 +13,7 @@ kanboard_api_settings: "{{ lookup('file', '~/.kanboard_api_settings.json') }}"
 #  kanboard_api_user: ka
 #  kanboard_api_key: xxx
 home_vdesk_started_and_enabled: false
+home_vdesk_display_number: 47
 
 home_profile: desktop
 

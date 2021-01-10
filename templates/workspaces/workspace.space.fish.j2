@@ -3,7 +3,7 @@
 
 {% if workspaces[workspace].type == "vdesk" %}
 
-xtigervncviewer localhost:{{workspaces[workspace].display|default(16)}} -via {{workspaces[workspace].host}} -PasswordFile ~/.vnc/passwd.{{workspaces[workspace].host}}
+xtigervncviewer localhost:{{workspaces[workspace].display|default(home_vdesk_display_number)}} -via {{workspaces[workspace].host}} -PasswordFile ~/.vnc/passwd.{{workspaces[workspace].host}}
 
 {% elif workspaces[workspace].type == "tmux" %}
 
