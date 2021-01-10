@@ -1,3 +1,21 @@
+home_autostart_desktop_apps:
+  - name: terminal
+    command: "{{default_terminal}}"
+    enabled: "{{ home_autostart_terminal }}"
+  - name: network manager applet
+    command: nm-applet
+    enabled: "{{ home_autostart_nm_applet }}"
+  - name: bluetooth manager applet
+    command: blueman-applet
+    enabled: "{{ home_autostart_blueman_applet }}"
+  - name: pulseaudio applet
+    command: pasystray
+    enabled: "{{ home_autostart_pasystray }}"
+  - name: mouse pointer hiding
+    command: unclutter
+    enabled: "{{ home_autostart_unclutter }}"
+
+
 i3_number_workspace_keymaps:
   - keysym: 1
     workspace: 1
