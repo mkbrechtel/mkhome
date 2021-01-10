@@ -22,7 +22,7 @@
     dest: ~/.xsession.reload.fish
     mode: 0755
 
-- name: xsessionrc
+- name: xsessionrc script
   template:
     src: x11/xsessionrc.j2
     dest: ~/.xsessionrc

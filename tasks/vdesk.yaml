@@ -1,7 +1,0 @@
----
-
-- name: vdesk user service
-  template:
-    src: vdesk/vdesk.service.j2
-    dest: ~/.config/systemd/user/vdesk@.service
-  notify: systemd daemon-reload

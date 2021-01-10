@@ -4,7 +4,6 @@
 
 - import_tasks: structure.yaml
 - import_tasks: ssh.yaml
-- import_tasks: vnc.yaml
 - import_tasks: tmux.yaml
 - import_tasks: pulseaudio.yaml
 - import_tasks: git.yaml
@@ -19,15 +18,15 @@
     - import_tasks: background.yaml
     - import_tasks: rofi.yaml
     - import_tasks: x11.yaml
-    - import_tasks: vdesk.yaml
+    - import_tasks: vnc.yaml
   when: home_desktop
 
 - name: flush handlers
   meta: flush_handlers
 
-- name: enable and start vdesk user service
+- name: enable and start vncserver user service
   systemd:
-    name: vdesk@:{{home_vdesk_display_number}}.service
+    name: vncserver@:{{home_vdesk_display_number}}.service
     state: started
     enabled: true
     scope: user
