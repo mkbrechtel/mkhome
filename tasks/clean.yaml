@@ -51,3 +51,8 @@
     path: ~/.config/systemd/user/vdesk@.service
     state: absent
   notify: systemd daemon-reload
+
+- name: remove xsessionrc file
+  file:
+    path: ~/.xsessionrc
+    state: absent
