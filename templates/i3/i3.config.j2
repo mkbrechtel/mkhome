@@ -401,10 +401,10 @@ assign [class="^thunderbird$"] → mail
 # vncviewer workspaces
 {% for workspace in workspaces|dict2items|json_query("[?value.type=='vncviewer'].key") %}
 {% set ws = workspaces[workspace] %}
-assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:"] → {{workspace}}
+assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:{{ws.display|default(home_vncserver_display_number)}}"] → {{workspace}}
 {% endfor %}
 
-### Autostart
+### Autostart.display|default(home_vncserver_display_number)
 
 #exec "{{default_terminal}}"
 

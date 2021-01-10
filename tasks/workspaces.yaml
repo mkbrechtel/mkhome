@@ -1,5 +1,12 @@
 ---
 
+- name: workspace app service
+  template:
+    src: workspaces/workspace-app.service.j2
+    dest: ~/.config/systemd/user/workspace-app@.service
+    mode: 0755
+  notify: systemd daemon-reload
+
 - name: workspaces directory
   file:
     path: ~/.workspaces

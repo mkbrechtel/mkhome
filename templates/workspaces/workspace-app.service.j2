@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=workspace app
+PartOf=graphical-session.target
+After=xsession-reload.service
+
+[Service]
+ExecStart=%h/.workspaces/%i.space
+
+[Install]
+WantedBy=graphical-session.target
