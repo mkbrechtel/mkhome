@@ -4,5 +4,5 @@ set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true)
 set script ~/.workspaces/$ws.space
 
 if type -q $script
-  $script
+  systemctl --user restart workspace-app@$ws.service
 end

@@ -6,6 +6,12 @@
     state: directory
     mode: 0700
 
+- name: vnc server config
+  template:
+    src: vnc/vnc.conf.j2
+    dest: ~/.vnc/vnc.conf
+    mode: 0644
+
 - name: vnc passwd
   copy:
     content: "{{ lookup('pipe','pwgen 24 1' )}}"
