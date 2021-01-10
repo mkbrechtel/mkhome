@@ -35,7 +35,7 @@
     dest: ~/.config/systemd/user/xsession.target
   notify: systemd daemon-reload
 
-- name: xsessionrc
+- name: xsessionrc script
   template:
     src: x11/xsessionrc.j2
     dest: ~/.xsessionrc

@@ -29,3 +29,16 @@
     state: stopped
     enabled: false
     scope: user
+
+- name: disable and stop vdesk user service at display 47
+  systemd:
+    name: vdesk@:47.service
+    state: stopped
+    enabled: false
+    scope: user
+
+- name: remove vdesk user service
+  file:
+    path: ~/.config/systemd/user/vdesk@.service
+    state: absent
+  notify: systemd daemon-reload
