@@ -56,3 +56,9 @@
   file:
     path: ~/.xsessionrc
     state: absent
+
+- name: remove autostart desktop app service
+  file:
+    path: ~/.config/systemd/user/autostart-desktop-app@.service
+    state: absent
+  notify: systemd daemon-reload
