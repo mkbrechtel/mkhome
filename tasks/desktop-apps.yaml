@@ -13,12 +13,23 @@
     enabled: true
     scope: user
 
-# {% if home_profile != "vdesk" %}
-# blueman-applet
-# pasystray
-# nm-applet
-# {% endif %}
+- name: autostart nm-applet
+  systemd:
+    name: desktop-app@nm-applet.service
+    enabled: true
+    scope: user
+  when: home_profile != "vdesk"
 
-# {% if home_profile == "presentation" %}
-# unclutter
-# {% endif %}
+- name: autostart blueman-applet
+  systemd:
+    name: desktop-app@blueman-applet.service
+    enabled: true
+    scope: user
+  when: home_profile != "vdesk"
+
+- name: autostart unclutter
+  systemd:
+    name: desktop-app@unclutter.service
+    enabled: true
+    scope: user
+  when: home_profile != "presentation"
