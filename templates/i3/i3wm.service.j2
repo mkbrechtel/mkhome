@@ -5,6 +5,7 @@ PartOf=graphical-session.target
 [Service]
 Type=exec
 ExecStart=i3
+ExecReload=i3-msg reload
 ExecStopPost=/bin/systemctl --user stop graphical-session.target
 
 [Install]

@@ -5,15 +5,16 @@
     path: ~/.config/i3
     state: directory
 
-- name: i3 config
-  template:
-    src: i3/i3.config.j2
-    dest: ~/.config/i3/config
-
 - name: i3 null config
   template:
     src: i3/i3.null.config.j2
     dest: ~/.config/i3/null.config
+
+- name: i3 config
+  template:
+    src: i3/i3.config.j2
+    dest: ~/.config/i3/config
+  notify: i3 reload
 
 - name: check i3 config
   command: i3 -c ~/.config/i3/config -C
@@ -23,6 +24,7 @@
   file:
     path: ~/.config/i3blocks
     state: directory
+  notify: i3 reload
 
 - name: i3wm graphical-session service
   template:

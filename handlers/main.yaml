@@ -4,3 +4,17 @@
   systemd:
     daemon_reload: yes
     scope: user
+
+- name: xsession reload
+  systemd:
+    name: xsession-reload.service
+    state: started
+    scope: user
+  failed_when: false
+
+- name: i3 reload
+  systemd:
+    name: i3wm.service
+    state: reloaded
+    scope: user
+  failed_when: false

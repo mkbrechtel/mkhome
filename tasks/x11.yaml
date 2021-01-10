@@ -4,17 +4,20 @@
   template:
     src: x11/Xresources.j2
     dest: ~/.Xresources
+  notify: xsession reload
 
 - name: Xmodmap
   template:
     src: x11/Xmodmap.j2
     dest: ~/.Xmodmap
+  notify: xsession reload
 
 - name: xsession reload script
   template:
     src: x11/xsession.reload.fish.j2
     dest: ~/.xsession.reload.fish
     mode: 0755
+  notify: xsession reload
 
 - name: xsession reload service
   template:

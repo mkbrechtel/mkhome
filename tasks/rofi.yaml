@@ -10,3 +10,4 @@
     src: rofi/rofi.theme.j2
     dest: ~/.config/rofi/theme
     mode: 0755
+  notify: xsession reload
