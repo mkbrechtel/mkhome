@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=screenlayout service
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.screenlayout/%i.sh
+Before=desktop-app@barrier.service
+Before=xsession-reload.service
+
+[Install]
+WantedBy=graphical-session.target
