@@ -385,8 +385,7 @@ focus_on_window_activation urgent
 
 ### Application specific rule
 
-for_window [class="^Vncviewer$"] border none
-for_window [class="^TigerVNC Viewer$"] border none
+for_window [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$"] border none
 for_window [window_role="^About$"] floating enable
 for_window [class="^Pavu"] floating enable
 for_window [class="^Paman$"] floating enable
@@ -402,7 +401,7 @@ assign [class="^thunderbird$"] → mail
 # vncviewer workspaces
 {% for workspace in workspaces|dict2items|json_query("[?value.type=='vncviewer'].key") %}
 {% set ws = workspaces[workspace] %}
-assign [class="^Vncviewer$" title="^{{ws.host}}:"] → {{workspace}}
+assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:"] → {{workspace}}
 {% endfor %}
 
 ### Autostart
