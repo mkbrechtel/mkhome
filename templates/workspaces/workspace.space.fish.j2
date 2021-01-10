@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 {{ ansible_managed | comment }}
 
-{% if workspaces[workspace].type == "vdesk" %}
+{% if workspaces[workspace].type == "vncviewer" %}
 
 xtigervncviewer localhost:{{workspaces[workspace].display|default(home_vncserver_display_number)}} -via {{workspaces[workspace].host}} -PasswordFile ~/.vnc/passwd.{{workspaces[workspace].host}}
 
