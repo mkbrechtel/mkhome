@@ -27,9 +27,16 @@
     scope: user
   when: home_profile != "vdesk"
 
-- name: autostart unclutter
+- name: autostart pasystray
   systemd:
-    name: desktop-app@unclutter.service
+    name: desktop-app@pasystray.service
     enabled: true
     scope: user
-  when: home_profile != "presentation"
+  when: home_profile != "vdesk"
+
+- name: do not autostart unclutter
+  systemd:
+    name: desktop-app@unclutter.service
+    enabled: false
+    scope: user
+  when: home_profile == "presentation"
