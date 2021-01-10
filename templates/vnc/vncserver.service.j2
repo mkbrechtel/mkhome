@@ -15,13 +15,13 @@
 #    `systemctl --user enable vdesk@:<display>.service`
 
 [Unit]
-Description=vdesk service - display %i
+Description=vncserver service - display %i
 After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
-ExecStart=/bin/sh -c "/usr/bin/vncserver %i"
+ExecStartPre=/usr/bin/vncserver -kill %i
+ExecStart=/usr/bin/vncserver %i
 ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]
