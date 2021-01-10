@@ -45,6 +45,6 @@
 
 - name: vnc xsession script
   template:
-    src: x11/xsession.j2
+    src: vnc/xsession.j2
     dest: ~/.vnc/xsession
     mode: 0755

@@ -10,6 +10,11 @@
     src: i3/i3.config.j2
     dest: ~/.config/i3/config
 
+- name: i3 null config
+  template:
+    src: i3/i3.null.config.j2
+    dest: ~/.config/i3/null.config
+
 - name: check i3 config
   command: i3 -c ~/.config/i3/config -C
   changed_when: false

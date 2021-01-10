@@ -2,4 +2,10 @@
 
 {{ansible_managed|comment}}
 
+{% if not home_xsession_vncviewer %}
 exec systemctl --user start --wait xsession.target
+{% else %}
+systemctl --user start vncserver@:{{home_vncserver_display_number}}.service
+i3 -c ~/.config/i3/null.config &
+exec xtigervncviewer localhost:{{home_vncserver_display_number}} -PasswordFile ~/.vnc/passwd -FullScreen=1 -Maximize=1
+{% endif %}
