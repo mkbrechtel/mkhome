@@ -1,0 +1,24 @@
+---
+
+- name: desktop app service
+  template:
+    src: desktop-apps/desktop-app.service.j2
+    dest: ~/.config/systemd/user/desktop-app@.service
+    mode: 0755
+  notify: systemd daemon-reload
+
+- name: autostart terminal
+  systemd:
+    name: desktop-app@{{default_terminal}}.service
+    enabled: true
+    scope: user
+
+# {% if home_profile != "vdesk" %}
+# blueman-applet
+# pasystray
+# nm-applet
+# {% endif %}
+
+# {% if home_profile == "presentation" %}
+# unclutter
+# {% endif %}

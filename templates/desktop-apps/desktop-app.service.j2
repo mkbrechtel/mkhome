@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=desktop app
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%i
+
+[Install]
+WantedBy=graphical-session.target

@@ -39,6 +39,13 @@
     scope: user
   failed_when: false
 
+- name: autostart terminal
+  systemd:
+    name: autostart-desktop-app@{{default_terminal}}.service
+    enabled: false
+    scope: user
+  failed_when: false
+
 - name: remove vdesk user service
   file:
     path: ~/.config/systemd/user/vdesk@.service

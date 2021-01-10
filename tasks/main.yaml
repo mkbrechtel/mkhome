@@ -20,6 +20,7 @@
     - import_tasks: rofi.yaml
     - import_tasks: x11.yaml
     - import_tasks: vnc.yaml
+    - import_tasks: desktop-apps.yaml
   when: home_desktop
 
 - name: flush handlers

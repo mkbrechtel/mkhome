@@ -1,8 +1,0 @@
-# {% if home_profile != "vdesk" %}
-# blueman-applet &
-# pasystray &
-# nm-applet &
-# {% endif %}
-# {% if home_profile == "presentation" %}
-# unclutter &
-# {% endif %}
