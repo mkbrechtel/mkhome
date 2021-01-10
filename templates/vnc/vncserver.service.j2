@@ -20,7 +20,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/vncserver %i
+ExecStart=/usr/bin/vncserver -autokill %i
 ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]
