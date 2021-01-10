@@ -393,7 +393,17 @@ for_window [class="^Paman$"] floating enable
 for_window [class="^Blueman"] floating enable
 for_window [class="^URxvt$" title="^tmux-workspace$"] border none
 
-
+### assign apps to workspaces
+assign [class="^netzdrive$"] → netzdrive
+assign [class="^TelegramDesktop$"] → tg
+assign [class="^Signal$"] → signal
+assign [class="^Element$"] → matrix
+assign [class="^thunderbird$"] → mail
+# vncviewer workspaces
+{% for workspace in workspaces|dict2items|json_query("[?value.type=='vncviewer'].key") %}
+{% set ws = workspaces[workspace] %}
+assign [class="^Vncviewer$" title="^{{ws.host}}:"] → {{workspace}}
+{% endfor %}
 
 ### Autostart
 
