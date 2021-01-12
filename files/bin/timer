@@ -1,5 +1,6 @@
 #!/usr/bin/fish
 
+set command $argv[1]
 switch $argv[1]
   case "activity"
     /opt/activity/select_activity
