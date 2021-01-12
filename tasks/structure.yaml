@@ -5,6 +5,11 @@
     path: ~/bin
     state: directory
 
+- name: tmp directory
+  file:
+    path: ~/tmp
+    state: directory
+
 - name: binaries
   copy:
     src: bin/
