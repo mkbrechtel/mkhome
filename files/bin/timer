@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 set command $argv[1]
-switch $argv[1]
+switch $command
   case "activity"
     /opt/activity/select_activity
   case "uniklinik"
