@@ -30,13 +30,12 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-{% if with_activity %}
 # activity
 [activity]
-command=/opt/activity/i3blocks-activity
-interval=persist
+command=cat ~/.timer/activity.i3blocks
+interval=once
 markup=pango
-{% endif %}
+signal=1
 
 # hostinfo
 [hostinfo]

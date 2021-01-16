@@ -26,6 +26,12 @@
     state: directory
   notify: i3 reload
 
+- name: i3blocks config
+  template:
+    src: i3/i3blocks.config.j2
+    dest: ~/.config/i3blocks/config
+  notify: i3 reload
+
 - name: i3wm graphical-session service
   template:
     src: i3/i3wm.service.j2
