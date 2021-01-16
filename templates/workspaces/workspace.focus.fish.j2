@@ -1,3 +1,7 @@
 #!/usr/bin/fish
 {{ ansible_managed | comment }}
 i3-msg mode remote
+
+{% if workspaces[workspace].activity is defined %}
+~/bin/timer begin_activity "{{workspaces[workspace].activity}}"
+{% endif %}
