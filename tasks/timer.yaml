@@ -1,0 +1,16 @@
+---
+
+- name: timer directory
+  file:
+    path: "{{timer_folder}}"
+    state: directory
+
+- name: timer activity timeclock  directory
+  file:
+    path: "{{timer_folder}}/activity.timeclock.d"
+    state: directory
+
+- name: timer activity list directory
+  file:
+    path: "{{timer_folder}}/activity.lists"
+    state: directory

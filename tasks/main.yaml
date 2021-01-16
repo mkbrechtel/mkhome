@@ -8,6 +8,7 @@
 - import_tasks: pulseaudio.yaml
 - import_tasks: screensaver.yaml
 - import_tasks: git.yaml
+- import_tasks: timer.yaml
 
 - import_tasks: kanboard.yaml
 

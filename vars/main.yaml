@@ -130,3 +130,5 @@ points_down_command: fish -c "echo (expr (cat  ~/.points) - 1 > ~/.points) (rofi
 
 background_image_path: ~/.backgrounds/{{background_image|basename}}
 background_command: feh --no-fehbg --bg-fill {{background_image_path}}
+
+timer_folder: ~/.timer
