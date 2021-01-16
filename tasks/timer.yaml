@@ -14,3 +14,8 @@
   file:
     path: "{{timer_folder}}/activity.lists"
     state: directory
+
+- name: timer default activities
+  copy:
+    content: "{{ default_activities | join('\n') }}"
+    dest: "{{timer_folder}}/activity.lists/10-default"

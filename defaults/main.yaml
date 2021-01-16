@@ -57,3 +57,5 @@ home_autostart_nm_applet: "{{ home_profile != 'vdesk' }}"
 home_autostart_blueman_applet: "{{ home_profile != 'vdesk' }}"
 home_autostart_pasystray: "{{ home_profile != 'vdesk' }}"
 home_autostart_unclutter: "{{ home_profile == 'presentation' }}"
+
+default_activities: []

@@ -1,11 +1,99 @@
 #!/usr/bin/fish
 
+set timer_folder ~/.timer
+set activity_lists_folder $timer_folder/activity.lists
+set activity_timeclock_file $timer_folder/activity.timeclock
+set activity_i3blocks $timer_folder/activity.i3blocks
+set activity_current_file $timer_folder/activity.current
+set activity_timeclock_append_log_folder $timer_folder/activity.timeclock.d
+set activity_timeclock_append_log_filename $activity_timeclock_append_log_folder/(date +%Y-%m-%d)-(hostname)
+
+
+function set_i3blocks_activity_display
+  echo $argv[1] > $activity_i3blocks
+  pkill -RTMIN+1 i3blocks
+end
+
+function parse_activity_timeclock
+  sort -k2 | uniq \
+  |begin
+    set state o
+    while read -L line
+      set io (string sub -l 1 "$line")
+      set date (string sub -s 3 -l 10 "$line")
+      set time (string sub -s 14 -l 8 "$line")
+      if [ $state = 'i' ]
+        echo "o $date $time"
+      end
+      if [ $io = 'i' ]
+        set state i
+        set rs (string sub -s 23 "$line")
+        string match -r '^(.+?)(?:  (.+?))? *(?:;.*)?$' "$rs" \
+        |begin
+          read -L null
+          read -L activity
+          read -L payee
+        end
+        echo "i $date $time $rs"
+      else if [ $io = 'o' ]
+        set state o
+      end
+    end
+  end
+  if [ $state = 'i' ]
+    echo $activity > $activity_current_file
+    set_i3blocks_activity_display "<span foreground=\"#00FF00\">★ $activity</span>"
+  else
+    rm $activity_current_file
+    set_i3blocks_activity_display "<span foreground=\"#0000FF\">☆</span>"
+  end
+end
+
+
+
+function merge_timeclock_append_log
+  cat $activity_timeclock_append_log_folder/* | parse_activity_timeclock > $activity_timeclock_file
+end
+
+function get_current_timeclock_state
+  merge_timeclock_append_log
+end
+
+function select_activity
+  set next (cat $activity_lists_folder/* | rofi -dmenu -p activity)
+  if [ ! -n "$next" ]
+    exit 1
+  end
+  begin_activity "$next"
+end
+
+function begin_activity
+  echo i (date '+%Y-%m-%d %H:%M:%S') $argv >> $activity_timeclock_append_log_filename
+end
+
+function end_activity
+  echo o (date '+%Y-%m-%d %H:%M:%S') >> $activity_timeclock_append_log_filename
+end
+
+
 set command $argv[1]
 switch $command
-  case "activity"
-    /opt/activity/select_activity
+
+  case "select_activity"
+    select_activity
+
+  case "begin_activity"
+    begin_activity $argv[2..-1]
+
+  case "end_activity"
+    end_activity
+
+  case "show_activity"
+    get_current_timeclock_state
+
   case "uniklinik"
-    /opt/activity/activity 'Arbeit:Uniklinik Köln'
-  case "end"
-    /opt/activity/activity
+    begin_activity 'Arbeit:Uniklinik Köln'
+
 end
+
+merge_timeclock_append_log
