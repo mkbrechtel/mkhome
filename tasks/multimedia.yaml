@@ -4,7 +4,7 @@
     pkg:
       - vlc
       - vlc-l10n
-      - libdvd-pkg
+      #- libdvd-pkg
       - openshot
       - openshot-doc
       - ogmrip
