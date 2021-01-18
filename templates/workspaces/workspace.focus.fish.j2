@@ -3,5 +3,9 @@
 i3-msg mode remote
 
 {% if workspaces[workspace].activity is defined %}
+{% if workspaces[workspace].activity %}
 ~/bin/timer begin_activity "{{workspaces[workspace].activity}}"
+{% else %}
+~/bin/timer end_activity
+{% endif %}
 {% endif %}
