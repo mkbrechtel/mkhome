@@ -32,10 +32,9 @@ markup=none
 
 # activity
 [activity]
-command=cat ~/.timer/activity.i3blocks
-interval=once
+command=~/bin/pipe-watcher "{{timer_folder}}/activity.i3blocks.fifo" ☆
+interval=persist
 markup=pango
-signal=1
 
 # hostinfo
 [hostinfo]

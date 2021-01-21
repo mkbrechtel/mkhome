@@ -1,0 +1,15 @@
+#!/usr/bin/fish
+
+set pipe $argv[1]
+
+if test (count $argv) -ge 2
+  echo $argv[2]
+end
+
+if [ ! -p $pipe ]
+  exit 1
+end
+
+while [ -p $pipe ]
+  cat $pipe
+end
