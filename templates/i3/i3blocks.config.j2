@@ -32,7 +32,7 @@ markup=none
 
 # activity
 [activity]
-command=~/bin/pipe-watcher ~/.timer/activity.i3blocks.fifo ☆
+command=tail -f ~/.timer/activity.i3blocks 2> /dev/null
 interval=persist
 markup=pango
 

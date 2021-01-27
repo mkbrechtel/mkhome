@@ -20,7 +20,7 @@
     content: "{{ default_activities | join('\n') }}"
     dest: "{{timer_folder}}/activity.lists/10-default"
 
-- name: timer activity i3blocks fifo
-  command: mkfifo "{{timer_folder}}/activity.i3blocks.fifo"
+- name: timer activity i3blocks linefile
+  shell: echo ☆ > "{{timer_folder}}/activity.i3blocks"
   args:
-    creates: "{{timer_folder}}/activity.i3blocks.fifo"
+    creates: "{{timer_folder}}/activity.i3blocks"
