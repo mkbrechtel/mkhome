@@ -52,6 +52,7 @@ calculator_command: "{{default_browser}} --new-window https://www.geogebra.org/c
 mail_command: thunderbird
 
 home_copy_all_background_images: false
+background_image: background/eso0932a.jpg
 
 home_autostart_terminal: true
 home_autostart_nm_applet: "{{ home_profile != 'vdesk' }}"
