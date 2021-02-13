@@ -51,7 +51,6 @@ file_browser_command: thunar
 calculator_command: "{{default_browser}} --new-window https://www.geogebra.org/calculator"
 mail_command: thunderbird
 
-background_image: false
 home_copy_all_background_images: false
 
 home_autostart_terminal: true
@@ -61,3 +60,5 @@ home_autostart_pasystray: "{{ home_profile != 'vdesk' }}"
 home_autostart_unclutter: "{{ home_profile == 'presentation' }}"
 
 default_activities: []
+
+workspaces: {}
