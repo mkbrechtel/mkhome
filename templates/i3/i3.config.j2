@@ -336,6 +336,12 @@ mode "resize" {
 
 ### Bar
 bar {
+{% if i3_hide_bar %}
+  mode hide
+  hidden_state hide
+  modifier $mod
+{% endif %}
+
   position top
 
   strip_workspace_numbers yes

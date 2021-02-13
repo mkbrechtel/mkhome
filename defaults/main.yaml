@@ -63,3 +63,5 @@ home_autostart_unclutter: "{{ home_profile == 'presentation' }}"
 default_activities: []
 
 workspaces: {}
+
+i3_hide_bar: false
