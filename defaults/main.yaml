@@ -16,6 +16,8 @@ home_vncserver_started_and_enabled: "{{ home_profile == 'vdesk' }}"
 home_vncserver_display_number: 47
 home_xsession_vncviewer: "{{ home_profile == 'vdesk' }}"
 
+home_vncserver_geometry: '1920x1200'
+
 home_profile: desktop
 
 default_terminal: urxvt
