@@ -376,8 +376,13 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
+{% if not i3_hide_border_one_window %}
 default_border normal
 hide_edge_borders both
+{% else %}
+default_border none
+hide_edge_borders smart
+{% endif %}
 
 default_floating_border normal
 
