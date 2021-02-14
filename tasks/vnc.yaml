@@ -6,6 +6,12 @@
     state: directory
     mode: 0700
 
+- name: vnc config
+  template:
+    src: vnc/config.j2
+    dest: ~/.vnc/config
+    mode: 0644
+
 - name: vnc server config
   template:
     src: vnc/vnc.conf.j2
