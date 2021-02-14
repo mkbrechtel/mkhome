@@ -21,3 +21,8 @@ rofi -theme ~/.config/rofi/theme -dump-xresources > ~/.config/rofi/config
 
 # screensaver settings
 /usr/local/bin/screensaver-settings
+
+# allow hosts
+{% for xhost in home_xhosts_allow %}
+xhost +{{xhost}}
+{% endfor %}
