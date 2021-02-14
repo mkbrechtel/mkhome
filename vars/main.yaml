@@ -132,3 +132,8 @@ background_image_path: ~/.backgrounds/{{background_image|basename}}
 background_command: feh --no-fehbg --bg-fill {{background_image_path}}
 
 timer_folder: ~/.timer
+
+vncserver_options: |
+  {% if not home_vncserver_allow_resize %}
+  -AcceptSetDesktopSize=0
+  {% endif %}

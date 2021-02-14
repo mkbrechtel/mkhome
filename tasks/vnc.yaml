@@ -12,6 +12,12 @@
     dest: ~/.vnc/config
     mode: 0644
 
+- name: vnc env
+  template:
+    src: vnc/vncserver.env.j2
+    dest: ~/.vnc/vncserver.env
+    mode: 0644
+
 - name: vnc server config
   template:
     src: vnc/vnc.conf.j2
