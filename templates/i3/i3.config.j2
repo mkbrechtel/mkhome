@@ -47,11 +47,13 @@ bindsym XF86HomePage exec {{default_browser}}
 bindsym XF86Calculator exec {{calculator_command}}
 
 ## Special modes
-bindsym $mod+less mode timer
+bindsym $mod+t mode timer
 bindsym $mod+s mode session
 bindsym $mod+c mode clipboard
 bindcode $mod+49 mode "remote"
 
+## Activity
+bindsym $mod+less exec "~/bin/timer select_activity"
 
 ## Applications
 bindsym $mod+Return exec "{{default_terminal}}"
@@ -118,7 +120,6 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+l
 # $mod+n
 # $mod+o
-# $mod+t
 # $mod+u
 # $mod+adiaeresis
 # $mod+odiaeresis
@@ -167,7 +168,10 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 
   # Special modes
   bindcode $plexmod+49 mode "session"
-  bindsym $plexmod+less mode timer
+
+  # activity
+  bindsym $plexmod+less exec "~/bin/timer select_activity"
+
 {% endmacro %}
 {{ overall() }}
 
