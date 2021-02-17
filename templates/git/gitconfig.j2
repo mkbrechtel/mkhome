@@ -1,5 +1,13 @@
 [user]
+{% if git_user_email is defined %}
 	email = {{git_user_email}}
+{% endif %}
+{% if git_user_name is defined %}
 	name = {{git_user_name}}
+{% endif %}
 [init]
 	defaultBranch = main
+{% if github_username is defined %}
+[github]
+	user = {{github_username}}
+{% endif %}
