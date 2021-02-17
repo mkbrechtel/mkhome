@@ -70,3 +70,11 @@ i3_hide_bar: false
 i3_hide_border_one_window: false
 
 home_xhosts_allow: []
+
+pulseaudio_load_system_config: true
+pulseaudio_jack_sink_enabled: false
+pulseaudio_jack_sink_channels: 2
+pulseaudio_jack_sink_client_name: PulseAudio
+pulseaudio_jack_source_enabled: false
+pulseaudio_jack_source_channels: 2
+pulseaudio_jack_source_client_name: PulseAudio

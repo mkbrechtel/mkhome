@@ -1,0 +1,25 @@
+{{ansible_managed|comment}}
+
+{% if pulseaudio_load_system_config %}
+.include /etc/pulse/default.pa
+{% endif %}
+
+.fail
+
+{% if pulseaudio_jack_sink_enabled %}
+load-module module-jack-sink channels={{pulseaudio_jack_sink_channels}} client_name="{{pulseaudio_jack_sink_client_name}}" connect=0
+{% endif %}
+{% if pulseaudio_jack_source_enabled %}
+load-module module-jack-source channels={{pulseaudio_jack_source_channels}} client_name="{{pulseaudio_jack_source_client_name}}" connect=0
+{% endif %}
+
+{% if pulseaudio_default_sink is defined %}
+set-default-sink {{pulseaudio_default_sink}}
+{% endif %}
+{% if pulseaudio_default_source is defined %}
+set-default-source {{pulseaudio_default_source}}
+{% endif %}
+
+.ifexists module-x11-publish.so
+    load-module module-x11-publish
+.endif
