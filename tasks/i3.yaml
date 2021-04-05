@@ -38,6 +38,9 @@
     dest: ~/.config/systemd/user/i3wm.service
   notify: systemd daemon-reload
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: i3wm graphical-session service enabled
   systemd:
     name: i3wm.service

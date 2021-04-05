@@ -1,4 +1,4 @@
 {{ ansible_managed | comment }}
 
 $desktopName = "{{inventory_hostname}}$ENV{DISPLAY}";
-$geometry = "1920x1200";
+$geometry = "{{home_vncserver_geometry}}";

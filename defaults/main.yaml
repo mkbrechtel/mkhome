@@ -16,6 +16,10 @@ home_vncserver_started_and_enabled: "{{ home_profile == 'vdesk' }}"
 home_vncserver_display_number: 47
 home_xsession_vncviewer: "{{ home_profile == 'vdesk' }}"
 
+home_vncserver_allow_resize: true
+
+home_vncserver_geometry: '1920x1200'
+
 home_profile: desktop
 
 default_terminal: urxvt
@@ -49,8 +53,8 @@ file_browser_command: thunar
 calculator_command: "{{default_browser}} --new-window https://www.geogebra.org/calculator"
 mail_command: thunderbird
 
-background_image: false
 home_copy_all_background_images: false
+background_image: background/eso0932a.jpg
 
 home_autostart_terminal: true
 home_autostart_nm_applet: "{{ home_profile != 'vdesk' }}"
@@ -59,3 +63,18 @@ home_autostart_pasystray: "{{ home_profile != 'vdesk' }}"
 home_autostart_unclutter: "{{ home_profile == 'presentation' }}"
 
 default_activities: []
+
+workspaces: {}
+
+i3_hide_bar: false
+i3_hide_border_one_window: false
+
+home_xhosts_allow: []
+
+pulseaudio_load_system_config: true
+pulseaudio_jack_sink_enabled: false
+pulseaudio_jack_sink_channels: 2
+pulseaudio_jack_sink_client_name: PulseAudio
+pulseaudio_jack_source_enabled: false
+pulseaudio_jack_source_channels: 2
+pulseaudio_jack_source_client_name: PulseAudio

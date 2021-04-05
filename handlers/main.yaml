@@ -12,6 +12,13 @@
     scope: user
   failed_when: false
 
+- name: restart pulseaudio
+  systemd:
+    name: pulseaudio.service
+    state: restarted
+    scope: user
+  failed_when: false
+
 - name: i3 reload
   systemd:
     name: i3wm.service

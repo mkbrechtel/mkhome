@@ -19,8 +19,9 @@ Description=vncserver service - display %i
 After=syslog.target network.target
 
 [Service]
+EnvironmentFile=%h/.vnc/vncserver.env
 Type=forking
-ExecStart=/usr/bin/vncserver -autokill %i
+ExecStart=/usr/bin/vncserver -autokill %i $VNCSERVER_OPTIONS
 ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]

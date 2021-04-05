@@ -11,9 +11,7 @@ xkbset nullify lock
 
 # background
 xsetroot -solid black
-{% if background_image is defined %}
 {{background_command}}
-{% endif %}
 
 # Xresources
 xrdb -merge ~/.Xresources
@@ -23,3 +21,8 @@ rofi -theme ~/.config/rofi/theme -dump-xresources > ~/.config/rofi/config
 
 # screensaver settings
 /usr/local/bin/screensaver-settings
+
+# allow hosts
+{% for xhost in home_xhosts_allow %}
+xhost +{{xhost}}
+{% endfor %}
