@@ -5,6 +5,11 @@
     path: "{{timer_folder}}"
     state: directory
 
+- name: timer config
+  copy:
+    content: "{{timer_config}}"
+    dest: "{{timer_folder}}/config.json"
+
 - name: timer activity timeclock  directory
   file:
     path: "{{timer_folder}}/activity.timeclock.d"
