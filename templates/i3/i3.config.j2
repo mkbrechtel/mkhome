@@ -207,6 +207,7 @@ mode "session" {
   bindsym r reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
   bindsym R reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
   bindsym s exec --no-startup-id {{system_suspend_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym l exec --no-startup-id {{session_lock_command}}; mode "default"; {{on_focus_workspace}}
   bindcode 49 exec --no-startup-id {{session_lock_command}}; mode "default"; {{on_focus_workspace}}
   bindsym e exec --no-startup-id {{session_enable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
   bindsym d exec --no-startup-id {{session_disable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
@@ -246,6 +247,7 @@ mode "layout" {
   bindsym e layout toggle split; mode "default";
   bindsym h layout splith; mode "default"
   bindsym v layout splitv; mode "default"
+  bindsym m exec --no-startup-id ~/bin/select-screenlayout; {{on_focus_workspace}}
 
   bindsym b mode bar
 
