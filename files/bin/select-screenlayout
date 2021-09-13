@@ -9,3 +9,5 @@ end
 
 set screenlayout (ls-screenlayout | rofi -dmenu -p 'select screenlayout')
 ~/.screenlayout/$screenlayout.sh
+
+~/.xsession.reload.fish
