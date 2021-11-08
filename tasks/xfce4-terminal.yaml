@@ -1,0 +1,12 @@
+---
+
+- name: xfce4-terminal config directory
+  file:
+    path: .config/xfce4/terminal
+    state: directory
+
+- name: xfce4-terminal config
+  template:
+    src: xfce4-terminal/terminalrc.j2
+    dest: .config/xfce4/terminal/terminalrc
+    mode: 0755

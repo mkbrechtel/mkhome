@@ -18,6 +18,7 @@
     - import_tasks: i3.yaml
     - import_tasks: workspaces.yaml
     - import_tasks: background.yaml
+    - import_tasks: xfce4-terminal.yaml
     - import_tasks: rofi.yaml
     - import_tasks: screenlayout.yaml
     - import_tasks: x11.yaml

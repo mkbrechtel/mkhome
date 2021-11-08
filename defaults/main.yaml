@@ -22,7 +22,7 @@ home_vncserver_geometry: '1920x1200'
 
 home_profile: desktop
 
-default_terminal: urxvt
+default_terminal: xfce4-terminal
 default_browser: firefox
 
 # feature flags
