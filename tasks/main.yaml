@@ -16,9 +16,13 @@
 
 - block:
     - import_tasks: i3.yaml
+      tags:
+        - i3
     - import_tasks: workspaces.yaml
     - import_tasks: background.yaml
     - import_tasks: xfce4-terminal.yaml
+      tags:
+        - xfce4-terminal
     - import_tasks: rofi.yaml
     - import_tasks: screenlayout.yaml
     - import_tasks: x11.yaml
