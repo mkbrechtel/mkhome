@@ -73,6 +73,8 @@ i3_pango_font: "{{terminal_font}}"
 
 xfce4_terminal_font: "{{terminal_font}}"
 
+rofi_font: "{{terminal_font}}"
+
 terminal_font: "{{terminal_font_name}} {{terminal_font_size}}"
 terminal_font_name: Monospace
 terminal_font_size: 12
