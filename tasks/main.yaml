@@ -11,12 +11,15 @@
 # system setup
 - import_role:
     name: hostname
+  when: not ansible_bender is defined
 - import_role:
     name: locales
 - import_role:
     name: timezone
+  when: not ansible_bender is defined
 - import_role:
     name: keyboard_configuration
+  when: not ansible_bender is defined
 
 # packages setup
 - import_role:
@@ -31,3 +34,4 @@
     name: system_upgrade
 - import_role:
     name: unattended-upgrades
+  when: not ansible_bender is defined
