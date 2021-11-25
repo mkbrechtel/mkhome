@@ -67,8 +67,8 @@ default_activities: []
 
 workspaces: {}
 
-i3_hide_bar: false
-i3_hide_border_one_window: false
+i3_hide_bar: "{{ home_profile == 'presentation' }}"
+i3_hide_border_one_window: "{{ home_profile == 'presentation' }}"
 
 i3_font: pango:{{i3_pango_font}}
 i3_pango_font: "{{terminal_font}}"

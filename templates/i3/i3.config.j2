@@ -19,20 +19,13 @@ set $plexmod Mod3
 floating_modifier $mod
 
 
-### key patterns
-set $up l
-set $down k
-set $left j
-set $right odiaeresis
-
-
 ### default/local mode
 
 ## special keys
-bindsym XF86Sleep exec {{session_lock_command}}
-bindsym XF86Mail exec {{mail_command}}
-bindsym XF86HomePage exec {{default_browser}}
-bindsym XF86Calculator exec {{calculator_command}}
+bindsym XF86Sleep exec {{i3_exec_command_prefix}} {{session_lock_command}}
+bindsym XF86Mail exec {{i3_exec_command_prefix}} {{mail_command}}
+bindsym XF86HomePage exec {{i3_exec_command_prefix}} {{default_browser}}
+bindsym XF86Calculator exec {{i3_exec_command_prefix}} {{calculator_command}}
 
 ## Special modes
 bindsym $mod+t mode timer
@@ -41,15 +34,15 @@ bindsym $mod+c mode clipboard
 bindcode $mod+49 mode "remote"
 
 ## Activity
-bindsym $mod+less exec "~/bin/timer select_activity"
+bindsym $mod+less exec {{i3_exec_command_prefix}} "~/bin/timer select_activity"
 
 ## Applications
-bindsym $mod+Return exec "{{default_terminal}}"
-bindsym $mod+b exec "{{default_browser}}"
-bindsym $mod+d exec rofi -show drun -show-icons
-bindsym $mod+e exec rofi -show run
+bindsym $mod+Return exec {{i3_exec_command_prefix}} "{{default_terminal}}"
+bindsym $mod+b exec {{i3_exec_command_prefix}} "{{default_browser}}"
+bindsym $mod+d exec {{i3_exec_command_prefix}} rofi -show drun -show-icons
+bindsym $mod+e exec {{i3_exec_command_prefix}} rofi -show run
 bindsym $mod+a mode "apps"
-bindsym $mod+space exec "~/bin/on-space-shortcut"
+bindsym $mod+space exec  {{i3_exec_command_prefix}} "~/bin/on-space-shortcut"
 
 
 ## Workspaces
@@ -71,16 +64,33 @@ bindsym $mod+v split v
 
 ## Focus
 bindsym $mod+Left focus left
-bindsym $mod+$left focus left
 bindsym $mod+Down focus down
-bindsym $mod+$down focus down
 bindsym $mod+Up focus up
-bindsym $mod+$up focus up
 bindsym $mod+Right focus right
-bindsym $mod+$right focus right
 bindsym $mod+p focus parent
 # change focus between tiling / floating windows
 bindsym $mod+Tab focus mode_toggle
+
+## Move
+# move window
+bindsym $mod+Control+w exec fish -c "i3-msg move container to workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p 'move to workspace' )"; mode "default"
+bindsym $mod+Control+Left move left
+bindsym $mod+Control+Down move down
+bindsym $mod+Control+Up move up
+bindsym $mod+Control+Right move right
+bindsym $mod+Control+Tab floating toggle
+{% for ws in i3_number_workspace_keymaps %}
+  bindsym $mod+Control+{{ws.keysym}} move container to workspace "{{ws.workspace}}"; mode "default"
+{% endfor %}
+# move workspace
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+$left move workspace to output left
+bindsym $mod+Shift+Down move workspace to output down
+bindsym $mod+Shift+$down move workspace to output down
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+$up move workspace to output up
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+$right move workspace to output right
 
 ## Window
 # The middle button over a titlebar kills the window
@@ -90,10 +100,8 @@ bindsym --whole-window $mod+button2 kill
 bindsym $mod+BackSpace kill
 bindsym $mod+q kill
 bindsym $mod+f fullscreen
-bindsym $mod+z floating toggle
-bindsym $mod+m mode move
 bindsym $mod+r mode resize
-bindsym $mod+x exec xkill
+bindsym $mod+x exec {{i3_exec_command_prefix}} xkill
 
 # points
 bindsym $mod+minus exec {{points_down_command}}
@@ -123,15 +131,12 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+Print
 # $mod+Scroll_Lock
 
-## unlearn
-#exec {{points_down_command}}
-
 
 ## stuff that is available in default and remote mode
 {% macro overall() %}
 
   {% if home_profile == "desktop" %}
-    bindsym $plexmod+space exec ~/bin/on-space-shortcut
+    bindsym $plexmod+space exec {{i3_exec_command_prefix}} ~/bin/on-space-shortcut
     bindsym $plexmod+BackSpace kill
     bindsym $plexmod+Tab {{workspace_switcher}}
 
@@ -158,7 +163,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
   bindcode $plexmod+49 mode "session"
 
   # activity
-  bindsym $plexmod+less exec "~/bin/timer select_activity"
+  bindsym $plexmod+less exec "{{i3_exec_command_prefix}} ~/bin/timer select_activity"
 
 {% endmacro %}
 {{ overall() }}
@@ -182,7 +187,7 @@ mode "remote" {
 ### Applications mode
 mode "apps" {
 {% for a in application_shortcuts | dict2items %}
-  bindsym {{a.key}} exec {{a.value}}; mode "default"
+  bindsym {{a.key}} exec {{i3_exec_command_prefix}} {{a.value}}; mode "default"
 {% endfor %}
   bindsym Escape mode "default"
 }
@@ -210,9 +215,9 @@ mode "session" {
 
 ### Timer
 mode "timer" {
-  bindsym a exec "~/bin/timer select_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym e exec "~/bin/timer end_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym u exec "~/bin/timer uniklinik"; mode "default"; {{on_focus_workspace}}
+  bindsym a exec "{{i3_exec_command_prefix}} ~/bin/timer select_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym e exec "{{i3_exec_command_prefix}} ~/bin/timer end_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym u exec "{{i3_exec_command_prefix}} ~/bin/timer uniklinik"; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
@@ -254,32 +259,6 @@ mode "bar" {
 ### Move mode
 mode "move" {
 
-  # move window
-  bindsym Left move left
-  bindsym $left move left
-  bindsym Down move down
-  bindsym $down move down
-  bindsym Up move up
-  bindsym $up move up
-  bindsym Right move right
-  bindsym $right move right
-
-  # move window to workspace
-{% for ws in i3_number_workspace_keymaps %}
-  bindsym {{ws.keysym}} move container to workspace "{{ws.workspace}}"; mode "default"
-{% endfor %}
-  bindsym w exec fish -c "i3-msg move container to workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p 'move to workspace' )"; mode "default"
-  bindsym ssharp move scratchpad
-
-  # move workspace to output
-  bindsym Shift+Left move workspace to output left
-  bindsym Shift+$left move workspace to output left
-  bindsym Shift+Down move workspace to output down
-  bindsym Shift+$down move workspace to output down
-  bindsym Shift+Up move workspace to output up
-  bindsym Shift+$up move workspace to output up
-  bindsym Shift+Right move workspace to output right
-  bindsym Shift+$right move workspace to output right
 
   bindsym o exec fish -c "i3-msg move workspace to output ( i3-msg -t get_outputs | jq --raw-output '.[]|select(.active == true).name' | rofi -dmenu -p 'move workspace to output' )"; mode "default"
   bindsym p move workspace to output primary; mode "default"
@@ -407,8 +386,5 @@ assign [class="^thunderbird$"] → mail
 assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:{{ws.display|default(home_vncserver_display_number)}}"] → {{workspace}}
 {% endfor %}
 
-### Autostart.display|default(home_vncserver_display_number)
-
-#exec "{{default_terminal}}"
-
+# Autostart
 exec --no-startup-id "~/bin/i3-watchers"
