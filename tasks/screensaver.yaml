@@ -3,8 +3,5 @@
 - name: screensaver graphical-session service enabled
   systemd:
     name: screensaver.service
-    enabled: true
+    enabled: "{{ session_lock_enabled }}"
     scope: user
-  when:
-    - home_profile != "presentation"
-    - home_profile != "vdesk"

@@ -41,12 +41,14 @@ application_shortcuts:
 
 ssh_over_tor: false
 
-session_lock_command: xset s activate
-session_enable_screensaver_command: /usr/local/bin/screensaver-enable
-session_disable_screensaver_command: /usr/local/bin/screensaver-disable
 system_suspend_command: systemctl suspend
 system_reboot_command: systemctl reboot
 system_poweroff_command: systemctl poweroff
+
+session_lock_enabled: "{{ (home_profile != 'presentation') and (home_profile != 'vdesk') }}"
+session_lock_command: xset s activate
+session_enable_screensaver_command: /usr/local/bin/screensaver-enable
+session_disable_screensaver_command: /usr/local/bin/screensaver-disable
 
 file_browser_command: thunar
 calculator_command: "{{default_browser}} --new-window https://www.geogebra.org/calculator"
