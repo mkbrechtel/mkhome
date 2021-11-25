@@ -15,7 +15,7 @@ end
 
 {% if workspaces[workspace].type == "vncviewer-ssh-socket" %}
 
-socat "UNIX-LISTEN:.vnc/socket.anix,reuseaddr" EXEC:'ssh {{workspaces[workspace].host}} socat STDIO UNIX-CONNECT\:.vnc/socket' &
+socat "UNIX-LISTEN:.vnc/socket.{{workspaces[workspace].host}},reuseaddr" EXEC:'ssh {{workspaces[workspace].host}} socat STDIO UNIX-CONNECT\:.vnc/socket' &
 exec xtigervncviewer .vnc/socket.{{workspaces[workspace].host}}
 
 {% elif workspaces[workspace].type == "vncviewer-ssh-tcp" %}
