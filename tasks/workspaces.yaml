@@ -26,6 +26,9 @@
     src: workspaces/workspace.space.fish.j2
     dest: ~/.workspaces/{{workspace}}.space
     mode: 0755
-  with_items: "{{workspaces|dict2items|json_query(\"[?value.type=='vncviewer'||value.type=='tmux'].key\") }}"
+  with_items: "{{ workspaces }}"
   loop_control:
     loop_var: workspace
+  when:
+    - workspaces[workspace]
+    - '"type" in workspaces[workspace]'

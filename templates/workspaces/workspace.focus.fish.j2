@@ -2,7 +2,7 @@
 {{ ansible_managed | comment }}
 
 {% if workspaces[workspace].type is defined %}
-{% if workspaces[workspace].type == "vncviewer" %}
+{% if "vncviewer" in workspaces[workspace].type  %}
 i3-msg mode remote
 {% endif %}
 {% endif %}

@@ -13,17 +13,17 @@
     mode: 0600
     force: no
 
-- name: fetch vnc passwd
-  fetch:
-    src: ~/.vnc/passwd
-    dest: ~/.vnc/passwd.{{inventory_hostname}}
-    flat: yes
-
-- name: copy vnc passwd files
-  copy:
-    src: ~/.vnc/passwd.{{item}}
-    dest: ~/.vnc/passwd.{{item}}
-  with_items: "{{ home_access_to_hosts }}"
+# - name: fetch vnc passwd
+#   fetch:
+#     src: ~/.vnc/passwd
+#     dest: ~/.vnc/passwd.{{inventory_hostname}}
+#     flat: yes
+#
+# - name: copy vnc passwd files
+#   copy:
+#     src: ~/.vnc/passwd.{{item}}
+#     dest: ~/.vnc/passwd.{{item}}
+#   with_items: "{{ home_access_to_hosts }}"
 
 - name: default vnc client options
   template:
