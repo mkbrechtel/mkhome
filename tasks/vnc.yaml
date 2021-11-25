@@ -6,24 +6,6 @@
     state: directory
     mode: 0700
 
-- name: vnc config
-  template:
-    src: vnc/config.j2
-    dest: ~/.vnc/config
-    mode: 0644
-
-- name: vnc env
-  template:
-    src: vnc/vncserver.env.j2
-    dest: ~/.vnc/vncserver.env
-    mode: 0644
-
-- name: vnc server config
-  template:
-    src: vnc/vnc.conf.j2
-    dest: ~/.vnc/vnc.conf
-    mode: 0644
-
 - name: vnc passwd
   copy:
     content: "{{ lookup('pipe','pwgen 24 1' )}}"
@@ -54,15 +36,3 @@
     src: vnc/vncserver.service.j2
     dest: ~/.config/systemd/user/vncserver@.service
   notify: systemd daemon-reload
-
-- name: Xvnc-session script
-  template:
-    src: vnc/Xvnc-session.j2
-    dest: ~/.vnc/Xvnc-session
-    mode: 0755
-
-- name: vnc xsession script
-  template:
-    src: vnc/xsession.j2
-    dest: ~/.vnc/xsession
-    mode: 0755

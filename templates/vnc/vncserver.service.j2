@@ -19,10 +19,12 @@ Description=vncserver service - display %i
 After=syslog.target network.target
 
 [Service]
-EnvironmentFile=%h/.vnc/vncserver.env
-Type=forking
-ExecStart=/usr/bin/vncserver -autokill %i $VNCSERVER_OPTIONS
-ExecStop=/usr/bin/vncserver -kill %i
+WorkingDirectory=%h
+Environment=DISPLAY=%i
+ExecStart=Xtigervnc $DISPLAY {{vncserver_options|replace('\n',' ')|trim}}
+ExecStartPost=fish -c "while not xdpyinfo > /dev/null 2> /dev/null; sleep 0.1; end"
+ExecStartPost=xrandr --output VNC-0 --primary
+ExecStartPost=systemctl --user start xsession.target
 
 [Install]
 WantedBy=default.target

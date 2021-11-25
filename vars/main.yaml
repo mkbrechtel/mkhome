@@ -135,6 +135,17 @@ timer_folder: ~/.timer
 timer_config: {}
 
 vncserver_options: |
+  -desktop %H%i
+  -auth %h/.Xauthority
+  -geometry {{home_vncserver_geometry}}
+  -depth 24
+  -rfbwait 30000
+  -rfbauth %h/.vnc/passwd
+  -rfbunixpath %h/.vnc/socket
+  -nolisten tcp
+  -pn
+  -localhost
+  -SecurityTypes VncAuth
   {% if not home_vncserver_allow_resize %}
   -AcceptSetDesktopSize=0
   {% endif %}
