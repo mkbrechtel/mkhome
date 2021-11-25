@@ -19,6 +19,7 @@
       tags:
         - i3
     - import_tasks: workspaces.yaml
+    - import_tasks: icons.yaml
     - import_tasks: background.yaml
     - import_tasks: xfce4-terminal.yaml
       tags:
@@ -27,6 +28,8 @@
     - import_tasks: screenlayout.yaml
     - import_tasks: x11.yaml
     - import_tasks: vnc.yaml
+      tags:
+        - vnc
     - import_tasks: desktop-apps.yaml
   when: home_desktop
 
