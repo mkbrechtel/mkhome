@@ -7,7 +7,7 @@ exec urxvt -title tmux-workspace -e fish -c 'ssh -t {{workspaces[workspace].host
 
 {% elif "vncviewer" in workspaces[workspace].type %}
 
-{% if workspaces[workspace].fetch_vnc_passsword_file | default(true) %}
+{% if workspaces[workspace].fetch_vnc_passsword_file | default(false) %}
 if not test -d ~/.vnc/passwd.{{workspaces[workspace].host}}
   rsync {{workspaces[workspace].host}}:~/.vnc/passwd ~/.vnc/passwd.{{workspaces[workspace].host}}
 end
@@ -16,7 +16,7 @@ end
 {% if workspaces[workspace].type == "vncviewer-ssh-socket" %}
 
 socat "UNIX-LISTEN:.vnc/socket.anix,reuseaddr" EXEC:'ssh {{workspaces[workspace].host}} socat STDIO UNIX-CONNECT\:.vnc/socket' &
-exec xtigervncviewer .vnc/socket.{{workspaces[workspace].host}} -PasswordFile ~/.vnc/passwd.{{workspaces[workspace].host}}
+exec xtigervncviewer .vnc/socket.{{workspaces[workspace].host}}
 
 {% elif workspaces[workspace].type == "vncviewer-ssh-tcp" %}
 

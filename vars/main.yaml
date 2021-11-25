@@ -140,12 +140,11 @@ vncserver_options: |
   -geometry {{home_vncserver_geometry}}
   -depth 24
   -rfbwait 30000
-  -rfbauth %h/.vnc/passwd
   -rfbunixpath %h/.vnc/socket
   -nolisten tcp
   -pn
   -localhost
-  -SecurityTypes VncAuth
+  -SecurityTypes None
   {% if not home_vncserver_allow_resize %}
   -AcceptSetDesktopSize=0
   {% endif %}
