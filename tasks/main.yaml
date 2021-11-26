@@ -1,22 +1,24 @@
 ---
 
+- import_tasks: cleanup.yaml
+
 - name: debian package requirements
   apt:
     pkg:
       - apt-transport-https
 
-- name: download riot-im keyring
+- name: download element repo keyring
   get_url:
-    dest: /usr/share/keyrings/riot-im-archive-keyring.gpg
-    url: https://packages.riot.im/debian/riot-im-archive-keyring.gpg
+    url: https://packages.element.io/debian/element-io-archive-keyring.gpg
+    dest: /usr/share/keyrings/element-io-archive-keyring.gpg
     checksum: sha256:7b9cb51017218a0c849a6c76c63eea4aa44237568f6e4d7cc935cdb009edb381
 
-- name: riot-im apt repo
+- name: element apt repo
   apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/riot-im-archive-keyring.gpg] https://packages.riot.im/debian/ {{ansible_distribution_release}} main
-    filename: riot-im
+    repo: deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main
+    filename: element-io
 
-- name: riot-im package
+- name: element-desktop package
   apt:
     pkg: element-desktop
     state: latest
