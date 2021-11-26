@@ -11,7 +11,7 @@
   get_url:
     url: https://packages.element.io/debian/element-io-archive-keyring.gpg
     dest: /usr/share/keyrings/element-io-archive-keyring.gpg
-    checksum: sha256:7b9cb51017218a0c849a6c76c63eea4aa44237568f6e4d7cc935cdb009edb381
+    checksum: sha256:fbf7823608964237024b043b607415b75d7c64221ac98ff5b5e67941f24684c2.
 
 - name: element apt repo
   apt_repository:
