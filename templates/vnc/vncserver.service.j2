@@ -24,6 +24,7 @@ Environment=DISPLAY=%i
 ExecStart=Xtigervnc $DISPLAY {{vncserver_options|replace('\n',' ')|trim}}
 ExecStartPost=fish -c "while not xdpyinfo > /dev/null 2> /dev/null; sleep 0.1; end"
 ExecStartPost=xrandr --output VNC-0 --primary
+ExecStartPost=systemctl --user import-environment DISPLAY XAUTHORITY
 ExecStartPost=systemctl --user start xsession.target
 
 [Install]
