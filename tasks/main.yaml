@@ -1,14 +1,19 @@
 ---
 
+- name: clean old signal apt key
+  file:
+    path: /etc/apt/trusted.gpg.d/signal.gpg
+    state: absent
+
 - name: signal apt key
   apt_key:
     id: DBA36B5181D0C816F630E889D980A17457F6FB06
     url: https://updates.signal.org/desktop/apt/keys.asc
-    keyring: /etc/apt/trusted.gpg.d/signal.gpg
+    keyring: /usr/share/keyrings/signal-desktop-keyring.gpg
 
 - name: signal apt repo
   apt_repository:
-    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
     filename: signal
 
 - name: signal package
