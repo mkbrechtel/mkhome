@@ -4,4 +4,4 @@
   apt:
     pkg:
       - socat
-      
+      - fish

@@ -1,0 +1,11 @@
+function fish_title
+  set -l suffix
+  switch $USER
+  case root toor
+    set suffix '#'
+  case '*'
+    set suffix '>'
+  end
+
+  echo -n -s "(prompt_pwd) " $suffix $_"
+end
