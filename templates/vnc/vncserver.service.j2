@@ -21,6 +21,7 @@ After=syslog.target network.target
 [Service]
 WorkingDirectory=%h
 Environment=DISPLAY=%i
+Environment=XAUTHORITY=%h/.Xauthority
 ExecStart=Xtigervnc $DISPLAY {{vncserver_options|replace('\n',' ')|trim}}
 ExecStartPost=fish -c "while not xdpyinfo > /dev/null 2> /dev/null; sleep 0.1; end"
 ExecStartPost=xrandr --output VNC-0 --primary
