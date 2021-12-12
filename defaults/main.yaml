@@ -9,5 +9,4 @@ ansible_use_mitogen: false
 ansible_mitogen_version: 0.3.0
 ansible_mitogen_pip_package: mitogen
 
-ansible_with_ovh_module: false
 ansible_use_ssh_pipelining: true
