@@ -18,3 +18,15 @@
     state: absent
     executable: pip3
   when: not ansible_use_mitogen
+
+- name: check version of ansible
+  shell: pip3 show ansible | grep Version | cut -d ' ' -f 2
+  ignore_errors: true
+  changed_when: false
+  register: get_ansible_version
+
+- name: old ansible pip package removed
+  pip:
+    name: ansible
+    state: absent
+  when: ansible_installed_version is version('2.10', '<')

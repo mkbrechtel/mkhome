@@ -2,9 +2,8 @@
 
 - name: mitogen pip package
   pip:
-    name: mitogen
-    state: latest
-    executable: pip3
+    name: "{{ansible_mitogen_pip_package}}"
+    version: "{{ansible_mitogen_version}}"
 
 - name: get ansible_mitogen location
   shell: python3 -c "import os,ansible_mitogen; print(os.path.dirname(ansible_mitogen.__file__))"

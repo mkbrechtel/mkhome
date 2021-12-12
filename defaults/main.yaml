@@ -1,4 +1,13 @@
+ansible_version: 5.0.1
+ansible_pip_package: ansible
+
 ansible_use_ara: false
+ansible_ara_version: 1.5.7
+ansible_ara_pip_package: ara
+
 ansible_use_mitogen: false
+ansible_mitogen_version: 0.3.0
+ansible_mitogen_pip_package: mitogen
+
 ansible_with_ovh_module: false
 ansible_use_ssh_pipelining: true

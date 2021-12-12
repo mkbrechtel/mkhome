@@ -2,9 +2,8 @@
 
 - name: ara pip package
   pip:
-    name: ara
-    state: present
-    executable: pip3
+    name: "{{ansible_ara_pip_package}}"
+    version: "{{ansible_ara_version}}"
 
 - name: get ara location
   shell: python3 -c "import os,ara; print(os.path.dirname(ara.__file__))"
