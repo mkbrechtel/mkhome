@@ -11,7 +11,9 @@
 # system setup
 - import_role:
     name: hostname
-  when: not ansible_bender is defined
+  when:
+    - not ansible_bender is defined
+    - not container_type | default('') == 'podman'
 - import_role:
     name: locales
 - import_role:
