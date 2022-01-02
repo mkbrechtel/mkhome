@@ -25,6 +25,9 @@
       tags:
         - xfce4-terminal
     - import_tasks: rofi.yaml
+    - import_tasks: barrier.yaml
+      tags:
+        - barrier
     - import_tasks: screenlayout.yaml
     - import_tasks: x11.yaml
     - import_tasks: vnc.yaml
