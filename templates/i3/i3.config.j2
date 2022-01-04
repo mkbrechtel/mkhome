@@ -84,13 +84,11 @@ bindsym $mod+Control+Tab floating toggle
 {% endfor %}
 # move workspace
 bindsym $mod+Shift+Left move workspace to output left
-bindsym $mod+Shift+$left move workspace to output left
 bindsym $mod+Shift+Down move workspace to output down
-bindsym $mod+Shift+$down move workspace to output down
 bindsym $mod+Shift+Up move workspace to output up
-bindsym $mod+Shift+$up move workspace to output up
 bindsym $mod+Shift+Right move workspace to output right
-bindsym $mod+Shift+$right move workspace to output right
+bindsym $mod+Shift+O exec fish -c "i3-msg move workspace to output ( i3-msg -t get_outputs | jq --raw-output '.[]|select(.active == true).name' | rofi -dmenu -p 'move workspace to output' )"; mode "default"
+bindsym $mod+Shift+P move workspace to output primary; mode "default"
 
 ## Window
 # The middle button over a titlebar kills the window
@@ -115,6 +113,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+k
 # $mod+l
 # $mod+n
+# $mod+m
 # $mod+o
 # $mod+u
 # $mod+adiaeresis
@@ -255,18 +254,6 @@ mode "bar" {
   # back to normal: Escape
   bindsym Escape mode "default"
 }
-
-### Move mode
-mode "move" {
-
-
-  bindsym o exec fish -c "i3-msg move workspace to output ( i3-msg -t get_outputs | jq --raw-output '.[]|select(.active == true).name' | rofi -dmenu -p 'move workspace to output' )"; mode "default"
-  bindsym p move workspace to output primary; mode "default"
-
-  # back to normal: Escape
-  bindsym Escape mode "default"
-}
-
 
 
 ### Resize window mode
