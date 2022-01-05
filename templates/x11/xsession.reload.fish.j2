@@ -20,7 +20,12 @@ xrdb -merge ~/.Xresources
 rofi -theme ~/.config/rofi/theme -dump-xresources > ~/.config/rofi/config
 
 # screensaver settings
-/usr/local/bin/screensaver-settings
+xset s on
+xset +dpms
+xset s {{ lockscreen_timeout | int }} {{ lockscreen_locktime | int }}
+
+# DPMS options
+xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display_sleeptime | int }}
 
 # allow hosts
 {% for xhost in home_xhosts_allow %}

@@ -22,7 +22,7 @@ floating_modifier $mod
 ### default/local mode
 
 ## special keys
-bindsym XF86Sleep exec {{i3_exec_command_prefix}} {{session_lock_command}}
+bindsym XF86Sleep exec {{i3_exec_command_prefix}} {{lockscreen_lock_command}}
 bindsym XF86Mail exec {{i3_exec_command_prefix}} {{mail_command}}
 bindsym XF86HomePage exec {{i3_exec_command_prefix}} {{default_browser}}
 bindsym XF86Calculator exec {{i3_exec_command_prefix}} {{calculator_command}}
@@ -172,7 +172,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 mode "remote" {
 
   bindcode $mod+9 mode "default"
-  bindsym XF86Sleep exec {{session_lock_command}}
+  bindsym XF86Sleep exec {{lockscreen_lock_command}}
 
   # The middle button over a titlebar kills the window
   bindsym --release button2 kill
@@ -199,11 +199,11 @@ mode "session" {
   bindsym r reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
   bindsym R reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
   bindsym s exec --no-startup-id {{system_suspend_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym l exec --no-startup-id {{session_lock_command}}; mode "default"; {{on_focus_workspace}}
-  bindcode 49 exec --no-startup-id {{session_lock_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym e exec --no-startup-id {{session_enable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
-  bindsym d exec --no-startup-id {{session_disable_screensaver_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym l exec --no-startup-id {{lockscreen_lock_command}}; mode "default"; {{on_focus_workspace}}
+  bindcode 49 exec --no-startup-id {{lockscreen_lock_command}}; mode "default"; {{on_focus_workspace}}
   bindsym b exec --no-startup-id xsetroot -solid black; mode "default"; {{on_focus_workspace}}
+  bindsym e exec --no-startup-id systemctl --user start lockscreen.service; mode "default"; {{on_focus_workspace}}
+  bindsym d exec --no-startup-id systemctl --user stop lockscreen.service; mode "default"; {{on_focus_workspace}}
   bindsym Shift+R exec --no-startup-id {{system_reboot_command}}; mode "default"; {{on_focus_workspace}}
   bindsym Shift+P exec --no-startup-id {{system_poweroff_command}}; mode "default"; {{on_focus_workspace}}
 

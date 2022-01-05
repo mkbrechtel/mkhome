@@ -1,7 +1,0 @@
----
-
-- name: screensaver graphical-session service enabled
-  systemd:
-    name: screensaver.service
-    enabled: "{{ session_lock_enabled }}"
-    scope: user
