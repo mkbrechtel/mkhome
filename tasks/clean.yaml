@@ -67,4 +67,5 @@
   systemd:
     name: screensaver.service
     enabled: false
+    state: stopped
     scope: user
