@@ -1,0 +1,17 @@
+---
+
+- name: lockscreen environment
+  template:
+    src: lockscreen/lockscreen.env.j2
+    dest: ~/.lockscreen.env
+
+- name: lockscreen graphical-session service
+  template:
+    src: lockscreen/lockscreen.service.j2
+    dest: ~/.config/systemd/user/lockscreen.service
+
+- name: lockscreen graphical-session service enabled
+  systemd:
+    name: lockscreen.service
+    enabled: "{{ lockscreen_enabled }}"
+    scope: user

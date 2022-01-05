@@ -62,3 +62,9 @@
     path: ~/.config/systemd/user/autostart-desktop-app@.service
     state: absent
   notify: systemd daemon-reload
+
+- name: screensaver graphical-session service disabled
+  systemd:
+    name: screensaver.service
+    enabled: false
+    scope: user

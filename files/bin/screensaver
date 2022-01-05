@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/libexec/xscreensaver/glmatrix -density 50 -no-rotate $@

@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Screensaver
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xss-lock -l -- xsecurelock
+Restart=always
+EnvironmentFile=%h/.lockscreen.env
+
+[Install]
+WantedBy=graphical-session.target

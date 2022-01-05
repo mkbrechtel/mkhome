@@ -6,7 +6,6 @@
 - import_tasks: ssh.yaml
 - import_tasks: tmux.yaml
 - import_tasks: pulseaudio.yaml
-- import_tasks: screensaver.yaml
 - import_tasks: git.yaml
 - import_tasks: timer.yaml
 
@@ -18,6 +17,9 @@
     - import_tasks: i3.yaml
       tags:
         - i3
+    - import_tasks: lockscreen.yaml
+      tags:
+        - lockscreen
     - import_tasks: workspaces.yaml
     - import_tasks: icons.yaml
     - import_tasks: background.yaml
