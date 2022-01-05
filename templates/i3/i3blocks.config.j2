@@ -32,7 +32,7 @@ markup=none
 
 # activity
 [activity]
-command=tail -f ~/.timer/activity.i3blocks 2> /dev/null
+command=cat ~/.timer/activity.i3blocks; socat UNIX-LISTEN:$HOME/.timer/activity.i3blocks.sock,fork -
 interval=persist
 markup=pango
 

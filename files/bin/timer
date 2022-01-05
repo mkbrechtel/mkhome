@@ -4,22 +4,27 @@ set timer_folder ~/.timer
 set activity_lists_folder $timer_folder/activity.lists
 set activity_timeclock_file $timer_folder/activity.timeclock
 set activity_i3blocks_linefile $timer_folder/activity.i3blocks
+set activity_i3blocks_socket $timer_folder/activity.i3blocks.sock
 set activity_current_file $timer_folder/activity.current
 set activity_timeclock_append_log_folder $timer_folder/activity.timeclock.d
 set activity_timeclock_append_log_filename $activity_timeclock_append_log_folder/(date +%Y-%m-%d)-(hostname)
+
+function activity_i3blocks_show
+  tee $activity_i3blocks_linefile | socat - UNIX-CONNECT:$activity_i3blocks_socket
+end
 
 function parse_activity_timeclock
   sort -k2 | uniq \
   |begin
     set state o
     while read -L line
-      set io (string sub -l 1 "$line")
+      set type (string sub -l 1 "$line")
       set date (string sub -s 3 -l 10 "$line")
       set time (string sub -s 14 -l 8 "$line")
       if [ $state = 'i' ]
         echo "o $date $time"
       end
-      if [ $io = 'i' ]
+      if [ $type = 'i' ]
         set state i
         set rs (string sub -s 23 "$line")
         string match -r '^(.+?)(?:  (.+?))? *(?:;.*)?$' "$rs" \
@@ -29,21 +34,20 @@ function parse_activity_timeclock
           read -L payee
         end
         echo "i $date $time $rs"
-      else if [ $io = 'o' ]
+      else if [ $type = 'o' ]
         set state o
       end
     end
   end
   if [ $state = 'i' ]
     echo $activity > $activity_current_file
-    echo "<span foreground=\"#00FF00\">★ $activity</span>" > $activity_i3blocks_linefile
+    set i3blocks_activity
+    echo "<span foreground=\"#00FF00\">★ $activity</span>" | activity_i3blocks_show
   else
     rm $activity_current_file
-    echo "<span foreground=\"#0000FF\">☆</span>" > $activity_i3blocks_linefile
+    echo "<span foreground=\"#0000FF\">☆</span>" | activity_i3blocks_show
   end
 end
-
-
 
 function merge_timeclock_append_log
   cat $activity_timeclock_append_log_folder/* | parse_activity_timeclock > $activity_timeclock_file
@@ -63,13 +67,14 @@ end
 
 function begin_activity
   echo i (date '+%Y-%m-%d %H:%M:%S') $argv >> $activity_timeclock_append_log_filename
-  echo "<span foreground=\"#00FF00\">★ $argv</span>" > $activity_i3blocks_linefile
+  echo "<span foreground=\"#00FF00\">★ $argv</span>" | activity_i3blocks_show
 end
 
 function end_activity
   echo o (date '+%Y-%m-%d %H:%M:%S') >> $activity_timeclock_append_log_filename
-  echo "<span foreground=\"#0000FF\">☆</span>" > $activity_i3blocks_linefile
+  echo "<span foreground=\"#0000FF\">☆</span>" | activity_i3blocks_show
 end
+
 
 
 set command $argv[1]
