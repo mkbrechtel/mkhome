@@ -11,6 +11,7 @@ ExecStartPost=xset dpms $XSECURELOCK_AUTH_TIMEOUT $XSECURELOCK_AUTH_TIMEOUT $XSE
 NotifyAccess=all
 EnvironmentFile=%h/.lockscreen.env
 ExecStopPost=xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display_sleeptime | int }}
+ExecStopPost=xset dpms force on
 
 [Install]
 WantedBy=graphical-session.target
