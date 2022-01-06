@@ -69,3 +69,9 @@
     enabled: false
     state: stopped
     scope: user
+
+- name: lockscreen graphical-session service disabled
+  systemd:
+    name: lockscreen.service
+    enabled: false
+    scope: user
