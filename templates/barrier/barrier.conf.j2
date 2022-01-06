@@ -1,40 +1,29 @@
 section: screens
-	left-screen:
-		halfDuplexCapsLock = false
-		halfDuplexNumLock = false
-		halfDuplexScrollLock = false
-		xtestIsXineramaUnaware = false
-		preserveFocus = false
-		switchCorners = none
-		switchCornerSize = 0
+	rana:
+	tilixi:
+	lixy:
 	viny:
-		halfDuplexCapsLock = false
-		halfDuplexNumLock = false
-		halfDuplexScrollLock = false
-		xtestIsXineramaUnaware = false
-		preserveFocus = false
-		switchCorners = none
-		switchCornerSize = 0
 end
 
 section: aliases
-	left-screen:
-		lixy
 end
 
 section: links
-	left-screen:
+	rana:
+		right = tilixi
+		down = lixy
+	tilixi:
+		left = rana
+		down = viny
+	lixy:
 		right = viny
+		up = rana
 	viny:
-		left = left-screen
+		left = lixy
+		up = tilixi
 end
 
 section: options
-	relativeMouseMoves = false
 	screenSaverSync = true
-	win32KeepForeground = false
 	clipboardSharing = true
-	switchCorners = none
-	switchCornerSize = 0
-	keystroke(Alt+d) = keystroke(Control+d,*)
 end
