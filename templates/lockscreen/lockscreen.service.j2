@@ -5,10 +5,11 @@ Description=Screensaver
 PartOf=graphical-session.target
 
 [Service]
-Type=notify
-ExecStart=xsecurelock -- systemd-notify --ready
-NotifyAccess=all
+Type=simple
+ExecStart=/usr/bin/xss-lock -l -- xsecurelock
 EnvironmentFile=%h/.lockscreen.env
+Environment="XSECURELOCK_SAVER=%h/.screensaver.sh"
+Restart=always
 
 [Install]
 WantedBy=graphical-session.target
