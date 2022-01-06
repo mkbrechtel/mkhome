@@ -134,21 +134,19 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 ## stuff that is available in default and remote mode
 {% macro overall() %}
 
-  {% if home_profile == "desktop" %}
-    bindsym $plexmod+space exec {{i3_exec_command_prefix}} ~/bin/on-space-shortcut
-    bindsym $plexmod+BackSpace kill
-    bindsym $plexmod+Tab {{workspace_switcher}}
+  bindsym $plexmod+space exec {{i3_exec_command_prefix}} ~/bin/on-space-shortcut
+  bindsym $plexmod+BackSpace kill
+  bindsym $plexmod+Tab {{workspace_switcher}}
 
-    {% for ws in i3_number_workspace_keymaps %}
-    bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
-    {% endfor %}
-    {% for ws in i3_letter_workspace_keymaps %}
-    bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
-    {% endfor %}
-    # focus workspace
-    bindsym $plexmod+Prior workspace next
-    bindsym $plexmod+Next workspace prev
-  {% endif %}
+  {% for ws in i3_number_workspace_keymaps %}
+  bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
+  {% endfor %}
+  {% for ws in i3_letter_workspace_keymaps %}
+  bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
+  {% endfor %}
+  # focus workspace
+  bindsym $plexmod+Prior workspace next
+  bindsym $plexmod+Next workspace prev
 
   # focus output
   bindsym $plexmod+Shift+p focus output primary

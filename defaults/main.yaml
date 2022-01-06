@@ -11,15 +11,13 @@ kanboard_api_settings: "{{ lookup('file', '~/.kanboard_api_settings.json') }}"
 #  kanboard_api_url: https://kanboard.katyx.net/jsonrpc.php
 #  kanboard_api_user: ka
 #  kanboard_api_key: xxx
-home_vncserver_started_and_enabled: "{{ home_profile == 'vdesk' }}"
+home_vncserver_started_and_enabled: false
 home_vncserver_display_number: 47
-home_xsession_vncviewer: "{{ home_profile == 'vdesk' }}"
+home_xsession_vncviewer: false
 
 home_vncserver_allow_resize: true
 
 home_vncserver_geometry: '1920x1200'
-
-home_profile: desktop
 
 default_terminal: xfce4-terminal
 default_browser: firefox
@@ -45,7 +43,7 @@ system_suspend_command: systemctl suspend
 system_reboot_command: systemctl reboot
 system_poweroff_command: systemctl poweroff
 
-lockscreen_enabled: "{{ (home_profile != 'presentation') and (home_profile != 'vdesk') }}"
+lockscreen_auto_enabled: true
 lockscreen_lock_command: xset s activate
 lockscreen_timeout: 300
 lockscreen_locktime: 30
@@ -60,17 +58,17 @@ home_copy_all_background_images: false
 background_image: background/eso0932a.jpg
 
 home_autostart_terminal: false
-home_autostart_nm_applet: "{{ home_profile != 'vdesk' }}"
-home_autostart_blueman_applet: "{{ home_profile != 'vdesk' }}"
-home_autostart_pasystray: "{{ home_profile != 'vdesk' }}"
-home_autostart_unclutter: "{{ home_profile == 'presentation' }}"
+home_autostart_nm_applet: false
+home_autostart_blueman_applet: false
+home_autostart_pasystray: false
+home_autostart_unclutter: false
 
 default_activities: []
 
 workspaces: {}
 
-i3_hide_bar: "{{ home_profile == 'presentation' }}"
-i3_hide_border_one_window: "{{ home_profile == 'presentation' }}"
+i3_hide_bar: false
+i3_hide_border_one_window: false
 
 i3_font: pango:{{i3_pango_font}}
 i3_pango_font: "{{terminal_font}}"
