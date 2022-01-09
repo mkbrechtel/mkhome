@@ -32,6 +32,8 @@
         - barrier
     - import_tasks: screenlayout.yaml
     - import_tasks: x11.yaml
+      tags:
+        - x11
     - import_tasks: vnc.yaml
       tags:
         - vnc
