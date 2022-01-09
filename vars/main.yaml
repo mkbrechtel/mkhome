@@ -1,4 +1,4 @@
-i3_exec_command_prefix: systemd-run --user --scope #--slice-inherit
+i3_exec_command_prefix: systemd-run --user --scope --no-block #--slice-inherit
 
 home_autostart_desktop_apps:
   - name: terminal
