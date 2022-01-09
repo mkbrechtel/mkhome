@@ -62,3 +62,9 @@
     src: barrier/barrierc@.service.j2
     dest: ~/.config/systemd/user/barrierc@.service
   notify: systemd daemon-reload
+
+- name: barrier ssh conection user service
+  template:
+    src: barrier/barrier-ssh-connection@.service.j2
+    dest: ~/.config/systemd/user/barrier-ssh-connection@.service
+  notify: systemd daemon-reload
