@@ -3,7 +3,7 @@
 {{ansible_managed|comment}}
 
 # reset keyboard state
-numlockx on
+numlockx off
 if [ (xset -q | sed -n 's/^.*Caps Lock:\s*\(\S*\).*$/\1/p') = "on" ]
   xdotool key Caps_Lock
 end
