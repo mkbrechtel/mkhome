@@ -4,16 +4,16 @@ debian_common_packages:
   - aptitude
 
   # admin tools
-  - tmux
-  - rsync
   - lsof
-  - vim
-  - pv
   - less
   - psmisc
+  - lshw
+  - ipcalc
+  - ipv6calc
 
   # editors
   - nano
+  - vim
 
   # network tools
   - iputils-ping
@@ -21,21 +21,42 @@ debian_common_packages:
   - nmap
   - tcpdump
   - dnsutils
+  - mtr
+  - oping
 
   # documentation
   - man-db
 
   # tools
-  - unzip
   - pwgen
 
-  # pipe tools
+  # compression
+  - unzip
+  - p7zip
+  - zip
+  - unzip
+
+  # file sync tools
+  - rsync
+  - zsync
+
+  # shell tools
+  - tmux
   - socat
   - jq
   - jo
+  - pv
+  - qrencode
 
   # languages
   - python3
   - python3-pip
   - python3-setuptools
   - golang
+
+  # security tools
+  - openssh-client
+  - ssh-agent-filter
+  - gnupg
+  - gnupg-agent
+  - agent-transfer
