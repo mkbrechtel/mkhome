@@ -27,3 +27,5 @@ debian_security_distribution: "{{debian_distribution}}-security"
 debian_sources: true
 debian_backports_sources: "{{debian_sources}}"
 debian_security_sources: "{{debian_sources}}"
+
+microcode_update: false

@@ -19,6 +19,8 @@
 - import_tasks: keyboard_configuration.yaml
   when: not ansible_bender is defined
 
+- import_tasks: network.yaml
+
 # packages setup
 - import_tasks: debian_repos.yaml
   when:

@@ -1,0 +1,8 @@
+---
+
+- name: link resolv.conf
+  file:
+    src: /run/resolvconf/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: true

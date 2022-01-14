@@ -24,6 +24,9 @@ debian_common_packages:
   - mtr
   - oping
 
+  # network config
+  - resolvconf
+
   # documentation
   - man-db
 
