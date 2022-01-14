@@ -112,6 +112,8 @@ desktop_packages:
   - unclutter
   - x11-utils
   - feh
+  - sm
+  - xloadimage
 
   # web
   - firefox-esr
