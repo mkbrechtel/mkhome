@@ -38,7 +38,7 @@ desktop_packages:
   # fonts
   - fonts-font-awesome
 
-  # graphic
+  # graphics
   - gimp
   - gimp-help-de
   - inkscape
@@ -110,6 +110,8 @@ desktop_packages:
   - xkbset
   - numlockx
   - unclutter
+  - x11-utils
+  - feh
 
   # web
   - firefox-esr
@@ -120,6 +122,12 @@ desktop_packages:
 
   # xfce
   - xfce4
+
+  # i3
+  - i3-wm
+  - i3blocks
+  - i3status
+  - i3pystatus
 
   # themes
   - dmz-cursor-theme

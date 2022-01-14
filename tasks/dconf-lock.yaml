@@ -1,0 +1,40 @@
+---
+
+- name: install required debian packages
+  apt:
+    pkg:
+      - dconf-cli
+
+- name: dconf profile directory
+  file:
+    path: /etc/dconf/profile
+    state: directory
+
+- name: dconf profile dbs setting
+  copy:
+    src: dconf-lock/profile/user
+    dest: /etc/dconf/profile/user
+  notify: dconf update
+
+
+- name: dconf local db directory
+  file:
+    path: /etc/dconf/db/local.d/
+    state: directory
+
+- name: dconf settings
+  template:
+    src: settings.j2
+    dest: /etc/dconf/db/local.d/{{dconf_lock_id}}
+  notify: dconf update
+
+- name: dconf locks directory
+  file:
+    path: /etc/dconf/db/local.d/locks
+    state: directory
+
+- name: dconf locks
+  template:
+    src: locks.j2
+    dest: /etc/dconf/db/local.d/locks/{{dconf_lock_id}}
+  notify: dconf update
