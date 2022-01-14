@@ -8,6 +8,14 @@ desktop_packages:
   - pavumeter
   - paprefs
 
+  # applications
+  - eog
+  - evince
+  - thunar
+  - catfish
+  - xfce4-terminal
+  - xfce4-screenshooter
+
   # bluetooth
   - bluetooth
   - blueman
@@ -26,6 +34,9 @@ desktop_packages:
   - catfish
   - unison-gtk
   - xarchiver
+
+  # fonts
+  - fonts-font-awesome
 
   # graphic
   - gimp
@@ -73,6 +84,15 @@ desktop_packages:
   - libreoffice-help-de
   - libreoffice-gnome
 
+  # remote desktop tools
+  - tigervnc-common
+  - tigervnc-scraping-server
+  - tigervnc-standalone-server
+  - tigervnc-viewer
+  - tigervnc-xorg-extension
+  - ssvnc
+  - socat
+
   # scanner
   - simple-scan
   - gscan2pdf
@@ -80,6 +100,16 @@ desktop_packages:
   # tools
   - redshift-gtk
   - barrier
+  - xinput
+  - rofi
+  - xclip
+  - arandr
+  - xbindkeys
+  - xdotool
+  - xplanet
+  - xkbset
+  - numlockx
+  - unclutter
 
   # web
   - firefox-esr
