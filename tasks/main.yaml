@@ -8,10 +8,16 @@
   apt:
     pkg: dunst
     state: absent
-
 - name: default system icon theme
   template:
     src: icon.theme.j2
     dest: /usr/share/icons/default/index.theme
+
+- name: xorg touchpad config
+  template:
+    src: touchpad.conf.j2
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+
+- import_tasks: screensaver.yaml
 
 - import_tasks: xfce-customization.yaml
