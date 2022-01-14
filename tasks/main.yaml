@@ -4,10 +4,14 @@
   apt:
     pkg: "{{ desktop_packages }}"
 
-- import_role:
-    name: atom_editor
-
 - name: ensure dunst package is absent for nicer notifications
   apt:
     pkg: dunst
     state: absent
+
+- name: default system icon theme
+  template:
+    src: icon.theme.j2
+    dest: /usr/share/icons/default/index.theme
+
+- import_tasks: xfce-customization.yaml

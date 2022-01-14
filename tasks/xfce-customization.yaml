@@ -1,0 +1,21 @@
+---
+
+- name: xdg config
+  copy:
+    src: xfce-customization/xdg/
+    dest: /etc/xdg/
+
+- name: xfce panel config
+  template:
+    src: xfce-customization/xfce4-panel.xml.j2
+    dest: /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+
+- name: whiskermenu config
+  template:
+    src: xfce-customization/whiskermenu-1.rc.j2
+    dest: /etc/xdg/xfce4/panel/whiskermenu-1.rc
+
+- name: xfwm4 config
+  template:
+    src: xfce-customization/xfwm4.xml.j2
+    dest: /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
