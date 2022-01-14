@@ -15,3 +15,7 @@
   when:
     - unattended_upgrades
     - not ansible_bender is defined
+
+- name: reboot after updates
+  reboot:
+  when: reboot_after_updates
