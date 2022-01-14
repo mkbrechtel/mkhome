@@ -3,13 +3,14 @@
 # user setup
 - import_tasks: root_user
 - import_tasks: fish
+- import_tasks: ssh-agent
 
 # system setup
 - import_tasks: hostname
   when:
     - not ansible_bender is defined
     - not container_type | default('') == 'podman'
-    
+
 - import_tasks: locales
 
 - import_tasks: timezone.yaml
