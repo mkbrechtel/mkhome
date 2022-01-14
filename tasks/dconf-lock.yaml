@@ -16,7 +16,6 @@
     dest: /etc/dconf/profile/user
   notify: dconf update
 
-
 - name: dconf local db directory
   file:
     path: /etc/dconf/db/local.d/
@@ -24,7 +23,7 @@
 
 - name: dconf settings
   template:
-    src: settings.j2
+    src: dconf-lock/settings.j2
     dest: /etc/dconf/db/local.d/{{dconf_lock_id}}
   notify: dconf update
 
@@ -35,6 +34,6 @@
 
 - name: dconf locks
   template:
-    src: locks.j2
+    src: dconf-lock/locks.j2
     dest: /etc/dconf/db/local.d/locks/{{dconf_lock_id}}
   notify: dconf update

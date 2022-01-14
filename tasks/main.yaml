@@ -11,3 +11,10 @@
   apt:
     pkg: dunst
     state: absent
+
+- name: xorg touchpad config
+  template:
+    src: touchpad.conf.j2
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+
+- import_tasks: screensaver.yaml

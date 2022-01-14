@@ -122,6 +122,17 @@ desktop_packages:
   - chromium-l10n
   - webext-ublock-origin
 
+  # lockscreen
+  - mate-screensaver
+  - xscreensaver-gl
+  - python3
+  - mate-power-manager
+  - xautolock
+  - xss-lock
+  - xbacklight
+  - i3lock
+  - xssproxy
+
   # xfce
   - xfce4
 
