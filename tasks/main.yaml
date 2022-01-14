@@ -1,39 +1,28 @@
 ---
 
 # user setup
-- import_role:
-    name: root_user
-- import_role:
-    name: users
-- import_role:
-    name: fish
+- import_tasks: root_user
+- import_tasks: fish
 
 # system setup
-- import_role:
-    name: hostname
+- import_tasks: hostname
   when:
     - not ansible_bender is defined
     - not container_type | default('') == 'podman'
-- import_role:
-    name: locales
-- import_role:
-    name: timezone
+    
+- import_tasks: locales
+
+- import_tasks: timezone.yaml
   when: not ansible_bender is defined
-- import_role:
-    name: keyboard_configuration
+
+- import_tasks: keyboard_configuration.yaml
   when: not ansible_bender is defined
 
 # packages setup
-- import_role:
-    name: debian_repos
+- import_tasks: debian_repos.yaml
   when:
     - ansible_distribution == "Debian"
     - not ansible_lsb.id is defined or ansible_lsb.id != "Raspbian"
-- import_role:
-    name: debian_packages
+
+- import_tasks: debian_packages
   when: ansible_distribution == "Debian"
-- import_role:
-    name: system_upgrade
-- import_role:
-    name: unattended-upgrades
-  when: not ansible_bender is defined

@@ -1,0 +1,20 @@
+timezone: Europe/Berlin
+
+debian_distribution: bullseye
+debian_components:
+  - main
+  - contrib
+  - non-free
+
+debian_mirror: http://deb.debian.org/debian
+
+debian_backports: false
+debian_backports_distribution: "{{debian_distribution}}-backports"
+
+debian_security: true
+debian_security_mirror: "{{debian_mirror}}-security"
+debian_security_distribution: "{{debian_distribution}}-security"
+
+debian_sources: true
+debian_backports_sources: "{{debian_sources}}"
+debian_security_sources: "{{debian_sources}}"

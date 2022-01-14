@@ -1,0 +1,41 @@
+debian_common_packages:
+
+  # apt tools
+  - aptitude
+
+  # admin tools
+  - tmux
+  - rsync
+  - lsof
+  - vim
+  - pv
+  - less
+  - psmisc
+
+  # editors
+  - nano
+
+  # network tools
+  - iputils-ping
+  - whois
+  - nmap
+  - tcpdump
+  - dnsutils
+
+  # documentation
+  - man-db
+
+  # tools
+  - unzip
+  - pwgen
+
+  # pipe tools
+  - socat
+  - jq
+  - jo
+
+  # languages
+  - python3
+  - python3-pip
+  - python3-setuptools
+  - golang

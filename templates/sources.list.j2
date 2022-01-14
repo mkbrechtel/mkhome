@@ -1,0 +1,32 @@
+{{ ansible_managed | comment }}
+
+deb     {{ debian_mirror }} {{ debian_distribution }} {{ debian_components | join(" ") }}
+{% if debian_sources %}
+deb-src {{ debian_mirror }} {{ debian_distribution }} {{ debian_components | join(" ") }}
+{% endif %}
+
+deb     {{ debian_mirror }} {{ debian_distribution }}-updates {{ debian_components | join(" ") }}
+{% if debian_sources %}
+deb-src {{ debian_mirror }} {{ debian_distribution }}-updates {{ debian_components | join(" ") }}
+{% endif %}
+
+{% if debian_backports %}
+deb     {{ debian_mirror }} {{ debian_backports_distribution }} {{ debian_components | join(" ") }}
+{% if debian_backports_sources %}
+deb-src {{ debian_mirror }} {{ debian_backports_distribution }} {{ debian_components | join(" ") }}
+{% endif %}
+{% endif %}
+
+{% if debian_security %}
+{% if debian_distribution == " stretch" or debian_distribution == "buster" %}
+deb     http://security.debian.org/debian-security {{ debian_distribution }}/updates {{ debian_components | join(" ") }}
+{% if debian_security_sources %}
+deb-src http://security.debian.org/debian-security {{ debian_distribution }}/updates {{ debian_components | join(" ") }}
+{% endif %}
+{% else %}
+deb     {{ debian_security_mirror }} {{ debian_security_distribution }} {{ debian_components | join(" ") }}
+{% if debian_security_sources %}
+deb-src {{ debian_security_mirror }} {{ debian_security_distribution }} {{ debian_components | join(" ") }}
+{% endif %}
+{% endif %}
+{% endif %}
