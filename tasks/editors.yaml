@@ -1,8 +1,0 @@
----
-- name: desktop editor packages
-  apt:
-    pkg:
-      - vim-gtk
-
-- import_role:
-    name: atom_editor

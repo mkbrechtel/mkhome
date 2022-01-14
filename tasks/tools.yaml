@@ -1,6 +1,0 @@
----
-- name: desktop tool packages
-  apt:
-    pkg:
-      - redshift-gtk
-      - barrier

@@ -1,0 +1,108 @@
+desktop_packages:
+  # audio
+  - audacity
+  - sound-juicer
+  - pulseaudio
+  - pavucontrol
+  - pasystray
+  - pavumeter
+  - paprefs
+
+  # bluetooth
+  - bluetooth
+  - blueman
+
+  # editors
+
+  # filesystem
+  - gvfs
+  - gvfs-backends
+  - gvfs-bin
+  - gvfs-fuse
+  - zip
+  - unzip
+  - baobab
+  - thunar
+  - catfish
+  - unison-gtk
+  - xarchiver
+
+  # graphic
+  - gimp
+  - gimp-help-de
+  - inkscape
+  - gthumb
+  - krita
+  - krita-l10n
+  - eog
+  - xfce4-screenshooter
+
+  # mail
+  - thunderbird
+  - thunderbird-l10n-de
+  - hunspell-de-de
+  - evolution
+  - evolution-ews
+
+  # mindmap
+  - vym
+
+  # multimedia
+  - vlc
+  - vlc-l10n
+  #- libdvd-pkg
+  - openshot
+  - openshot-doc
+  - ogmrip
+  - ogmrip-plugins
+  - isomaster
+  - brasero
+
+  # notifications
+  - notify-osd
+
+  # office
+  - evince
+  - libreoffice
+  - libreoffice-writer
+  - libreoffice-calc
+  - libreoffice-draw
+  - libreoffice-impress
+  - libreoffice-gtk3
+  - libreoffice-l10n-de
+  - libreoffice-help-de
+  - libreoffice-gnome
+
+  # scanner
+  - simple-scan
+  - gscan2pdf
+
+  # tools
+  - redshift-gtk
+  - barrier
+
+  # web
+  - firefox-esr
+  - firefox-esr-l10n-de
+  - chromium
+  - chromium-l10n
+  - webext-ublock-origin
+
+  # xfce
+  - xfce4
+
+  # themes
+  - dmz-cursor-theme
+  - gnome-brave-icon-theme
+  - gnome-dust-icon-theme
+  - gnome-human-icon-theme
+  - gnome-icon-theme
+  - gnome-icon-theme-gartoon
+  - gnome-icon-theme-nuovo
+  - gnome-icon-theme-suede
+  - gnome-icon-theme-yasis
+  - gnome-extra-icons
+  - gnome-illustrious-icon-theme
+  - gnome-noble-icon-theme
+  - gnome-wine-icon-theme
+  - gnome-wise-icon-theme

@@ -1,6 +1,0 @@
----
-- name: desktop bluetooth packages
-  apt:
-    pkg:
-      - bluetooth
-      - blueman

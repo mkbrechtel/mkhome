@@ -1,6 +1,0 @@
----
-- name: desktop scanner packages
-  apt:
-    pkg:
-      - simple-scan
-      - gscan2pdf
