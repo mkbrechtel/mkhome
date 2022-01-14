@@ -1,17 +1,17 @@
 ---
 
 # user setup
-- import_tasks: root_user
-- import_tasks: fish
-- import_tasks: ssh-agent
+- import_tasks: root_user.yaml
+- import_tasks: fish.yaml
+- import_tasks: ssh-agent.yaml
 
 # system setup
-- import_tasks: hostname
+- import_tasks: hostname.yaml
   when:
     - not ansible_bender is defined
     - not container_type | default('') == 'podman'
 
-- import_tasks: locales
+- import_tasks: locales.yaml
 
 - import_tasks: timezone.yaml
   when: not ansible_bender is defined
@@ -25,5 +25,5 @@
     - ansible_distribution == "Debian"
     - not ansible_lsb.id is defined or ansible_lsb.id != "Raspbian"
 
-- import_tasks: debian_packages
+- import_tasks: debian_packages.yaml
   when: ansible_distribution == "Debian"

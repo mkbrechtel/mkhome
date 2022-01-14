@@ -1,5 +1,14 @@
 timezone: Europe/Berlin
 
+locales_default:
+  lang: de_DE.UTF-8
+  language: de
+
+locales_gen:
+  - de_DE.UTF-8
+
+root_ssh_key: false
+
 debian_distribution: bullseye
 debian_components:
   - main
