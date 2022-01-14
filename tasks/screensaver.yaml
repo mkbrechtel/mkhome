@@ -41,4 +41,4 @@
       - /org/mate/screensaver/mode
       - /org/mate/screensaver/themes
       - /org/mate/power-manager/sleep-display-ac
-  when: "{{screensaver_enforce_settings}}"
+  when: screensaver_enforce_settings
