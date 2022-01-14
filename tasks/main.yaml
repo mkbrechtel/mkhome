@@ -4,9 +4,6 @@
   apt:
     pkg: "{{ desktop_packages }}"
 
-- import_role:
-    name: atom_editor
-
 - name: ensure dunst package is absent for nicer notifications
   apt:
     pkg: dunst
