@@ -1,9 +1,5 @@
 ---
 
-- name: fish package
-  apt:
-    pkg: fish
-
 - name: fish config directory
   file:
     path: /etc/fish/conf.d
