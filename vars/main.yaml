@@ -43,6 +43,10 @@ debian_common_packages:
   - rsync
   - zsync
 
+  # shells
+  - xonsh
+  - fish
+
   # shell tools
   - tmux
   - socat
