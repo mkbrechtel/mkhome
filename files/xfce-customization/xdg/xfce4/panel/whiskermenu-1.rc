@@ -1,10 +1,10 @@
-favorites=thunar.desktop,gnome-search-tool.desktop,firefox-esr.desktop,chromium.desktop,thunderbird.desktop,libreoffice-writer.desktop,libreoffice-calc.desktop,libreoffice-impress.desktop,libreoffice-draw.desktop,org.gnome.gThumb.desktop,simple-scan.desktop,xfce4-screenshooter.desktop,xfce-display-settings.desktop
-recent=xfce-wmtweaks-settings.desktop,groovyConsole.desktop,mousepad.desktop
+favorites=firefox-esr.desktop,chromium.desktop,thunderbird.desktop,libreoffice-writer.desktop,libreoffice-calc.desktop,libreoffice-impress.desktop,libreoffice-draw.desktop,org.gnome.gThumb.desktop,simple-scan.desktop,xfce4-screenshooter.desktop,xfce-display-settings.desktop
+recent=
 button-icon=applications-other
 button-single-row=false
 show-button-title=false
 show-button-icon=true
-launcher-show-name=false
+launcher-show-name=true
 launcher-show-description=true
 launcher-show-tooltip=true
 item-icon-size=3
