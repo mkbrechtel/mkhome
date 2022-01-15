@@ -1,0 +1,13 @@
+xontrib load abbrevs coreutils
+$MULTILINE_PROMPT=''
+$PROMPT = lambda: '{user}@{hostname}:{cwd} {gitstatus: [{}]}{prompt_end} '
+$PROMPT_FIELDS['prompt_end'] = lambda: '{INTENSE_RED}@#' if $USER == "root" else '{GREEN}@'
+def prompt():
+    p = ''
+    if $USER != "root" or $USER != "toor":
+        p = '{INTENSE_GREEN}{user}{WHITE}@{INTENSE_CYAN}{hostname}'
+    else:
+        p = '{INTENSE_RED}{hostname}'
+    p += '{WHITE}:{INTENSE_YELLOW}{cwd} {DEFAULT}{gitstatus: [{}]}{prompt_end} '
+    return p
+$PROMPT = prompt

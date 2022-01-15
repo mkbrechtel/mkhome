@@ -8,6 +8,7 @@ locales_gen:
   - de_DE.UTF-8
 
 root_ssh_key: false
+root_shell: /usr/bin/xonsh
 
 debian_distribution: bullseye
 debian_components:

@@ -2,7 +2,6 @@
 
 # user setup
 - import_tasks: root_user.yaml
-- import_tasks: fish.yaml
 - import_tasks: ssh-agent.yaml
 
 # system setup
@@ -29,3 +28,18 @@
 
 - import_tasks: debian_packages.yaml
   when: ansible_distribution == "Debian"
+# shell setup
+- import_tasks: shells/fish.yaml
+  tags:
+    - fish
+    - shells
+- import_tasks: shells/xonsh.yaml
+  tags:
+    - xonsh
+    - shells
+- name: shell for root user
+  user:
+    name: root
+    shell: "{{root_shell}}"
+  tags:
+    - shells
