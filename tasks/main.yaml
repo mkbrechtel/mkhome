@@ -8,6 +8,7 @@
   apt:
     pkg: dunst
     state: absent
+
 - name: default system icon theme
   template:
     src: icon.theme.j2
@@ -17,6 +18,11 @@
   template:
     src: touchpad.conf.j2
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+
+- name: unclutter default config
+  template:
+    src: unclutter.default.j2
+    dest: /etc/default/unclutter
 
 - import_tasks: screensaver.yaml
 
