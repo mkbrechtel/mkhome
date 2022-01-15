@@ -1,26 +1,9 @@
 ---
 
-- setup:
-    gather_subset: '!all'
-  when: not root_target_directory is defined
-
-- apt:
-    pkg: dbus
-    state: present
-  when:
-    - not root_target_directory is defined
-    - ansible_os_family == "Debian"
-
 - name: hostname
   hostname:
     name: "{{inventory_hostname}}"
   when: not root_target_directory is defined
-
-- name: etc directory
-  file:
-    path: "{{ root_target_directory }}/etc"
-    state: directory
-  when: root_target_directory is defined
 
 - name: hostname file
   copy:

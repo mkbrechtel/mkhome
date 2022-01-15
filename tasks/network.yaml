@@ -1,9 +1,5 @@
 ---
 
-- name: ensure resolvconf is installed
-  apt:
-    pkg: resolvconf
-
 - name: link resolv.conf
   file:
     src: /run/resolvconf/resolv.conf

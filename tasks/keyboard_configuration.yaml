@@ -1,10 +1,5 @@
 ---
 
-- name: apt install console-setup
-  apt:
-    pkg: console-setup
-  when: not root_target_directory is defined
-
 - name: default directory
   file:
     path: "{{ root_target_directory | default('') }}/etc/default"

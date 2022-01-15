@@ -61,6 +61,10 @@ debian_common_packages:
   - python3-setuptools
   - golang
 
+  # system
+  - console-setup
+  - dbus
+
   # security tools
   - openssh-client
   - ssh-agent-filter
