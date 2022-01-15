@@ -7,10 +7,8 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=sh -c "sleep infinity | ssh $@" ssh -R 24800:localhost:24800 %i\
-systemctl --user stop lockscreen.service;\
-systemctl --user start barrierc@localhost.service;\
-systemd-run --user -u lockscreen-barrier-unlock sh -c "\"cat < lock > /dev/null; systemctl --user start lockscreen.service; systemctl --user stop barrierc@localhost.service;\"";\
-exec cat > lock
+  systemctl --user --wait restart barrier-unlock-lockscreen.service;\
+  exec cat > .barrier-unlock-lockscreen.fifo
 
 [Install]
 WantedBy=graphical-session.target

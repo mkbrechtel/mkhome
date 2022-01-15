@@ -63,6 +63,12 @@
     dest: ~/.config/systemd/user/barrierc@.service
   notify: systemd daemon-reload
 
+- name: barrier unlock lockscreen service
+  template:
+    src: barrier/barrier-unlock-lockscreen.service.j2
+    dest: ~/.config/systemd/user/barrier-unlock-lockscreen.service
+  notify: systemd daemon-reload
+
 - name: barrier ssh conection user service
   template:
     src: barrier/barrier-ssh-connection@.service.j2
