@@ -92,3 +92,5 @@ pulseaudio_jack_sink_client_name: PulseAudio
 pulseaudio_jack_source_enabled: false
 pulseaudio_jack_source_channels: 2
 pulseaudio_jack_source_client_name: PulseAudio
+
+home_use_xonsh_on_terminals: true

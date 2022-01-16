@@ -31,3 +31,6 @@ ScrollingBar=TERMINAL_SCROLLBAR_NONE
 BackgroundImageShading=0,530000
 ScrollingUnlimited=TRUE
 FontName=Monospace 12
+{% if home_use_xonsh_on_terminals %}
+CustomCommand=.local/bin/xonsh
+{% endif %}
