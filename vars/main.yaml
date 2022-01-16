@@ -54,6 +54,7 @@ debian_common_packages:
   - jo
   - pv
   - qrencode
+  - moreutils
 
   # languages
   - python3
