@@ -1,14 +1,14 @@
-xontrib load abbrevs coreutils
 
 # title
+$PROMPT_FIELDS['title_prompt_end'] = lambda: '#@' if $USER == "root" else '@'
 $PROMPT_FIELDS['title'] = lambda: '' if 'XDG_SESSION_TYPE' in ${...} && $XDG_SESSION_TYPE=='x11' \
   else $USER+'@'+$HOSTNAME+':'
-$TITLE = '{current_job:{} | }{title}{cwd}'
+$TITLE = '{title}{cwd} {title_prompt_end} {current_job}'
 
 # prompt
-$PROMPT_FIELDS['prompt_end'] = lambda: '{INTENSE_RED}#@' if $USER == "root" else '{GREEN}@'
+$PROMPT_FIELDS['prompt_end'] = lambda: '{RED}#@' if $USER == "root" else '{GREEN}@'
 $PROMPT = lambda: ('' if 'XDG_SESSION_TYPE' in ${...} && $XDG_SESSION_TYPE=='x11' \
-  else ('{INTENSE_GREEN}{user}{WHITE}@{BOLD_WHITE}' if $USER != "root" and $USER != "toor" \
+  else ('{GREEN}{user}{WHITE}@{BOLD_WHITE}' if $USER != "root" and $USER != "toor" \
     else '{BOLD_RED}')+'{hostname}{WHITE}:')+'{BOLD_BLUE}{cwd}{DEFAULT}{gitstatus: [{}]} {prompt_end} '
 
 # multiline prompt
