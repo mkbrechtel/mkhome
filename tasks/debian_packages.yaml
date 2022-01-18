@@ -1,20 +1,20 @@
 ---
 
-- name: base packages
+- name: debian base packages
   apt:
     pkg: "{{ debian_base_packages }}"
   when: debian_base_packages is defined
 
-- name: boot packages
+- name: debian boot packages
   apt:
     pkg: "{{ debian_boot_packages }}"
   when: debian_boot_packages is defined
 
-- name: common packages
+- name: debian common packages
   apt:
     pkg: "{{ debian_common_packages }}"
 
-- name: custom packages
+- name: debian custom packages
   apt:
     pkg: "{{ debian_custom_packages }}"
   when: debian_custom_packages is defined
