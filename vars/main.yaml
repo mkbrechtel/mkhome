@@ -11,10 +11,13 @@ desktop_packages:
   # applications
   - eog
   - evince
-  - thunar
   - catfish
   - xfce4-terminal
   - xfce4-screenshooter
+
+  # authentication, keys and passwords
+  - seahorse
+  - ssh-askpass-gnome
 
   # bluetooth
   - bluetooth
@@ -31,6 +34,7 @@ desktop_packages:
   - unzip
   - baobab
   - thunar
+  - thunar-archive-plugin
   - catfish
   - unison-gtk
   - xarchiver
