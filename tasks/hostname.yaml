@@ -10,10 +10,10 @@
   lineinfile:
     dest: "{{ root_target_directory | default('') }}/etc/hosts"
     regexp: '^127\.0\.0\.1'
-    line: "127.0.0.1 localhost {{inventory_hostname}} {{inventory_hostname_short}}"
+    line: "127.0.0.1 localhost {{inventory_hostname}}{% if inventory_hostname != inventory_hostname_short %} {{inventory_hostname_short}}{% endif %}"
 
 - name: localhost ipv6 entry
   lineinfile:
     dest: "{{ root_target_directory | default('') }}/etc/hosts"
     regexp: '^::1'
-    line: "::1 localhost ip6-localhost ip6-loopback {{inventory_hostname}} {{inventory_hostname_short}}"
+    line: "::1 localhost ip6-localhost ip6-loopback {{inventory_hostname}}{% if inventory_hostname != inventory_hostname_short %} {{inventory_hostname_short}}{% endif %}"
