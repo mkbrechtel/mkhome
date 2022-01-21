@@ -1,12 +1,6 @@
 ---
 
-- name: default directory
-  file:
-    path: "{{ root_target_directory | default('') }}/etc/default"
-    state: directory
-  when: root_target_directory is defined
-
 - name: keyboard configuration
   template:
     src: default-keyboard.j2
-    dest: "{{ root_target_directory | default('') }}/etc/default/keyboard"
+    dest: /etc/default/keyboard

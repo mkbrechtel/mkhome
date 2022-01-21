@@ -5,26 +5,15 @@
     name: "{{inventory_hostname}}"
   when: not root_target_directory is defined
 
-- name: hostname file
-  copy:
-    content: "{{inventory_hostname}}"
-    dest: "{{ root_target_directory }}/etc/hostname"
-  when: root_target_directory is defined
-
-- name: hosts file
-  file:
-    path: "{{ root_target_directory }}/etc/hosts"
-    state: touch
-  when: root_target_directory is defined
 
 - name: localhost ipv4 entry
   lineinfile:
     dest: "{{ root_target_directory | default('') }}/etc/hosts"
     regexp: '^127\.0\.0\.1'
-    line: "127.0.0.1 localhost {{inventory_hostname}}"
+    line: "127.0.0.1 localhost {{inventory_hostname}} {{inventory_hostname_short}}"
 
 - name: localhost ipv6 entry
   lineinfile:
     dest: "{{ root_target_directory | default('') }}/etc/hosts"
     regexp: '^::1'
-    line: "::1 localhost ip6-localhost ip6-loopback {{inventory_hostname}}"
+    line: "::1 localhost ip6-localhost ip6-loopback {{inventory_hostname}} {{inventory_hostname_short}}"
