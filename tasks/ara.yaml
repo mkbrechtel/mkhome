@@ -5,7 +5,7 @@
     name: "{{ansible_ara_pip_package}}"
     version: "{{ansible_ara_version}}"
 
-- name: get ara location
-  shell: python3 -c "import os,ara; print(os.path.dirname(ara.__file__))"
-  register: _ara_location
+- name: get ara ansible config
+  shell: python3 -m ara.setup.ansible
+  register: _ara_config
   changed_when: false
