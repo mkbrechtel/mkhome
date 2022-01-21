@@ -1,4 +1,4 @@
-ansible_version: 5.0.1
+ansible_version: 5.2.0
 ansible_pip_package: ansible
 
 ansible_use_ara: true
