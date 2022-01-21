@@ -5,6 +5,11 @@
     path: ~/bin
     state: directory
 
+- name: local bin directory
+  file:
+    path: ~/.local/bin/
+    state: directory
+
 - name: tmp directory
   file:
     path: ~/tmp
@@ -13,7 +18,7 @@
 - name: binaries
   copy:
     src: bin/
-    dest: ~/bin
+    dest: ~/.local/bin/
     mode: 0755
 
 - name: systemd user config directory
