@@ -28,6 +28,7 @@ ExecStartPost=xrandr --output VNC-0 --primary
 ExecStartPost=systemctl --user import-environment DISPLAY XAUTHORITY
 ExecStartPost=systemctl --user restart dbus.service
 ExecStartPost=systemctl --user start xsession.target
+ExecStartPost=fish -c "set -x XDG_SESSION_TYPE x11; systemctl --user import-environment XDG_SESSION_TYPE"
 
 [Install]
 WantedBy=default.target
