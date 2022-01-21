@@ -66,6 +66,9 @@ debian_common_packages:
   - console-setup
   - dbus
 
+  # localization
+  - locales
+
   # security tools
   - openssh-client
   - ssh-agent-filter
