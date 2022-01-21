@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=append home directory paths to PATH environment variable
+
+[Service]
+Type=oneshot
+ExecStart=fish -c "set -x PATH ~/bin ~/.local/bin $PATH; systemctl --user import-environment PATH"
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+---
+
+- name: pathappend service
+  template:
+    src: path/pathappend.service.j2
+    dest: ~/.config/systemd/user/pathappend.service
+  notify: systemd daemon-reload
+
+- name: pathappend service enabled and started
+  systemd:
+    name: pathappend.service
+    enabled: true
+    state: started
+    scope: user
