@@ -1,31 +1,62 @@
-debian_common_packages:
-
-  # apt tools
-  - aptitude
+debian_base_packages:
 
   # admin tools
   - lsof
   - less
   - psmisc
-  - lshw
   - ipcalc
   - ipv6calc
 
   # editors
   - nano
-  - vim
 
   # network tools
   - iputils-ping
-  - whois
-  - nmap
-  - tcpdump
-  - dnsutils
-  - mtr
-  - oping
 
   # network config
   - resolvconf
+
+  # compression
+  - unzip
+  - p7zip
+  - zip
+  - unzip
+
+  # file sync tools
+  - rsync
+  - zsync
+
+  # shells
+  - fish
+
+  # ansible requirements
+  - python3
+  - python3-apt
+
+  # system
+  - console-setup
+  - dbus
+
+debian_common_packages:
+
+  # apt tools
+  - aptitude
+
+  # editors
+  - nano
+  - micro
+  - vim
+  - joe
+
+  # network tools
+  - whois
+  - nmap
+  - tcpdump
+  - bind9-dnsutils
+  - mtr
+  - oping
+  - ipcalc
+  - ipv6calc
 
   # documentation
   - man-db
@@ -75,3 +106,24 @@ debian_common_packages:
   - gnupg
   - gnupg-agent
   - agent-transfer
+
+  # installation utils
+  - debootstrap
+
+debian_hardware_packages:
+
+  # hardware utils
+  - pciutils
+  - usbutils
+  - acpi
+  - lshw
+
+  # hard disk utils
+  - parted
+  - mdadm
+  - cryptsetup
+  - lvm2
+
+  # filesystem tools
+  - btrfs-progs
+  - dosfstools

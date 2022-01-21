@@ -29,4 +29,5 @@ debian_sources: true
 debian_backports_sources: "{{debian_sources}}"
 debian_security_sources: "{{debian_sources}}"
 
+common_package_intallation: true
 microcode_update: false
