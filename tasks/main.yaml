@@ -28,6 +28,7 @@
   when: not ansible_bender is defined
 
 - import_tasks: network.yaml
+- import_tasks: tweaks.yaml
 
 # shell setup
 - import_tasks: shells/fish.yaml
