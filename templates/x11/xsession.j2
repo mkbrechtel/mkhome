@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/usr/bin/fish
 
 {{ansible_managed|comment}}
 
 {% if not home_xsession_vncviewer %}
+set -x XDG_SESSION_TYPE x11
+systemctl --user import-environment XDG_SESSION_TYPE
 exec systemctl --user start --wait xsession.target
 {% else %}
 systemctl --user start vncserver@:{{home_vncserver_display_number}}.service
