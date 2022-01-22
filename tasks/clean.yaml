@@ -1,71 +1,15 @@
 ---
 
-- name: disable and stop eralitex vdesk user service
-  systemd:
-    name: eralitex@:16.service
-    state: stopped
-    enabled: false
-    scope: user
-  failed_when: false
-
-- name: remove eralitex user service
+- name: remove old binaries
   file:
-    path: ~/.config/systemd/user/eralitex@.service
+    path: ~/bin/{{item}}
     state: absent
-
-- name: remove old eralitex directory
-  file:
-    path: ~/.eralitex
-    state: absent
-
-- name: remove old xsession fish script
-  file:
-    path: ~/.xsession.fish
-    state: absent
-
-- name: disable and stop vdesk user service at display 16
-  systemd:
-    name: vdesk@:16.service
-    state: stopped
-    enabled: false
-    scope: user
-  failed_when: false
-
-- name: disable and stop vdesk user service at display 47
-  systemd:
-    name: vdesk@:47.service
-    state: stopped
-    enabled: false
-    scope: user
-  failed_when: false
-
-- name: autostart terminal
-  systemd:
-    name: autostart-desktop-app@{{default_terminal}}.service
-    enabled: false
-    scope: user
-  failed_when: false
-
-- name: remove vdesk user service
-  file:
-    path: ~/.config/systemd/user/vdesk@.service
-    state: absent
-  notify: systemd daemon-reload
-
-- name: remove xsessionrc file
-  file:
-    path: ~/.xsessionrc
-    state: absent
-
-- name: remove autostart desktop app service
-  file:
-    path: ~/.config/systemd/user/autostart-desktop-app@.service
-    state: absent
-  notify: systemd daemon-reload
-
-# - name: screensaver graphical-session service disabled
-#   systemd:
-#     name: screensaver.service
-#     enabled: false
-#     state: stopped
-#     scope: user
+  loop:
+    - etx
+    - i3-watchers
+    - in2qr
+    - on-focus-workspace
+    - on-space-shortcut
+    - pipe-watcher
+    - select-screenlayout
+    - timer
