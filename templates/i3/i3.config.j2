@@ -5,7 +5,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 {% set workspace_switcher = "exec fish -c \"i3-msg workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p workspace )\"" %}
-{% set on_focus_workspace = "exec --no-startup-id ~/bin/on-focus-workspace" %}
+{% set on_focus_workspace = "exec --no-startup-id on-focus-workspace" %}
 
 ### Font
 font {{i3_font}}
@@ -36,7 +36,7 @@ bindcode $mod+49 mode "remote"
 bindcode $mod+9 exec --no-startup-id ~/.xsession.reload.fish
 
 ## Activity
-bindsym $mod+less exec {{i3_exec_command_prefix}} "~/bin/timer select_activity"
+bindsym $mod+less exec {{i3_exec_command_prefix}} "timer select_activity"
 
 ## Applications
 bindsym $mod+Return exec {{i3_exec_command_prefix}} "{{default_terminal}}"
@@ -44,7 +44,7 @@ bindsym $mod+b exec {{i3_exec_command_prefix}} "{{default_browser}}"
 bindsym $mod+d exec {{i3_exec_command_prefix}} rofi -show drun -show-icons
 bindsym $mod+e exec {{i3_exec_command_prefix}} rofi -show run
 bindsym $mod+a mode "apps"
-bindsym $mod+space exec  {{i3_exec_command_prefix}} "~/bin/on-space-shortcut"
+bindsym $mod+space exec  {{i3_exec_command_prefix}} "on-space-shortcut"
 
 
 ## Workspaces
@@ -136,7 +136,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 ## stuff that is available in default and remote mode
 {% macro overall() %}
 
-  bindsym $plexmod+space exec {{i3_exec_command_prefix}} ~/bin/on-space-shortcut
+  bindsym $plexmod+space exec {{i3_exec_command_prefix}} on-space-shortcut
   bindsym $plexmod+BackSpace kill
   bindsym $plexmod+Tab {{workspace_switcher}}
 
@@ -162,7 +162,7 @@ bindsym $mod+KP_Add exec {{points_up_command}}
   bindcode $plexmod+49 mode "session"
 
   # activity
-  bindsym $plexmod+less exec "{{i3_exec_command_prefix}} ~/bin/timer select_activity"
+  bindsym $plexmod+less exec "{{i3_exec_command_prefix}} timer select_activity"
 
 {% endmacro %}
 {{ overall() }}
@@ -214,9 +214,9 @@ mode "session" {
 
 ### Timer
 mode "timer" {
-  bindsym a exec "{{i3_exec_command_prefix}} ~/bin/timer select_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym e exec "{{i3_exec_command_prefix}} ~/bin/timer end_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym u exec "{{i3_exec_command_prefix}} ~/bin/timer uniklinik"; mode "default"; {{on_focus_workspace}}
+  bindsym a exec "{{i3_exec_command_prefix}} timer select_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym e exec "{{i3_exec_command_prefix}} timer end_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym u exec "{{i3_exec_command_prefix}} timer uniklinik"; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
@@ -239,7 +239,7 @@ mode "layout" {
   bindsym e layout toggle split; mode "default";
   bindsym h layout splith; mode "default"
   bindsym v layout splitv; mode "default"
-  bindsym m exec --no-startup-id ~/bin/select-screenlayout; {{on_focus_workspace}}
+  bindsym m exec --no-startup-id select-screenlayout; {{on_focus_workspace}}
 
   bindsym b mode bar
 
@@ -374,4 +374,4 @@ assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:{{ws.displa
 {% endfor %}
 
 # Autostart
-exec --no-startup-id "~/bin/i3-watchers"
+exec --no-startup-id i3-watchers
