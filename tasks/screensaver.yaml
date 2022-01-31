@@ -21,15 +21,17 @@
     dest: /usr/local/bin/mate-screensaver-helper-inhibition
     mode: 0755
 
-- import_tasks: dconf-lock.yaml
+- import_tasks: dconf.yaml
   vars:
-    dconf_lock_id: screensaver
+    dconf_id: screensaver
     dconf_lock_settings:
       /org/mate/screensaver:
         idle-activation-enabled: 'true'
         lock-enabled: 'true'
-        mode: "'single'"
-        themes: "['{{screensaver_theme}}']"
+        mode:
+          - single
+        themes:
+          - "{{screensaver_theme}}"
       /org/mate/desktop/session:
         idle-delay: "{{ screensaver_locktime | int }}"
       /org/mate/power-manager:

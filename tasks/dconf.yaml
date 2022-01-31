@@ -24,7 +24,7 @@
 - name: dconf settings
   template:
     src: dconf-lock/settings.j2
-    dest: /etc/dconf/db/local.d/{{dconf_lock_id}}
+    dest: /etc/dconf/db/local.d/{{dconf_id}}
   notify: dconf update
 
 - name: dconf locks directory
@@ -35,5 +35,6 @@
 - name: dconf locks
   template:
     src: dconf-lock/locks.j2
-    dest: /etc/dconf/db/local.d/locks/{{dconf_lock_id}}
+    dest: /etc/dconf/db/local.d/locks/{{dconf_id}}
+  when: dconf_lock_paths is defined
   notify: dconf update
