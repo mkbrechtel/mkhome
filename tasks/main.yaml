@@ -1,5 +1,9 @@
 ---
 
+- import_role:
+    name: common
+    tasks_from: debian_repos
+
 - name: update apt cache
   apt:
     update_cache: true
