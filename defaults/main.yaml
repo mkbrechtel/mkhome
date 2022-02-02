@@ -16,3 +16,5 @@ application_starters:
   - firefox-esr
   - chromium
   - xfce4-terminal
+
+xfce_pannel_on_top: true
