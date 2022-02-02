@@ -141,6 +141,9 @@ desktop_packages:
 
   # xfce
   - xfce4
+  - xfce4-whiskermenu-plugin
+  - xfce4-smartbookmark-plugin
+  - xfce4-places-plugin
 
   # i3
   - i3-wm
