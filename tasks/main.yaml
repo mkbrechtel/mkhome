@@ -12,3 +12,6 @@
   when: ansible_use_ara
 
 - import_tasks: config.yaml
+
+- import_tasks: ansible-bender.yaml
+  when: ansible_install_ansible_bender
