@@ -9,6 +9,11 @@
     pkg: "{{ debian_boot_packages }}"
   when: debian_boot_packages is defined
 
+- name: debian machine packages
+  apt:
+    pkg: "{{ debian_machine_packages }}"
+  when: machine_package_intallation
+
 - name: debian common packages
   apt:
     pkg: "{{ debian_common_packages }}"

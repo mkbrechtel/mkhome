@@ -1,8 +1,15 @@
 ---
 
-- name: link resolv.conf
-  file:
-    src: /run/resolvconf/resolv.conf
-    dest: /etc/resolv.conf
-    state: link
-    force: true
+- when: resolvconf_enabled
+  block:
+
+  - name: resolvconf debian package
+    apt:
+      pkg: resolvconf
+
+  - name: link resolv.conf
+    file:
+      src: /run/resolvconf/resolv.conf
+      dest: /etc/resolv.conf
+      state: link
+      force: true

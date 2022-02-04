@@ -13,8 +13,6 @@ debian_base_packages:
   # network tools
   - iputils-ping
 
-  # network config
-  - resolvconf
 
   # compression
   - unzip
@@ -110,7 +108,7 @@ debian_common_packages:
   # installation utils
   - debootstrap
 
-debian_hardware_packages:
+debian_machine_packages:
 
   # hardware utils
   - pciutils
