@@ -11,8 +11,8 @@ debian_base_packages:
   - nano
 
   # network tools
+  - net-tools
   - iputils-ping
-
 
   # compression
   - unzip
