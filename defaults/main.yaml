@@ -33,6 +33,6 @@ common_package_intallation: true
 machine_package_intallation: true
 microcode_update: false
 
-increase_maximum_inotify_user_watches: true
+increase_maximum_inotify_user_watches: false
 
 resolvconf_enabled: true
