@@ -144,6 +144,7 @@ desktop_packages:
   - xfce4-whiskermenu-plugin
   - xfce4-smartbookmark-plugin
   - xfce4-places-plugin
+  - xfce4-datetime-plugin
 
   # i3
   - i3-wm
