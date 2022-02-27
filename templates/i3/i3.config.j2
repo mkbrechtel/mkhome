@@ -31,7 +31,7 @@ bindsym XF86Calculator exec {{i3_exec_command_prefix}} {{calculator_command}}
 bindsym $mod+t mode timer
 bindsym $mod+s mode session
 bindsym $mod+c mode clipboard
-bindcode $mod+49 mode "remote"
+bindcode $mod+49 mode "session"
 
 bindcode $mod+9 exec --no-startup-id ~/.xsession.reload.fish
 
@@ -236,6 +236,7 @@ mode "layout" {
   bindsym v layout splitv; mode "default"
   bindsym m exec --no-startup-id select-screenlayout; {{on_focus_workspace}}
 
+  bindsym r mode remote
   bindsym b mode bar
 
   # back to normal: Escape
