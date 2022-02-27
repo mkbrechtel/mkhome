@@ -1,7 +1,0 @@
----
-
-- name: points counter
-  copy:
-    content: 0
-    dest: ~/.points
-    force: no

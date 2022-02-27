@@ -127,9 +127,6 @@ i3_letter_workspace_keymaps:
   - keysym: ssharp
     workspace: 52:ß
 
-points_up_command: fish -c "echo (expr (cat  ~/.points) + 1 > ~/.points) (rofi -m (cat  ~/.points)\ Ω)"
-points_down_command: fish -c "echo (expr (cat  ~/.points) - 1 > ~/.points) (rofi -m (cat  ~/.points)\ Ω)"
-
 background_image_path: ~/.backgrounds/{{background_image|basename}}
 background_command: feh --no-fehbg --bg-fill {{background_image_path}}
 

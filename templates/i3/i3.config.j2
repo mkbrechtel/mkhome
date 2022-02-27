@@ -103,12 +103,6 @@ bindsym $mod+f fullscreen
 bindsym $mod+r mode resize
 bindsym $mod+x exec {{i3_exec_command_prefix}} xkill
 
-# points
-bindsym $mod+minus exec {{points_down_command}}
-bindsym $mod+plus exec {{points_up_command}}
-bindsym $mod+KP_Subtract exec {{points_down_command}}
-bindsym $mod+KP_Add exec {{points_up_command}}
-
 # free keys
 # $mod+i
 # $mod+j
@@ -131,7 +125,8 @@ bindsym $mod+KP_Add exec {{points_up_command}}
 # $mod+Insert
 # $mod+Print
 # $mod+Scroll_Lock
-
+# $mod+minus
+# $mod+plus
 
 ## stuff that is available in default and remote mode
 {% macro overall() %}
