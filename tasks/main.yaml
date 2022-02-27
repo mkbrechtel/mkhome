@@ -10,9 +10,6 @@
 - import_tasks: git.yaml
 - import_tasks: timer.yaml
 
-- import_tasks: kanboard.yaml
-
-
 - block:
     - import_tasks: i3.yaml
       tags:
