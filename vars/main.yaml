@@ -19,112 +19,164 @@ home_autostart_desktop_apps:
 
 
 i3_number_workspace_keymaps:
-  - keysym: 1
+  - name: 1
+    keysym: 1
     workspace: 1
-  - keysym: 2
+  - name: 2
+    keysym: 2
     workspace: 2
-  - keysym: 3
+  - name: 3
+    keysym: 3
     workspace: 3
-  - keysym: 4
+  - name: 4
+    keysym: 4
     workspace: 4
-  - keysym: 5
+  - name: 5
+    keysym: 5
     workspace: 5
-  - keysym: 6
+  - name: 6
+    keysym: 6
     workspace: 6
-  - keysym: 7
+  - name: 7
+    keysym: 7
     workspace: 7
-  - keysym: 8
+  - name: 8
+    keysym: 8
     workspace: 8
-  - keysym: 9
+  - name: 9
+    keysym: 9
     workspace: 9
-  - keysym: 0
+  - name: 10
+    keysym: 0
     workspace: 10
-  - keysym: F1
+  - name: 11
+    keysym: F1
     workspace: 11
-  - keysym: F2
+  - name: 12
+    keysym: F2
     workspace: 12
-  - keysym: F3
+  - name: 13
+    keysym: F3
     workspace: 13
-  - keysym: F4
+  - name: 14
+    keysym: F4
     workspace: 14
-  - keysym: F5
+  - name: 15
+    keysym: F5
     workspace: 15
-  - keysym: F6
+  - name: 16
+    keysym: F6
     workspace: 16
-  - keysym: F7
+  - name: 17
+    keysym: F7
     workspace: 17
-  - keysym: F8
+  - name: 18
+    keysym: F8
     workspace: 18
-  - keysym: F9
+  - name: 19
+    keysym: F9
     workspace: 19
-  - keysym: F10
+  - name: 20
+    keysym: F10
     workspace: 20
-  - keysym: F11
+  - name: 21
+    keysym: F11
     workspace: 21
-  - keysym: F12
+  - name: 22
+    keysym: F12
     workspace: 22
 
 
 i3_letter_workspace_keymaps:
-  - keysym: a
+  - name: a
+    keysym: a
     workspace: 23:a
-  - keysym: b
+  - name: b
+    keysym: b
     workspace: 24:b
-  - keysym: c
+  - name: c
+    keysym: c
     workspace: 25:c
-  - keysym: d
+  - name: d
+    keysym: d
     workspace: 26:d
-  - keysym: e
+  - name: e
+    keysym: e
     workspace: 27:e
-  - keysym: f
+  - name: f
+    keysym: f
     workspace: 28:f
-  - keysym: g
+  - name: g
+    keysym: g
     workspace: 29:g
-  - keysym: h
+  - name: h
+    keysym: h
     workspace: 30:h
-  - keysym: i
+  - name: i
+    keysym: i
     workspace: 31:i
-  - keysym: j
+  - name: j
+    keysym: j
     workspace: 32:j
-  - keysym: k
+  - name: k
+    keysym: k
     workspace: 33:k
-  - keysym: l
+  - name: l
+    keysym: l
     workspace: 34:l
-  - keysym: m
+  - name: m
+    keysym: m
     workspace: 35:m
-  - keysym: n
+  - name: n
+    keysym: n
     workspace: 36:n
-  - keysym: o
+  - name: o
+    keysym: o
     workspace: 37:o
-  - keysym: p
+  - name: p
+    keysym: p
     workspace: 38:p
-  - keysym: q
+  - name: q
+    keysym: q
     workspace: 39:q
-  - keysym: r
+  - name: r
+    keysym: r
     workspace: 40:r
-  - keysym: s
+  - name: s
+    keysym: s
     workspace: 41:s
-  - keysym: t
+  - name: t
+    keysym: t
     workspace: 42:t
-  - keysym: u
+  - name: u
+    keysym: u
     workspace: 43:u
-  - keysym: v
+  - name: v
+    keysym: v
     workspace: 44:v
-  - keysym: w
+  - name: w
+    keysym: w
     workspace: 45:w
-  - keysym: x
+  - name: x
+    keysym: x
     workspace: 46:x
-  - keysym: y
+  - name: y
+    keysym: y
     workspace: 47:y
-  - keysym: z
+  - name: z
+    keysym: z
     workspace: 48:z
-  - keysym: adiaeresis
+  - name: ä
+    keysym: adiaeresis
     workspace: 49:ä
-  - keysym: odiaeresis
+  - name: ö
+    keysym: odiaeresis
     workspace: 50:ö
-  - keysym: udiaeresis
+  - name: ü
+    keysym: udiaeresis
     workspace: 51:ü
-  - keysym: ssharp
+  - name: ß
+    keysym: ssharp
     workspace: 52:ß
 
 background_image_path: ~/.backgrounds/{{background_image|basename}}
@@ -132,6 +184,8 @@ background_command: feh --no-fehbg --bg-fill {{background_image_path}}
 
 timer_folder: ~/.timer
 timer_config: {}
+
+todo_folder: ~/.todo
 
 vncserver_options: |
   -desktop %H%i
