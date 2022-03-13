@@ -1,0 +1,15 @@
+#!/usr/bin/fish
+
+set todo_folder ~/.todo
+set todo_i3block_socket $todo_folder/i3block.sock
+
+function set_todo_i3block
+  socat - UNIX-CONNECT:$todo_i3block_socket
+end
+
+set command $argv[1]
+switch $command
+
+  case "finished"
+    echo finished
+end

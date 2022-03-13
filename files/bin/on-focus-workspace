@@ -3,17 +3,17 @@
 if count $argv
   set ws $argv[1]
 else
-  set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name')
+  set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name') | grep -oP '([0-9]*:)?\K(.*)'
 end
 
-set focus_script ~/.workspaces/$ws.focus
+set focus_script ~/.workspaces/$ws/focus
 if type -q $focus_script
   $focus_script
 else
   i3-msg mode default
 end
 
-set space_script ~/.workspaces/$ws.space
+set space_script ~/.workspaces/$ws/space
 if type -q $space_script
   systemctl --user start workspace-app@$ws.service
 end

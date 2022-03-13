@@ -1,0 +1,12 @@
+#!/usr/bin/fish
+
+# print one line to unblock i3blocks
+echo
+
+# remove socket if it exists already
+if test -e $argv[1]
+    rm $argv[1]
+end
+
+# listen to socket
+exec socat UNIX-LISTEN:$argv[1],fork -

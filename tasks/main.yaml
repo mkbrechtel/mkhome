@@ -9,6 +9,11 @@
 - import_tasks: pulseaudio.yaml
 - import_tasks: git.yaml
 - import_tasks: timer.yaml
+  tags:
+    - timer
+- import_tasks: todo.yaml
+  tags:
+    - todo
 
 - block:
     - import_tasks: i3.yaml

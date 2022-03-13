@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+
+# active workspaces
+#i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name'
+
+# configured workspaces
+#find .workspaces -mindepth 1 -type d -printf "%f\n"
+
+i3-msg workspace (find .workspaces -mindepth 1 -type d -printf "%f\n" | rofi -dmenu -p workspace )

@@ -4,7 +4,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-{% set workspace_switcher = "exec fish -c \"i3-msg workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p workspace )\"" %}
+{% set workspace_switcher = "exec --no-startup-id i3-workspace-switcher" %}
 {% set on_focus_workspace = "exec --no-startup-id on-focus-workspace" %}
 
 ### Font
@@ -35,8 +35,8 @@ bindcode $mod+49 mode "session"
 
 bindcode $mod+9 exec --no-startup-id ~/.xsession.reload.fish
 
-## Activity
-bindsym $mod+less exec {{i3_exec_command_prefix}} "timer select_activity"
+## Todo
+bindsym $mod+x exec {{i3_exec_command_prefix}} todo finished
 
 ## Applications
 bindsym $mod+Return exec {{i3_exec_command_prefix}} "{{default_terminal}}"
@@ -60,7 +60,7 @@ bindsym $mod+g sticky toggle
 
 
 ## Layout
-bindsym $mod+y mode "layout"
+bindsym $mod+l mode "layout"
 bindsym $mod+h split h
 bindsym $mod+v split v
 
@@ -101,13 +101,11 @@ bindsym $mod+BackSpace kill
 bindsym $mod+q kill
 bindsym $mod+f fullscreen
 bindsym $mod+r mode resize
-bindsym $mod+x exec {{i3_exec_command_prefix}} xkill
 
 # free keys
 # $mod+i
 # $mod+j
 # $mod+k
-# $mod+l
 # $mod+n
 # $mod+m
 # $mod+o
@@ -127,6 +125,7 @@ bindsym $mod+x exec {{i3_exec_command_prefix}} xkill
 # $mod+Scroll_Lock
 # $mod+minus
 # $mod+plus
+# $mod+less
 
 ## stuff that is available in default and remote mode
 {% macro overall() %}
@@ -155,9 +154,6 @@ bindsym $mod+x exec {{i3_exec_command_prefix}} xkill
 
   # Special modes
   bindcode $plexmod+49 mode "session"
-
-  # activity
-  bindsym $plexmod+less exec "{{i3_exec_command_prefix}} timer select_activity"
 
 {% endmacro %}
 {{ overall() }}
@@ -207,11 +203,11 @@ mode "session" {
 }
 
 
-### Timer
-mode "timer" {
+### Todo
+mode "todo" {
   bindsym a exec "{{i3_exec_command_prefix}} timer select_activity"; mode "default"; {{on_focus_workspace}}
   bindsym e exec "{{i3_exec_command_prefix}} timer end_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym u exec "{{i3_exec_command_prefix}} timer uniklinik"; mode "default"; {{on_focus_workspace}}
+  bindsym w exec "{{i3_exec_command_prefix}} todo workspace"; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
@@ -299,7 +295,7 @@ bar {
 
   position top
 
-  strip_workspace_numbers yes
+  strip_workspace_numbers no
 
   tray_output primary
 

@@ -30,9 +30,15 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-# activity
-[activity]
-command=cat ~/.timer/activity.i3blocks; socat UNIX-LISTEN:$HOME/.timer/activity.i3blocks.sock,fork -
+# todo
+[todo]
+command=i3block-socket-watcher {{todo_i3block_socket}}
+interval=persist
+markup=pango
+
+# timer
+[timer]
+command=i3block-socket-watcher {{timer_i3block_socket}}
 interval=persist
 markup=pango
 

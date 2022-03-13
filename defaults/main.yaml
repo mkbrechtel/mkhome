@@ -56,6 +56,7 @@ home_autostart_terminal: false
 home_autostart_nm_applet: false
 home_autostart_blueman_applet: false
 home_autostart_pasystray: false
+
 home_autostart_unclutter: false
 
 default_activities: []
@@ -87,3 +88,5 @@ pulseaudio_jack_sink_client_name: PulseAudio
 pulseaudio_jack_source_enabled: false
 pulseaudio_jack_source_channels: 2
 pulseaudio_jack_source_client_name: PulseAudio
+
+todo_file: ~/todo.txt

@@ -92,7 +92,4 @@ switch $command
   case "show_activity"
     get_current_timeclock_state
 
-  case "uniklinik"
-    begin_activity 'Arbeit:Uniklinik Köln'
-
 end
