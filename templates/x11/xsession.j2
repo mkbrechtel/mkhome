@@ -2,6 +2,8 @@
 
 {{ansible_managed|comment}}
 
+systemctl --user --wait start pathappend.service
+
 {% if not home_xsession_vncviewer %}
 set -x XDG_SESSION_TYPE x11
 systemctl --user import-environment XDG_SESSION_TYPE
