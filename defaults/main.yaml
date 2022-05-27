@@ -18,3 +18,5 @@ application_starters:
   - xfce4-terminal
 
 xfce_pannel_on_top: true
+
+libreoffice_release_distribution: bullseye-backports

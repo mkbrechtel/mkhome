@@ -4,6 +4,8 @@
   apt:
     pkg: "{{ desktop_packages }}"
 
+- import_tasks: libreoffice.yaml
+
 - name: ensure dunst package is absent for nicer notifications
   apt:
     pkg: dunst

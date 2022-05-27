@@ -80,15 +80,7 @@ desktop_packages:
 
   # office
   - evince
-  - libreoffice
-  - libreoffice-writer
-  - libreoffice-calc
-  - libreoffice-draw
-  - libreoffice-impress
-  - libreoffice-gtk3
-  - libreoffice-l10n-de
-  - libreoffice-help-de
-  - libreoffice-gnome
+  # see libreoffice_packages
 
   # remote desktop tools
   - tigervnc-common
@@ -154,3 +146,14 @@ desktop_packages:
   # themes
   - dmz-cursor-theme
   - gnome-brave-icon-theme
+
+libreoffice_packages:
+  - libreoffice
+  - libreoffice-writer
+  - libreoffice-calc
+  - libreoffice-draw
+  - libreoffice-impress
+  - libreoffice-gtk3
+  - libreoffice-l10n-de
+  - libreoffice-help-de
+  - libreoffice-gnome
