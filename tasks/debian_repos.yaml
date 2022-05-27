@@ -9,7 +9,11 @@
   template:
     src: sources.list.j2
     dest: /etc/apt/sources.list
+  tags:
+    - libreoffice-update
 
 - name: update apt cache
   apt:
     update_cache: yes
+  tags:
+    - libreoffice-update
