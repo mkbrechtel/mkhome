@@ -130,6 +130,7 @@ desktop_packages:
   - xbacklight
   - i3lock
   - xssproxy
+  - xsecurelock
 
   # xfce
   - xfce4
