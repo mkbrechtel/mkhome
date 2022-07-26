@@ -94,6 +94,7 @@ debian_common_packages:
   # system
   - console-setup
   - dbus
+  - systemd-timesyncd
 
   # localization
   - locales
