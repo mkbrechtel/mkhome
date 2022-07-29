@@ -1,4 +1,4 @@
-i3_exec_command_prefix: systemd-run --user --scope --no-block #--slice-inherit
+i3_exec_command_prefix: systemd-run --user --scope --no-block -E DISPLAY=$DISPLAY #--slice-inherit
 
 home_autostart_desktop_apps:
   - name: terminal
@@ -138,11 +138,11 @@ todo_i3block_socket: "{{todo_folder}}/i3block.sock"
 
 vncserver_options: |
   -desktop %H%i
-  -auth %h/.Xauthority
+  -auth %h/.Xauthority%i
   -geometry {{home_vncserver_geometry}}
   -depth 24
   -rfbwait 30000
-  -rfbunixpath %h/.vnc/socket
+  -rfbunixpath %h/.vnc/socket%i
   -nolisten tcp
   -pn
   -localhost
