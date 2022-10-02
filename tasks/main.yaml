@@ -28,6 +28,9 @@
     - import_tasks: xfce4-terminal.yaml
       tags:
         - xfce4-terminal
+    - import_tasks: kitty.yaml
+      tags:
+        - kitty
     - import_tasks: rofi.yaml
     - import_tasks: barrier.yaml
       tags:
