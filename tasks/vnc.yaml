@@ -14,6 +14,6 @@
 
 - name: vncserver user service
   template:
-    src: vnc/vncserver.service.j2
+    src: vnc/vncserver@.service.j2
     dest: ~/.config/systemd/user/vncserver@.service
   notify: systemd daemon-reload
