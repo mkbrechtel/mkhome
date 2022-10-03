@@ -12,7 +12,6 @@ desktop_packages:
   - eog
   - evince
   - catfish
-  - xfce4-terminal
   - xfce4-screenshooter
 
   # authentication, keys and passwords
@@ -42,7 +41,11 @@ desktop_packages:
   - xarchiver
 
   # fonts
+  - fonts-recommended
   - fonts-font-awesome
+  - fonts-symbola
+  - fonts-noto-color-emoji
+  - fonts-firacode
 
   # graphics
   - gimp
@@ -148,6 +151,10 @@ desktop_packages:
   # themes
   - dmz-cursor-theme
   - gnome-brave-icon-theme
+
+  # terminal emulators
+  - xfce4-terminal
+  - kitty
 
 libreoffice_packages:
   - libreoffice
