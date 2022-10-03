@@ -361,6 +361,8 @@ assign [class="^Signal$"] → signal
 assign [class="^Element$"] → matrix
 assign [class="^thunderbird$"] → mail
 assign [class="^zoom$" ] → zoom
+assign [class="^Wfica_"] → citrix
+assign [title="^Citrix maximized probe window$"] → citrix
 # vncviewer workspaces
 {% for workspace in workspaces|dict2items|json_query("[?value.type=='vncviewer'].key") %}
 {% set ws = workspaces[workspace] %}
