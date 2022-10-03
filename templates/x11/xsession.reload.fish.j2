@@ -37,3 +37,6 @@ xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display
 {% for xhost in home_xhosts_allow %}
 xhost +{{xhost}}
 {% endfor %}
+
+# disable bell
+xset b off
