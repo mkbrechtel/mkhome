@@ -19,8 +19,6 @@ strategy = mitogen_linear
 {% endif %}
 
 [ssh_connection]
-{% if not ansible_use_mitogen %}
 {% if ansible_use_ssh_pipelining %}
 pipelining = True
-{% endif %}
 {% endif %}
