@@ -12,7 +12,7 @@
 - name: debian machine packages
   apt:
     pkg: "{{ debian_machine_packages }}"
-  when: machine_package_intallation
+  when: machine_package_installation
 
 - name: debian common packages
   apt:
