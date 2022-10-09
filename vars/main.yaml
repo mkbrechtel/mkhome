@@ -85,6 +85,10 @@ debian_common_packages:
   - qrencode
   - moreutils
 
+  # terminfo
+  - kitty-terminfo
+
+
   # programming
   - python3
   - python3-pip
