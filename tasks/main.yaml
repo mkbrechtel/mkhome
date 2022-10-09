@@ -35,10 +35,10 @@
   tags:
     - fish
     - shells
-- import_tasks: shells/xonsh.yaml
-  tags:
-    - xonsh
-    - shells
+# - import_tasks: shells/xonsh.yaml
+#   tags:
+#     - xonsh
+#     - shells
 - name: shell for root user
   user:
     name: root
