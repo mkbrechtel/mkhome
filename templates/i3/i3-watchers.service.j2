@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+PartOf=graphical-session.target
+Requires=i3wm.service
+
+[Service]
+ExecStart=/usr/bin/env i3-watchers
+
+[Install]
+RequiredBy=xsession.target

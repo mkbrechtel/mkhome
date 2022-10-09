@@ -36,6 +36,18 @@
     dest: ~/.config/i3blocks/config
   notify: i3 reload
 
+- name: i3-watchers service for the default xsession
+  template:
+    src: i3/i3-watchers.service.j2
+    dest: ~/.config/systemd/user/i3-watchers.service
+  notify: systemd daemon-reload
+
+- name: i3-watchers service for specific displays
+  template:
+    src: i3/i3-watchers@.service.j2
+    dest: ~/.config/systemd/user/i3-watchers@.service
+  notify: systemd daemon-reload
+
 - name: i3wm graphical-session service for the default xsession
   template:
     src: i3/i3wm.service.j2
@@ -50,6 +62,6 @@
 
 - name: i3wm graphical-session service enabled
   systemd:
-    name: i3wm@.service
+    name: i3wm.service
     enabled: true
     scope: user

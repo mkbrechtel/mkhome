@@ -2,4 +2,4 @@
 
 set DIR (cd (dirname (status -f)); and pwd)
 
-i3-msg -t subscribe -m '["workspace"]' | jq --raw-output --unbuffered 'select(.change == "focus").current.name' | xargs -n1 -r on-focus-workspace &
+i3-msg -t subscribe -m '["workspace"]' | jq --raw-output --unbuffered 'select(.change == "focus").current.name' | xargs -n1 -r on-focus-workspace

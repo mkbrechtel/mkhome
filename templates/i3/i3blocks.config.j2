@@ -30,17 +30,20 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+{% if i3blocks_ntfy_url is defined %}
 # todo
-[todo]
-command=i3block-socket-watcher {{todo_i3block_socket}}
+[ntfy]
+command=i3blocks-ntfy.sh {{ i3blocks_ntfy_url | quote }}
 interval=persist
-markup=pango
+{% endif %}
 
+{#
 # timer
 [timer]
 command=i3block-socket-watcher {{timer_i3block_socket}}
 interval=persist
 markup=pango
+#}
 
 # hostinfo
 [hostinfo]

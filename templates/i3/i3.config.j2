@@ -368,6 +368,3 @@ assign [title="^Citrix maximized probe window$"] → citrix
 {% set ws = workspaces[workspace] %}
 assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:{{ws.display|default(home_vncserver_display_number)}}"] → {{workspace}}
 {% endfor %}
-
-# Autostart
-exec --no-startup-id i3-watchers

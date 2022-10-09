@@ -1,0 +1,11 @@
+[Unit]
+Description=i3 Window Manager for Display %i
+Requires=i3wm@%i.service
+
+[Service]
+Environment=DISPLAY=%i
+Environment=XAUTHORITY=%h/.Xauthority%i
+ExecStart=/usr/bin/env i3-watchers
+
+[Install]
+WantedBy=default.target
