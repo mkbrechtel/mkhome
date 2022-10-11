@@ -30,7 +30,7 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-{% if i3blocks_ntfy_url is defined %}
+{% if i3blocks_ntfy_url is defined and i3blocks_ntfy_url %}
 # todo
 [ntfy]
 command=i3blocks-ntfy.sh {{ i3blocks_ntfy_url | quote }}

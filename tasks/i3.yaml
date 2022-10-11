@@ -1,8 +1,8 @@
 ---
 
-- name: i3-py
-  pip:
-    name: i3-py
+# - name: i3-py
+#   pip:
+#     name: i3-py
 
 - name: i3 config directory
   file:
