@@ -29,3 +29,8 @@
 - import_tasks: screensaver.yaml
 
 - import_tasks: xfce-customization.yaml
+
+- name: default xsession manager
+  community.general.alternatives:
+    name: x-session-manager
+    path: /usr/bin/xfce4-session
