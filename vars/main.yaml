@@ -1,12 +1,5 @@
 debian_base_packages:
 
-  # admin tools
-  - lsof
-  - less
-  - psmisc
-  - ipcalc
-  - ipv6calc
-
   # editors
   - nano
 
@@ -14,18 +7,13 @@ debian_base_packages:
   - net-tools
   - iputils-ping
 
-  # compression
-  - unzip
-  - p7zip
-  - zip
-  - unzip
+  # shells
+  - fish
+  - elvish
 
   # file sync tools
   - rsync
   - zsync
-
-  # shells
-  - fish
 
   # ansible requirements
   - python3
@@ -37,8 +25,21 @@ debian_base_packages:
 
 debian_common_packages:
 
+  # admin tools
+  - lsof
+  - less
+  - psmisc
+  - ipcalc
+  - ipv6calc
+
   # apt tools
   - aptitude
+
+  # compression
+  - unzip
+  - p7zip
+  - zip
+  - xz-utils
 
   # editors
   - nano
@@ -71,10 +72,12 @@ debian_common_packages:
   # file sync tools
   - rsync
   - zsync
+  - unison
+  - rclone
 
   # shells
-  - xonsh
   - fish
+  - elvish
 
   # shell tools
   - tmux
@@ -87,7 +90,6 @@ debian_common_packages:
 
   # terminfo
   - kitty-terminfo
-
 
   # programming
   - python3
