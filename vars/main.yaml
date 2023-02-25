@@ -132,3 +132,8 @@ debian_machine_packages:
   # filesystem tools
   - btrfs-progs
   - dosfstools
+
+debian_firmware_packages:
+  - firmware-linux
+  - firmware-sof-signed
+  - firmware-iwlwifi

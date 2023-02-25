@@ -14,6 +14,11 @@
     pkg: "{{ debian_machine_packages }}"
   when: machine_package_installation
 
+- name: debian firmware packages
+  apt:
+    pkg: "{{ debian_firmware_packages }}"
+  when: firmware_installation
+
 - name: debian common packages
   apt:
     pkg: "{{ debian_common_packages }}"
