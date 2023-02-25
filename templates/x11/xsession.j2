@@ -7,6 +7,7 @@ systemctl --user --wait start pathappend.service
 {% if not home_xsession_vncviewer %}
 set -x XDG_SESSION_TYPE x11
 systemctl --user import-environment XDG_SESSION_TYPE
+systemctl --user import-environment XDG_SESSION_ID
 exec systemctl --user start --wait xsession.target
 {% else %}
 systemctl --user start vncserver@:{{home_vncserver_display_number}}.service
