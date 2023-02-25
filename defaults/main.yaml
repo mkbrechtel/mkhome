@@ -38,7 +38,7 @@ system_suspend_command: systemctl suspend
 system_reboot_command: systemctl reboot
 system_poweroff_command: systemctl poweroff
 
-lockscreen_auto_enabled: true
+xss_lock_enabled: true
 lockscreen_lock_command: xset s activate
 lockscreen_timeout: 300
 lockscreen_locktime: 30

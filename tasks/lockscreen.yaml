@@ -19,13 +19,13 @@
 
 - name: lockscreen-auto graphical-session service definition
   template:
-    src: lockscreen/lockscreen-auto.service.j2
-    dest: ~/.config/systemd/user/lockscreen-auto.service
+    src: lockscreen/xss-lock.service.j2
+    dest: ~/.config/systemd/user/xss-lock.service
   notify: systemd daemon-reload
 
-- name: lockscreen-auto graphical-session service
+- name: xss-lock graphical-session service
   systemd:
-    name: lockscreen-auto.service
-    enabled: "{{ lockscreen_auto_enabled }}"
-    state: "{{ lockscreen_auto_enabled | ternary('started','stopped') }}"
+    name: xss-lock.service
+    enabled: "{{ xss_lock_enabled }}"
+    state: "{{ xss_lock_enabled | ternary('started','stopped') }}"
     scope: user

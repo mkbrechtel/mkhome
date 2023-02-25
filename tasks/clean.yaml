@@ -13,3 +13,8 @@
     - pipe-watcher
     - select-screenlayout
     - timer
+
+- name: remove lockscreen-auto systemd user service
+  file:
+    path: ~/.config/systemd/user/lockscreen-auto.service
+    state: absent
