@@ -10,11 +10,10 @@ locales_gen:
 root_ssh_key: false
 root_shell: /usr/bin/fish
 
-debian_distribution: bullseye
+debian_distribution: bookworm
 debian_components:
   - main
-  - contrib
-  - non-free
+  - non-free-firmware
 
 debian_mirror: http://deb.debian.org/debian
 
