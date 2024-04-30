@@ -10,6 +10,7 @@ debian_base_packages:
   # shells
   - fish
   - elvish
+  - sash
 
   # file sync tools
   - rsync
@@ -110,7 +111,6 @@ debian_common_packages:
   - ssh-agent-filter
   - gnupg
   - gnupg-agent
-  - agent-transfer
 
   # installation utils
   - debootstrap
