@@ -19,4 +19,4 @@ application_starters:
 
 xfce_pannel_on_top: true
 
-libreoffice_release_distribution: bullseye-backports
+libreoffice_release_distribution: bookworm-backports

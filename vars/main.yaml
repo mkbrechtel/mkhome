@@ -29,7 +29,6 @@ desktop_packages:
   # filesystem
   - gvfs
   - gvfs-backends
-  - gvfs-bin
   - gvfs-fuse
   - zip
   - unzip
@@ -71,10 +70,6 @@ desktop_packages:
   - vlc
   - vlc-l10n
   #- libdvd-pkg
-  - openshot
-  - openshot-doc
-  - ogmrip
-  - ogmrip-plugins
   - isomaster
   - brasero
 
@@ -121,7 +116,8 @@ desktop_packages:
   - firefox-esr-l10n-de
   - chromium
   - chromium-l10n
-  - webext-ublock-origin
+  - webext-ublock-origin-firefox
+  - webext-ublock-origin-chromium
 
   # lockscreen
   - mate-screensaver
