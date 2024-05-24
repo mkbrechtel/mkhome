@@ -1,0 +1,28 @@
+---
+
+- name: make ssh-agent user service override directory
+  file:
+    path: /etc/systemd/user/ssh-agent.service.d
+    state: directory
+
+- name: make ssh-agent user service enableable
+  copy:
+    src: ssh-agent.service.d.install
+    dest: /etc/systemd/user/ssh-agent.service.d/install.conf
+
+- name: ensure ssh-agent user service is enabled for all users
+  systemd:
+    enabled: yes
+    scope: global
+    name: ssh-agent.service
+
+- name: ensure gpg-agent user socket is enabled for all users
+  systemd:
+    enabled: yes
+    scope: global
+    name: gpg-agent.socket
+
+- name: pam_env.conf
+  copy:
+    src: pam_env.conf
+    dest: /etc/security/pam_env.conf

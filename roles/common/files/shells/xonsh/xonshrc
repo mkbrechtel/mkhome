@@ -1,0 +1,15 @@
+
+# title
+$PROMPT_FIELDS['title_prompt_end'] = lambda: '#@' if $USER == "root" else '@'
+$PROMPT_FIELDS['title'] = lambda: '' if 'XDG_SESSION_TYPE' in ${...} && $XDG_SESSION_TYPE=='x11' \
+  else $USER+'@'+$HOSTNAME+':'
+$TITLE = '{title}{cwd} {title_prompt_end} {current_job}'
+
+# prompt
+$PROMPT_FIELDS['prompt_end'] = lambda: '{RED}#@' if $USER == "root" else '{GREEN}@'
+$PROMPT = lambda: ('' if 'XDG_SESSION_TYPE' in ${...} && $XDG_SESSION_TYPE=='x11' \
+  else ('{GREEN}{user}{WHITE}@{BOLD_WHITE}' if $USER != "root" and $USER != "toor" \
+    else '{BOLD_RED}')+'{hostname}{WHITE}:')+'{BOLD_BLUE}{cwd}{DEFAULT}{gitstatus: [{}]} {prompt_end} '
+
+# multiline prompt
+$MULTILINE_PROMPT=''
