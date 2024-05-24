@@ -1,0 +1,12 @@
+---
+
+- name: Ensure a locale exists
+  community.general.locale_gen:
+    name: "{{item}}"
+    state: present
+  loop: "{{locales_gen}}"
+
+- name: default locale
+  template:
+    src: default_locale.j2
+    dest: /etc/default/locale

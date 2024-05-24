@@ -1,0 +1,6 @@
+---
+
+- name: keyboard configuration
+  template:
+    src: default-keyboard.j2
+    dest: /etc/default/keyboard

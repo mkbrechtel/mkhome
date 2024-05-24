@@ -1,0 +1,46 @@
+---
+
+- name: ensure old screensavers are absent
+  apt:
+    pkg:
+      - light-locker
+      - xscreensaver
+    state: absent
+
+- name: gdmflexiserver dummy script
+  copy:
+    src: gdmflexiserver-fake.sh
+    dest: /usr/local/bin/gdmflexiserver
+    mode: 0755
+
+# Bug: https://github.com/mate-desktop/mate-screensaver/issues/57
+# https://gist.github.com/alexander255/9b991816418e4e60ee7c
+- name: mate-screensaver-helper-inhibition script
+  copy:
+    src: mate-screensaver-helper-inhibition.py
+    dest: /usr/local/bin/mate-screensaver-helper-inhibition
+    mode: 0755
+
+- import_tasks: dconf.yaml
+  vars:
+    dconf_id: screensaver
+    dconf_lock_settings:
+      /org/mate/screensaver:
+        idle-activation-enabled: 'true'
+        lock-enabled: 'true'
+        mode:
+          - single
+        themes:
+          - "{{screensaver_theme}}"
+      /org/mate/desktop/session:
+        idle-delay: "{{ screensaver_locktime | int }}"
+      /org/mate/power-manager:
+        sleep-display-ac: "{{ screensaver_sleeptime | int * 60 }}"
+    dconf_lock_paths:
+      - /org/mate/desktop/session/idle-delay
+      - /org/mate/screensaver/idle-activation-enabled
+      - /org/mate/screensaver/lock-enabled
+      - /org/mate/screensaver/mode
+      - /org/mate/screensaver/themes
+      - /org/mate/power-manager/sleep-display-ac
+  when: screensaver_enforce_settings

@@ -1,0 +1,26 @@
+---
+
+- name: fish config directory
+  file:
+    path: /etc/fish/conf.d
+    state: directory
+
+- name: fish config files
+  copy:
+    src: shells/fish/global/
+    dest: /etc/fish/conf.d/
+  with_items:
+    - fish_title
+    - fish_prompt
+    - fish_greeting
+
+# root user
+- name: fish root user config directory
+  file:
+    path: /root/.config/fish/conf.d/
+    state: directory
+
+- name: fish root user config files
+  copy:
+    src: shells/fish/root/
+    dest: /root/.config/fish/conf.d/

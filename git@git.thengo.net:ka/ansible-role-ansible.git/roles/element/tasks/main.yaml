@@ -1,0 +1,24 @@
+---
+
+- import_tasks: cleanup.yaml
+
+- name: debian package requirements
+  apt:
+    pkg:
+      - apt-transport-https
+
+- name: download element repo keyring
+  get_url:
+    url: https://packages.element.io/debian/element-io-archive-keyring.gpg
+    dest: /usr/share/keyrings/element-io-archive-keyring.gpg
+    checksum: sha256:fbf7823608964237024b043b607415b75d7c64221ac98ff5b5e67941f24684c2.
+
+- name: element apt repo
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main
+    filename: element-io
+
+- name: element-desktop package
+  apt:
+    pkg: element-desktop
+    state: latest

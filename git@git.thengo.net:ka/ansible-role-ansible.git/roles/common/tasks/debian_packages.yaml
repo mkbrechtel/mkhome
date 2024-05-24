@@ -1,0 +1,30 @@
+---
+
+- name: debian base packages
+  apt:
+    pkg: "{{ debian_base_packages }}"
+
+- name: debian boot packages
+  apt:
+    pkg: "{{ debian_boot_packages }}"
+  when: debian_boot_packages is defined
+
+- name: debian machine packages
+  apt:
+    pkg: "{{ debian_machine_packages }}"
+  when: machine_package_installation
+
+- name: debian firmware packages
+  apt:
+    pkg: "{{ debian_firmware_packages }}"
+  when: firmware_installation
+
+- name: debian common packages
+  apt:
+    pkg: "{{ debian_common_packages }}"
+  when: common_package_intallation
+
+- name: debian custom packages
+  apt:
+    pkg: "{{ debian_custom_packages }}"
+  when: debian_custom_packages is defined

@@ -1,0 +1,6 @@
+---
+- name: debian packages
+  apt:
+    pkg:
+      - binwalk
+      - testdisk # photorec

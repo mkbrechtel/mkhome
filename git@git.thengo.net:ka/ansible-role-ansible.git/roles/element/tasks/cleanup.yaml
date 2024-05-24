@@ -1,0 +1,11 @@
+---
+
+- name: remove riot-im keyring
+  file:
+    path: /usr/share/keyrings/riot-im-archive-keyring.gpg
+    state: absent
+
+- name: remove riot-im apt repo
+  file:
+    path: /etc/apt/sources.list.d/riot-im.list
+    state: absent

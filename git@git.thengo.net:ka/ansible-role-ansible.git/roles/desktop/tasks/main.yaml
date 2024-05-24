@@ -1,0 +1,36 @@
+---
+
+- name: desktop packages
+  apt:
+    pkg: "{{ desktop_packages }}"
+
+- import_tasks: libreoffice.yaml
+
+- name: ensure dunst package is absent for nicer notifications
+  apt:
+    pkg: dunst
+    state: absent
+
+- name: default system icon theme
+  template:
+    src: icon.theme.j2
+    dest: /usr/share/icons/default/index.theme
+
+- name: xorg touchpad config
+  template:
+    src: touchpad.conf.j2
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+
+- name: unclutter default config
+  template:
+    src: unclutter.default.j2
+    dest: /etc/default/unclutter
+
+- import_tasks: screensaver.yaml
+
+- import_tasks: xfce-customization.yaml
+
+- name: default xsession manager
+  community.general.alternatives:
+    name: x-session-manager
+    path: /usr/bin/xfce4-session
