@@ -7,7 +7,6 @@
 - import_tasks: ssh.yaml
 - import_tasks: tmux.yaml
 - import_tasks: pulseaudio.yaml
-- import_tasks: git.yaml
 - import_tasks: timer.yaml
   tags:
     - timer
