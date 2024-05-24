@@ -12,7 +12,7 @@
 
 - name: dconf profile dbs setting
   copy:
-    src: dconf-lock/profile/user
+    src: profile/user
     dest: /etc/dconf/profile/user
   notify: dconf update
 
@@ -23,7 +23,7 @@
 
 - name: dconf settings
   template:
-    src: dconf-lock/settings.j2
+    src: settings.j2
     dest: /etc/dconf/db/local.d/{{dconf_id}}
   notify: dconf update
 
@@ -34,7 +34,7 @@
 
 - name: dconf locks
   template:
-    src: dconf-lock/locks.j2
+    src: locks.j2
     dest: /etc/dconf/db/local.d/locks/{{dconf_id}}
   when: dconf_lock_paths is defined
   notify: dconf update
