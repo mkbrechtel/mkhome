@@ -1,0 +1,17 @@
+---
+
+# to be removed when roled out
+- name: remove wrong "mainentance" directory
+  file:
+    path: /usr/local/share/mainentance
+    state: absent
+
+- name: remove wrong "mainentance" user
+  user:
+    name: mainentance
+    state: absent
+
+- name: remove wrong "mainentance" user home directory
+  file:
+    path: /var/lib/mainentance
+    state: absent

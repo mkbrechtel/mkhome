@@ -1,0 +1,75 @@
+---
+
+- name: assert valid state
+  assert:
+    that: display_manager_state in _display_manager_valid_states
+    msg: "'display_manager_state' must be one of: {{_display_manager_valid_states | join(', ') }}"
+
+- name: make sure no other display managers are installed
+  apt:
+    pkg:
+      - slim
+      - gdm3
+      - kdm
+      - sddm
+    state: absent
+
+- name: install packages
+  apt:
+    pkg:
+      - xserver-xorg
+      - xserver-xorg-video-all
+      - xserver-xorg-input-all
+      - x11-xserver-utils
+      - lightdm
+      - lightdm-gtk-greeter
+      - onboard
+  notify: restart lightdm
+
+- import_tasks: maintenance.yml
+  when: display_manager_state == 'maintenance'
+
+- name: lightdm configuration
+  template:
+    src: lightdm.conf.j2
+    dest: /etc/lightdm/lightdm.conf
+  notify: restart lightdm
+
+- name: lightdm gtk-greeter configuration
+  template:
+    src: lightdm-gtk-greeter.conf.j2
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+  notify: restart lightdm
+
+- name: lightdm display setup script
+  template:
+    src: display-setup.sh.j2
+    dest: /etc/lightdm/display-setup.sh
+    mode: u=rwx,g=rx,o=rx
+  when: display_setup_commands is defined
+  notify: restart lightdm
+
+- name: lightdm pam.d configuration fix
+  copy:
+    src: pam.d/lightdm
+    dest: /etc/pam.d/lightdm
+
+- name: background image directory
+  file:
+    path: /opt/backgrounds
+    state: directory
+
+- name: background image
+  copy:
+    src: "{{display_manager_background_image}}"
+    dest: "{{ display_manager_background_image_path }}"
+
+- name: lightdm started
+  service:
+    name: lightdm
+    state: started
+    enabled: yes
+
+- meta: flush_handlers
+
+- import_tasks: cleanup-litter.yaml

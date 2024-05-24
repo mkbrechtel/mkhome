@@ -1,0 +1,7 @@
+#!/bin/bash
+{{ ansible_managed | comment }}
+xset -dpms
+xset s off
+feh --bg-scale "{{display_manager_background_image_path}}"
+xbindkeys -f /usr/local/share/maintenance/xbindkeys &
+exec yad --no-buttons --no-escape --image-on-top --center --borders 50 --image="{{display_manager_maintenance_icon}}" --text="{{display_manager_maintenance_text}}"

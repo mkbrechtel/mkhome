@@ -1,0 +1,7 @@
+display_manager_state: multiuser
+
+display_manager_maintenance_text: Wartungsmodus – bitte nicht abschalten!
+display_manager_maintenance_icon: preferences-system
+
+display_manager_background_image: Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg
+# source: https://upload.wikimedia.org/wikipedia/commons/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg
