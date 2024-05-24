@@ -1,0 +1,6 @@
+---
+
+- name: default system icon theme
+  template:
+    src: icon.theme.j2
+    dest: /usr/share/icons/default/index.theme

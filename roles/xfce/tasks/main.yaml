@@ -16,3 +16,8 @@
   template:
     src: xfce-customization/xfwm4.xml.j2
     dest: /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+
+- name: default xsession manager
+  community.general.alternatives:
+    name: x-session-manager
+    path: /usr/bin/xfce4-session
