@@ -1,0 +1,25 @@
+---
+
+- import_role:
+    name: common
+    tasks_from: debian_repos
+
+- name: update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: upgrade all packages
+  apt:
+    upgrade: dist
+
+- name: unattended-upgrades
+  apt:
+    name: unattended-upgrades
+  when:
+    - unattended_upgrades
+    - not ansible_bender is defined
+
+- name: reboot after updates
+  reboot:
+  when: reboot_after_updates
