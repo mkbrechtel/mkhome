@@ -1,0 +1,11 @@
+---
+
+- name: ara pip package
+  pip:
+    name: "{{ansible_ara_pip_package}}"
+    version: "{{ansible_ara_version}}"
+
+- name: get ara ansible config
+  shell: python3 -m ara.setup.ansible
+  register: _ara_config
+  changed_when: false

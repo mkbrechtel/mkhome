@@ -1,0 +1,16 @@
+ansible_version: 6.4.0
+ansible_pip_package: ansible
+
+ansible_use_ara: false
+ansible_ara_version: 1.5.8
+ansible_ara_pip_package: ara[server]
+
+ansible_use_mitogen: false
+ansible_mitogen_version: 0.3.3
+ansible_mitogen_pip_package: mitogen
+
+ansible_use_ssh_pipelining: true
+
+ansible_install_ansible_bender: true
+ansible_bender_pip_package: ansible-bender
+ansible_bender_version: 0.9.0

@@ -1,0 +1,32 @@
+---
+
+- name: make sure debian ansible package is absent
+  apt:
+    pkg: ansible
+    state: absent
+
+- name: cleanup ara pip package
+  pip:
+    name: ara
+    state: absent
+    executable: pip3
+  when: not ansible_use_ara
+
+- name: cleanup mitogen pip package
+  pip:
+    name: mitogen
+    state: absent
+    executable: pip3
+  when: not ansible_use_mitogen
+
+- name: check version of ansible
+  shell: pip3 show ansible | grep Version | cut -d ' ' -f 2
+  ignore_errors: true
+  changed_when: false
+  register: get_ansible_version
+
+- name: old ansible pip package removed
+  pip:
+    name: ansible
+    state: absent
+  when: ansible_installed_version is version('2.10', '<')

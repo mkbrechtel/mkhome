@@ -1,0 +1,23 @@
+---
+
+- name: debian packages
+  apt:
+    pkg:
+      - python3-pip
+      - ipv6calc
+      - uuid
+      - git
+      - python3-jmespath
+      # ara required_packages:
+      - gcc
+      - libffi-dev
+      #- libssl-dev
+      - libxml2-dev
+      - libxslt-dev
+      - python3-dev
+      - python3-setuptools
+      - python3-pymysql
+      - python3-dnspython
+      #- which
+      - python3-libcloud
+      - python3-netaddr

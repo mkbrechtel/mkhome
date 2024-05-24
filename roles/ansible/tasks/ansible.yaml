@@ -1,0 +1,6 @@
+---
+
+- name: ansible pip package
+  pip:
+    name: "{{ansible_pip_package}}"
+    version: "{{ansible_version}}"
