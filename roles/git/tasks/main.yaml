@@ -4,6 +4,3 @@
   template:
     src: gitconfig.j2
     dest: ~/.gitconfig
-  when:
-    - git_user_email is defined
-    - git_user_name is defined
