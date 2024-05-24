@@ -1,0 +1,6 @@
+{% for path in dconf_lock_settings %}
+[{{path[1:]}}]
+{% for key in dconf_lock_settings[path] %}
+{{key}}={{dconf_lock_settings[path][key]}}
+{% endfor %}
+{% endfor %}
