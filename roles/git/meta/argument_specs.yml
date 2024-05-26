@@ -1,0 +1,18 @@
+argument_specs:
+  main:
+    options:
+      git_user_email:
+        type: "str"
+        required: false
+        description:
+          - "E-Mail used by git"
+      git_user_name:
+        type: "str"
+        required: false
+        description:
+          - "Name of the user used by git"
+      github_username:
+        type: "str"
+        required: false
+        description:
+          - "Github username of the user"
