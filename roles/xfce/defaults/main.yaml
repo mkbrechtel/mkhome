@@ -1,0 +1,12 @@
+---
+xfwm4_use_compositing: true
+
+xfce_lock_panel: false
+xfce_unlocked_users: root
+
+xfce_pannel_on_top: true
+
+application_starters:
+  - firefox-esr
+  - chromium
+  - xfce4-terminal

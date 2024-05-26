@@ -1,0 +1,5 @@
+---
+screensaver_enforce_settings: false
+screensaver_locktime: 10
+screensaver_theme: screensavers-popsquares
+screensaver_sleeptime: "{{screensaver_locktime}}"
