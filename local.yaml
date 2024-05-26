@@ -1,0 +1,6 @@
+---
+- name: Deploy desk to local system
+  hosts: localhost
+  become: true
+  roles:
+    - desktop_packages
