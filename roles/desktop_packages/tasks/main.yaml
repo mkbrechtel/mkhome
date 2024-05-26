@@ -8,11 +8,3 @@
   apt:
     pkg: dunst
     state: absent
-
-
-- name: unclutter default config
-  template:
-    src: unclutter.default.j2
-    dest: /etc/default/unclutter
-
-
