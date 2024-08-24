@@ -151,14 +151,3 @@ desktop_packages:
   # terminal emulators
   - xfce4-terminal
   - kitty
-
-libreoffice_packages:
-  - libreoffice
-  - libreoffice-writer
-  - libreoffice-calc
-  - libreoffice-draw
-  - libreoffice-impress
-  - libreoffice-gtk3
-  - libreoffice-l10n-de
-  - libreoffice-help-de
-  - libreoffice-gnome
