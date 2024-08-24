@@ -1,0 +1,8 @@
+---
+
+- name: Configure local home directory
+  hosts: localhost
+  vars:
+    home_desktop: true
+  roles:
+    - home
