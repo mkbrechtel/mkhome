@@ -17,7 +17,7 @@ debian_components:
 
 debian_mirror: http://deb.debian.org/debian
 
-debian_backports: true
+debian_backports: false
 debian_backports_distribution: "{{debian_distribution}}-backports"
 
 debian_security: true
