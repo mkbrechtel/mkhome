@@ -4,7 +4,6 @@
 
 - import_tasks: structure.yaml
 - import_tasks: path.yaml
-- import_tasks: ssh.yaml
 - import_tasks: tmux.yaml
 - import_tasks: pulseaudio.yaml
 - import_tasks: timer.yaml
