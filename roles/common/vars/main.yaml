@@ -21,6 +21,7 @@ debian_base_packages:
   - python3-apt
 
   # system
+  - sudo
   - console-setup
   - dbus
 
