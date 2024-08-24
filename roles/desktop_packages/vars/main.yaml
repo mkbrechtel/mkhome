@@ -92,6 +92,7 @@ desktop_packages:
   # scanner
   - simple-scan
   - gscan2pdf
+  - xsane
 
   # tools
   - redshift-gtk
@@ -133,11 +134,15 @@ desktop_packages:
 
   # xfce
   - xfce4
+  - xfce4-goodies
   - xfce4-whiskermenu-plugin
   - xfce4-smartbookmark-plugin
   - xfce4-places-plugin
   - xfce4-datetime-plugin
   - xfce4-power-manager
+
+  # printer
+  - system-config-printer
 
   # i3
   - i3-wm
