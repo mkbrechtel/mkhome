@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wget -O /opt/zoom.deb {{ zoom_deb_url }}
+exec dpkg -i /opt/zoom.deb

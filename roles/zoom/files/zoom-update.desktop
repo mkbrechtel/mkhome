@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Update Zoom
+Comment=Zoom Video Conference
+Exec=sudo /usr/local/bin/update-zoom
+Icon=Zoom
+Terminal=true
+Type=Application
+Encoding=UTF-8
+Categories=Network;Application;

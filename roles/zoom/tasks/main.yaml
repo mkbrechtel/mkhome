@@ -1,0 +1,23 @@
+---
+
+# - name: Check if Zoom is already installed
+
+# - name: Install Zoom deb package
+#   apt:
+#     deb: "{{ zoom_deb_url }}"
+
+- name: Update Zoom Script
+  template:
+    src: update-zoom.sh.j2
+    dest: /usr/local/sbin/update-zoom
+    mode: 04755 # with setuid
+
+- name: Update Zoom sudoers config
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/update-zoom
+
+- name: Update Zoom application launcher
+  copy:
+    src: zoom-update.desktop
+    dest: /usr/share/applications/update-zoom.desktop
