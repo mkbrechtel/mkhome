@@ -1,0 +1,5 @@
+---
+
+- name: Install cups debian package
+  apt:
+    pkg: cups
