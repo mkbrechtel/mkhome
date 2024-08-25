@@ -66,7 +66,7 @@ workspaces: {}
 i3_hide_bar: false
 i3_hide_border_one_window: false
 
-font_name: Fira Code Retina
+font_name: Hack
 font_size: 11
 kitty_font_family: "{{font_name}}"
 kitty_font_size: "{{font_size}}"
