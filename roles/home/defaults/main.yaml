@@ -68,9 +68,11 @@ i3_hide_border_one_window: false
 
 i3blocks_with_1life: true
 i3blocks_with_timer: false
-i3blocks_with_hostinfo: true
+i3blocks_with_user: true
+i3blocks_with_host: true
 i3blocks_with_volume: false
-i3blocks_with_datetime: true
+i3blocks_with_date: true
+i3blocks_with_time: true
 
 font_name: Hack
 font_size: 11

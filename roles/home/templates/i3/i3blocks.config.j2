@@ -32,8 +32,7 @@ markup=none
 
 {% if i3blocks_with_1life %}
 [1life]
-label=1
-full_text=1
+full_text=❤️ 1
 {% endif %}
 
 {% if i3blocks_ntfy_url is defined and i3blocks_ntfy_url %}
@@ -50,14 +49,22 @@ interval=persist
 markup=pango
 {% endif %}
 
-{% if i3blocks_with_hostinfo %}
-[hostinfo]
-command=echo "$USER@`hostname -s`"
+{% if i3blocks_with_user %}
+[user]
+label=🪪
+command=echo "$USER"
+interval=once
+{% endif %}
+
+{% if i3blocks_with_host %}
+[host]
+label=🖥️
+command=echo "`hostname -s`"
 interval=once
 {% endif %}
 
 [load_average]
-label=⚙️
+label=⚙️ 
 interval=10
 
 [memory]
@@ -74,7 +81,6 @@ label=📂
 interval=30
 
 [battery]
-#label=BAT
 label=⚡
 #instance=1
 interval=30
@@ -89,9 +95,16 @@ interval=once
 signal=10
 {% endif %}
 
-{% if i3blocks_with_datetime %}
-[datetime]
+{% if i3blocks_with_date %}
+[date]
+label=📅
+command=date '+%Y-%m-%d W%V %a'
+interval=1
+{% endif %}
+
+{% if i3blocks_with_time %}
+[time]
 label=⌚
-command=date '+%Y-%m-%d W%V %a %H:%M %Z'
+command=date '+%H:%M %Z'
 interval=1
 {% endif %}
