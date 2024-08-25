@@ -66,6 +66,12 @@ workspaces: {}
 i3_hide_bar: false
 i3_hide_border_one_window: false
 
+i3blocks_with_1life: true
+i3blocks_with_timer: false
+i3blocks_with_hostinfo: true
+i3blocks_with_volume: false
+i3blocks_with_datetime: true
+
 font_name: Hack
 font_size: 11
 kitty_font_family: "{{font_name}}"
@@ -82,7 +88,7 @@ pulseaudio_load_system_config: true
 pulseaudio_jack_sink_enabled: false
 pulseaudio_jack_sink_channels: 2
 pulseaudio_jack_sink_client_name: PulseAudio
-pulseaudio_jack_source_enabled: false
+pulseaudio_jack_source_i3blocks_with_timeenabled: false
 pulseaudio_jack_source_channels: 2
 pulseaudio_jack_source_client_name: PulseAudio
 

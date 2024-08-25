@@ -30,6 +30,12 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+{% if i3blocks_with_1life %}
+[1life]
+label=1
+full_text=1
+{% endif %}
+
 {% if i3blocks_ntfy_url is defined and i3blocks_ntfy_url %}
 # todo
 [ntfy]
@@ -37,67 +43,43 @@ command=i3blocks-ntfy.sh {{ i3blocks_ntfy_url | quote }}
 interval=persist
 {% endif %}
 
-{#
-# timer
+{% if i3blocks_with_timer %}
 [timer]
 command=i3block-socket-watcher {{timer_i3block_socket}}
 interval=persist
 markup=pango
-#}
+{% endif %}
 
-# hostinfo
+{% if i3blocks_with_hostinfo %}
 [hostinfo]
 command=echo "$USER@`hostname -s`"
 interval=once
+{% endif %}
 
-# Load Average
 [load_average]
+label=⚙️
 interval=10
 
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-#[cpu_usage]
-#label=CPU
-#interval=10
-#min_width=CPU: 100.00%
-
-# Memory usage
-#
-# The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label=📇
 interval=30
 
 [memory]
-label=SWAP
+label=🧮
 instance=swap
 interval=30
 
-# Disk usage
-#
-# The directory defaults to $HOME if the instance is not specified.
-# The script may be called with a optional argument to set the alert
-# (defaults to 10 for 10%).
 [disk]
-label=HOME
+label=📂
 interval=30
 
-# Battery indicator
-#
-# The battery instance defaults to 0.
 [battery]
 #label=BAT
 label=⚡
 #instance=1
 interval=30
 
-# Volume indicator
-#
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
+{% if i3blocks_with_volume %}
 [volume]
 #label=VOL
 label=♪
@@ -105,9 +87,11 @@ instance=Master
 #instance=PCM
 interval=once
 signal=10
+{% endif %}
 
-# Date Time
-#
-[time]
+{% if i3blocks_with_datetime %}
+[datetime]
+label=⌚
 command=date '+%Y-%m-%d W%V %a %H:%M %Z'
-interval=5
+interval=1
+{% endif %}
