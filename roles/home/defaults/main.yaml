@@ -88,7 +88,7 @@ pulseaudio_load_system_config: true
 pulseaudio_jack_sink_enabled: false
 pulseaudio_jack_sink_channels: 2
 pulseaudio_jack_sink_client_name: PulseAudio
-pulseaudio_jack_source_i3blocks_with_timeenabled: false
+pulseaudio_jack_source_enabled: false
 pulseaudio_jack_source_channels: 2
 pulseaudio_jack_source_client_name: PulseAudio
 
