@@ -74,13 +74,19 @@ i3blocks_with_volume: false
 i3blocks_with_date: true
 i3blocks_with_time: true
 
-font_name: Hack
+font_family: Hack
 font_size: 11
-kitty_font_family: "{{font_name}}"
+kitty_font_family: "{{font_family}}"
 kitty_font_size: "{{font_size}}"
-i3_font: "pango:{{font_name}} {{font_size}}"
-xfce4_terminal_font: "{{font_name}} {{font_size}}"
-rofi_font: "{{font_name}} {{font_size}}"
+i3_font: "pango:{{font_family}} {{font_size}}"
+i3_font_family: "{{font_family}}"
+i3_font_size: "{{font_size}}"
+xfce4_terminal_font: "{{font_family}} {{font_size}}"
+xfce4_terminal_font_family: "{{font_family}}"
+xfce4_terminal_font_size: "{{font_size}}"
+rofi_font: "{{rofi_font_family}} {{rofi_font_size}}"
+rofi_font_family: "{{font_family}}"
+rofi_font_size: "{{font_size}}"
 
 home_urxvt_font_pixelsize: "{{font_size}}"
 
