@@ -45,7 +45,7 @@ desktop_packages:
   - fonts-symbola
   - fonts-noto-color-emoji
   - fonts-firacode
-  - fonts-hack-ttf
+  - fonts-hack
 
   # graphics
   - gimp
