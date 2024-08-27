@@ -46,6 +46,9 @@ desktop_packages:
   - fonts-noto-color-emoji
   - fonts-firacode
   - fonts-hack
+  - fonts-inconsolata
+  - fonts-terminus
+  - fonts-opendyslexic
 
   # graphics
   - gimp
