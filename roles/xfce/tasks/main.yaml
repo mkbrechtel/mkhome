@@ -2,19 +2,19 @@
 
 - name: xdg config
   copy:
-    src: xfce-customization/xdg/
+    src: xdg/
     dest: /etc/xdg/
 
 - name: xfce panel config
   template:
-    src: xfce-customization/xfce4-panel.xml.j2
+    src: xfce4-panel.xml.j2
     dest: /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   tags:
     - xfce-panel
 
 - name: xfwm4 config
   template:
-    src: xfce-customization/xfwm4.xml.j2
+    src: xfwm4.xml.j2
     dest: /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 
 - name: default xsession manager
