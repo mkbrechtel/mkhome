@@ -80,10 +80,12 @@ interval=30
 label=📂
 interval=30
 
+{% if i3blocks_with_battery %}
 [battery]
 label=⚡
 #instance=1
 interval=30
+{% endif %}
 
 {% if i3blocks_with_volume %}
 [volume]

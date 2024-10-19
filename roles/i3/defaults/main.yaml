@@ -8,3 +8,4 @@ i3blocks_with_host: true
 i3blocks_with_volume: false
 i3blocks_with_date: true
 i3blocks_with_time: true
+i3blocks_with_battery: false
