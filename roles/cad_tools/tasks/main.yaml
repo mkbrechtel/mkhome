@@ -1,0 +1,7 @@
+---
+- name: Install debian packages
+  apt:
+    pkg:
+      - openscad
+      - freecad
+      - fonts-osifont
