@@ -22,10 +22,10 @@ floating_modifier $mod
 ### default/local mode
 
 ## special keys
-bindsym XF86Sleep exec {{i3_exec_command_prefix}} {{lockscreen_lock_command}}
-bindsym XF86Mail exec {{i3_exec_command_prefix}} {{mail_command}}
-bindsym XF86HomePage exec {{i3_exec_command_prefix}} {{default_browser}}
-bindsym XF86Calculator exec {{i3_exec_command_prefix}} {{calculator_command}}
+bindsym XF86Sleep exec {{lockscreen_lock_command}}
+bindsym XF86Mail exec {{mail_command}}
+bindsym XF86HomePage exec {{default_browser}}
+bindsym XF86Calculator exec {{calculator_command}}
 
 ## Special modes
 bindsym $mod+t mode timer
@@ -36,15 +36,15 @@ bindcode $mod+49 mode "session"
 bindcode $mod+9 exec --no-startup-id ~/.xsession.reload.fish
 
 ## Todo
-bindsym $mod+x exec {{i3_exec_command_prefix}} todo finished
+bindsym $mod+x exec todo finished
 
 ## Applications
-bindsym $mod+Return exec {{i3_exec_command_prefix}} "{{default_terminal}}"
-bindsym $mod+b exec {{i3_exec_command_prefix}} "{{default_browser}}"
-bindsym $mod+d exec {{i3_exec_command_prefix}} rofi -show drun -show-icons
-bindsym $mod+e exec {{i3_exec_command_prefix}} rofi -show run
+bindsym $mod+Return exec "{{default_terminal}}"
+bindsym $mod+b exec "{{default_browser}}"
+bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+e exec rofi -show run
 bindsym $mod+a mode "apps"
-bindsym $mod+space exec  {{i3_exec_command_prefix}} "on-space-shortcut"
+bindsym $mod+space exec "on-space-shortcut"
 
 
 ## Workspaces
@@ -130,7 +130,7 @@ bindsym $mod+r mode resize
 ## stuff that is available in default and remote mode
 {% macro overall() %}
 
-  bindsym $plexmod+space exec {{i3_exec_command_prefix}} on-space-shortcut
+  bindsym $plexmod+space exec on-space-shortcut
   bindsym $plexmod+BackSpace kill
   bindsym $plexmod+Tab {{workspace_switcher}}
 
@@ -177,7 +177,7 @@ mode "remote" {
 ### Applications mode
 mode "apps" {
 {% for a in application_shortcuts | dict2items %}
-  bindsym {{a.key}} exec {{i3_exec_command_prefix}} {{a.value}}; mode "default"
+  bindsym {{a.key}} exec {{a.value}}; mode "default"
 {% endfor %}
   bindsym Escape mode "default"
 }
@@ -205,9 +205,9 @@ mode "session" {
 
 ### Todo
 mode "todo" {
-  bindsym a exec "{{i3_exec_command_prefix}} timer select_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym e exec "{{i3_exec_command_prefix}} timer end_activity"; mode "default"; {{on_focus_workspace}}
-  bindsym w exec "{{i3_exec_command_prefix}} todo workspace"; mode "default"; {{on_focus_workspace}}
+  bindsym a exec "timer select_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym e exec "timer end_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym w exec "todo workspace"; mode "default"; {{on_focus_workspace}}
 
   # back to normal: Escape
   bindsym Escape mode "default"; {{on_focus_workspace}}
