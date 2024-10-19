@@ -1,0 +1,10 @@
+i3_hide_bar: false
+i3_hide_border_one_window: false
+
+i3blocks_with_1life: false
+i3blocks_with_timer: false
+i3blocks_with_user: true
+i3blocks_with_host: true
+i3blocks_with_volume: false
+i3blocks_with_date: true
+i3blocks_with_time: true

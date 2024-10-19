@@ -1,0 +1,6 @@
+- name: i3 reload
+  systemd:
+    name: i3wm.service
+    state: reloaded
+    scope: user
+  failed_when: false

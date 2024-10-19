@@ -14,7 +14,8 @@
     - todo
 
 - block:
-    - import_tasks: i3.yaml
+    - import_role: 
+        name: i3
       tags:
         - i3
     - import_tasks: lockscreen.yaml

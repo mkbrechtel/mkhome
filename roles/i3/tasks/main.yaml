@@ -11,12 +11,12 @@
 
 - name: i3 null config
   template:
-    src: i3/i3.null.config.j2
+    src: i3.null.config.j2
     dest: ~/.config/i3/null.config
 
 - name: i3 config
   template:
-    src: i3/i3.config.j2
+    src: i3.config.j2
     dest: ~/.config/i3/config
   notify: i3 reload
 
@@ -32,31 +32,31 @@
 
 - name: i3blocks config
   template:
-    src: i3/i3blocks.config.j2
+    src: i3blocks.config.j2
     dest: ~/.config/i3blocks/config
   notify: i3 reload
 
 - name: i3-watchers service for the default xsession
   template:
-    src: i3/i3-watchers.service.j2
+    src: i3-watchers.service.j2
     dest: ~/.config/systemd/user/i3-watchers.service
   notify: systemd daemon-reload
 
 - name: i3-watchers service for specific displays
   template:
-    src: i3/i3-watchers@.service.j2
+    src: i3-watchers@.service.j2
     dest: ~/.config/systemd/user/i3-watchers@.service
   notify: systemd daemon-reload
 
 - name: i3wm graphical-session service for the default xsession
   template:
-    src: i3/i3wm.service.j2
+    src: i3wm.service.j2
     dest: ~/.config/systemd/user/i3wm.service
   notify: systemd daemon-reload
 
 - name: i3wm graphical-session service for specific displays
   template:
-    src: i3/i3wm@.service.j2
+    src: i3wm@.service.j2
     dest: ~/.config/systemd/user/i3wm@.service
   notify: systemd daemon-reload
 
