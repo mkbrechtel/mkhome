@@ -1,3 +1,3 @@
 # desk
 
-desk is an ansible collection that holds my desktop setup.
+desk is an ansible collection and mkosi image builder configuration that holds my desktop setup.

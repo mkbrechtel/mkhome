@@ -1,0 +1,15 @@
+// Static tasks configuration.
+[
+  {
+    "label": "Make mkosi image",
+    "command": "make",
+    "shell": "system",
+    "cwd": "image"
+  },
+  {
+    "label": "Run mkosi image in emulator",
+    "command": "make run",
+    "shell": "system",
+    "cwd": "image"
+  }
+]
