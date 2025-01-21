@@ -1,9 +1,0 @@
----
-
-- name: libreoffice packages
-  apt:
-    pkg: "{{libreoffice_packages}}"
-    state: latest
-    #default_release: "{{libreoffice_release_distribution}}"
-  tags:
-    - libreoffice-update
