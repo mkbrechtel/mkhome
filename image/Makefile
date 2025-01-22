@@ -3,6 +3,7 @@ export PATH
 
 default: clean image
 image:
+	mkdir -p mkosi.cache mkosi.builddir
 	mkosi build
 
 run:
