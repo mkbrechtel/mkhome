@@ -1,4 +1,0 @@
-mkosi
-systemd-boot
-systemd-repart
-mtools
