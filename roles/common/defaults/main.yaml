@@ -10,7 +10,7 @@ locales_gen:
 root_ssh_key: false
 root_shell: /usr/bin/fish
 
-debian_distribution: bookworm
+debian_distribution: trixie
 debian_components:
   - main
   - non-free-firmware
