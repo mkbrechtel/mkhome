@@ -1,6 +1,0 @@
----
-
-- name: ansible pip package
-  pip:
-    name: "{{ansible_bender_pip_package}}"
-    version: "{{ansible_bender_version}}"

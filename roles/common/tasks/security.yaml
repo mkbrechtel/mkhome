@@ -1,9 +1,0 @@
----
-
-- name: microcode
-  apt:
-    pkg:
-      - intel-microcode
-      - amd64-microcode
-    state: latest
-  when: microcode_update

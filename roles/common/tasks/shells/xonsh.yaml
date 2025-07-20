@@ -1,6 +1,0 @@
----
-
-- name: xonsh config
-  copy:
-    src: shells/xonsh/xonshrc
-    dest: /etc/xonshrc
