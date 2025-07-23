@@ -1,0 +1,2 @@
+#!/bin/sh
+qrencode -o - -lH -s 8 | xloadimage -fit -title stdin2qrcode stdin

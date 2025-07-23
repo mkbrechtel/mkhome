@@ -1,0 +1,42 @@
+#!/usr/bin/fish
+
+{{ansible_managed|comment}}
+
+# reset keyboard state
+numlockx off
+if [ (xset -q | sed -n 's/^.*Caps Lock:\s*\(\S*\).*$/\1/p') = "on" ]
+  xdotool key Caps_Lock
+end
+
+# keymap
+setxkbmap de
+xmodmap ~/.Xmodmap
+setxkbmap -option caps:hyper
+xmodmap ~/.Xmodmap
+xkbset nullify lock
+
+# background
+xsetroot -solid black
+{{background_command}}
+
+# Xresources
+xrdb -merge ~/.Xresources
+
+# rofi
+rofi -theme ~/.config/rofi/theme -dump-xresources > ~/.config/rofi/config
+
+# screensaver settings
+xset s on
+xset +dpms
+xset s {{ lockscreen_timeout | int }} {{ lockscreen_locktime | int }}
+
+# DPMS options
+xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display_sleeptime | int }}
+
+# allow hosts
+{% for xhost in home_xhosts_allow %}
+xhost +{{xhost}}
+{% endfor %}
+
+# disable bell
+xset b off

@@ -1,0 +1,19 @@
+---
+
+- name: pulse cookie
+  copy:
+    src: ~/.pulse-cookie
+    dest: ~/.pulse-cookie
+    mode: 0600
+  when: home_copy_pulseaudio_cookie
+
+- name: pulse directory
+  file:
+    path: ~/.pulse
+    state: directory
+
+- name: pulse default config
+  template:
+    src: pulseaudio/default.pa.j2
+    dest: ~/.pulse/default.pa
+  notify: restart pulseaudio

@@ -1,0 +1,76 @@
+---
+
+- name: barrier directory
+  file:
+    path: ~/.local/share/barrier
+    state: directory
+
+- name: barrier SSL directory
+  file:
+    path: ~/.local/share/barrier/SSL
+    state: directory
+
+- name: barrier SSL Fingerprints directory
+  file:
+    path: ~/.local/share/barrier/SSL/Fingerprints
+    state: directory
+
+- name: Generate an OpenSSL private key with the default values (4096 bits, RSA)
+  community.crypto.openssl_privatekey:
+    path: ~/.local/share/barrier/SSL/Barrier.key
+    return_content: true
+  register: barrier_openssl_privatekey
+
+- name: Generate an OpenSSL Certificate Signing Request
+  community.crypto.openssl_csr:
+    common_name: Barrier
+    privatekey_path: ~/.local/share/barrier/SSL/Barrier.key
+    path: ~/.local/share/barrier/SSL/Barrier.csr
+
+- name: barrier x509 certificate
+  community.crypto.x509_certificate:
+    provider: selfsigned
+    privatekey_path: ~/.local/share/barrier/SSL/Barrier.key
+    csr_path: ~/.local/share/barrier/SSL/Barrier.csr
+    path: ~/.local/share/barrier/SSL/Barrier.crt
+    return_content: true
+  register: barrier_x509_certificate
+
+- name: barrier certificate key file
+  copy:
+    content: "{{barrier_openssl_privatekey.privatekey}}{{barrier_x509_certificate.certificate}}"
+    dest: ~/.local/share/barrier/SSL/Barrier.pem
+
+- name: bacreate fingerprint file
+  shell: openssl x509 -fingerprint -sha1 -noout -in ~/.local/share/barrier/SSL/Barrier.pem | sed -e "s/.*=//" > ~/.local/share/barrier/SSL/Fingerprints/Local.txt
+  args:
+    creates: ~/.local/share/barrier/SSL/Fingerprints/Local.txt
+
+- name: barrier server config
+  template:
+    src: barrier/barrier.conf.j2
+    dest: ~/.local/share/barrier/.barrier.conf
+
+- name: barrier server user service
+  template:
+    src: barrier/barriers.service.j2
+    dest: ~/.config/systemd/user/barriers.service
+  notify: systemd daemon-reload
+
+- name: barrier client user service
+  template:
+    src: barrier/barrierc@.service.j2
+    dest: ~/.config/systemd/user/barrierc@.service
+  notify: systemd daemon-reload
+
+- name: barrier unlock lockscreen service
+  template:
+    src: barrier/barrier-unlock-lockscreen.service.j2
+    dest: ~/.config/systemd/user/barrier-unlock-lockscreen.service
+  notify: systemd daemon-reload
+
+- name: barrier ssh conection user service
+  template:
+    src: barrier/barrier-ssh-connection@.service.j2
+    dest: ~/.config/systemd/user/barrier-ssh-connection@.service
+  notify: systemd daemon-reload

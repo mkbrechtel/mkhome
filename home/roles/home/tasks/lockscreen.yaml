@@ -1,0 +1,31 @@
+---
+
+- name: lockscreen environment
+  template:
+    src: lockscreen/lockscreen.env.j2
+    dest: ~/.lockscreen.env
+
+- name: screensaver shell script
+  template:
+    src: lockscreen/screensaver.sh.j2
+    dest: ~/.screensaver.sh
+    mode: 0755
+
+- name: lockscreen graphical-session service definition
+  template:
+    src: lockscreen/lockscreen.service.j2
+    dest: ~/.config/systemd/user/lockscreen.service
+  notify: systemd daemon-reload
+
+- name: lockscreen-auto graphical-session service definition
+  template:
+    src: lockscreen/xss-lock.service.j2
+    dest: ~/.config/systemd/user/xss-lock.service
+  notify: systemd daemon-reload
+
+- name: xss-lock graphical-session service
+  systemd:
+    name: xss-lock.service
+    enabled: "{{ xss_lock_enabled }}"
+    state: "{{ xss_lock_enabled | ternary('started','stopped') }}"
+    scope: user

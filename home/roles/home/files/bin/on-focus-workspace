@@ -1,0 +1,35 @@
+#!/usr/bin/fish
+
+# get workspace
+if count $argv
+  set ws $argv[1]
+else
+  set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name') | grep -oP '([0-9]*:)?\K(.*)'
+end
+set ws_regex (string escape --style=regex $ws)
+
+# set todo line
+set todo_file ~/todo.txt
+if test -e $todo_file
+  set todo_i3block_sock ~/.todo/i3block.sock
+  grep -v '^x ' $todo_file | grep -P " @ws:$ws_regex(\s|\$)" | head -n 1 | string trim | read todo
+  if test -z $todo
+    echo - | socat STDIN UNIX-CONNECT:$todo_i3block_sock
+  else
+    echo $todo | sed -e 's/ @ws:[^\s].*//g' -e 's/ uuid:[0-9a-f\-]*//g' | socat STDIN UNIX-CONNECT:$todo_i3block_sock
+  end
+end
+
+# focus script
+set focus_script ~/.workspaces/$ws/focus
+if type -q $focus_script
+  $focus_script
+else
+  i3-msg mode default
+end
+
+# space script
+set space_script ~/.workspaces/$ws/space
+if type -q $space_script
+  systemctl --user start workspace-app@$ws.service
+end

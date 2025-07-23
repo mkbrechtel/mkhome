@@ -1,0 +1,150 @@
+home_autostart_desktop_apps:
+  - name: terminal
+    command: "{{ default_terminal }}"
+    enabled: "{{ home_autostart_terminal }}"
+  - name: network manager applet
+    command: nm-applet
+    enabled: "{{ home_autostart_nm_applet }}"
+  - name: bluetooth manager applet
+    command: blueman-applet
+    enabled: "{{ home_autostart_blueman_applet }}"
+  - name: pulseaudio applet
+    command: pasystray
+    enabled: "{{ home_autostart_pasystray }}"
+  - name: mouse pointer hiding
+    command: unclutter
+    enabled: "{{ home_autostart_unclutter }}"
+
+i3_number_workspace_keymaps:
+  - keysym: 1
+    workspace: 1
+  - keysym: 2
+    workspace: 2
+  - keysym: 3
+    workspace: 3
+  - keysym: 4
+    workspace: 4
+  - keysym: 5
+    workspace: 5
+  - keysym: 6
+    workspace: 6
+  - keysym: 7
+    workspace: 7
+  - keysym: 8
+    workspace: 8
+  - keysym: 9
+    workspace: 9
+  - keysym: 0
+    workspace: 10
+  - keysym: F1
+    workspace: 11
+  - keysym: F2
+    workspace: 12
+  - keysym: F3
+    workspace: 13
+  - keysym: F4
+    workspace: 14
+  - keysym: F5
+    workspace: 15
+  - keysym: F6
+    workspace: 16
+  - keysym: F7
+    workspace: 17
+  - keysym: F8
+    workspace: 18
+  - keysym: F9
+    workspace: 19
+  - keysym: F10
+    workspace: 20
+  - keysym: F11
+    workspace: 21
+  - keysym: F12
+    workspace: 22
+
+
+i3_letter_workspace_keymaps:
+  - keysym: a
+    workspace: a
+  - keysym: b
+    workspace: b
+  - keysym: c
+    workspace: c
+  - keysym: d
+    workspace: d
+  - keysym: e
+    workspace: e
+  - keysym: f
+    workspace: f
+  - keysym: g
+    workspace: g
+  - keysym: h
+    workspace: h
+  - keysym: i
+    workspace: i
+  - keysym: j
+    workspace: j
+  - keysym: k
+    workspace: k
+  - keysym: l
+    workspace: l
+  - keysym: m
+    workspace: m
+  - keysym: n
+    workspace: n
+  - keysym: o
+    workspace: o
+  - keysym: p
+    workspace: p
+  - keysym: q
+    workspace: q
+  - keysym: r
+    workspace: r
+  - keysym: s
+    workspace: s
+  - keysym: t
+    workspace: t
+  - keysym: u
+    workspace: u
+  - keysym: v
+    workspace: v
+  - keysym: w
+    workspace: w
+  - keysym: x
+    workspace: x
+  - keysym: y
+    workspace: y
+  - keysym: z
+    workspace: z
+  - keysym: adiaeresis
+    workspace: ä
+  - keysym: odiaeresis
+    workspace: ö
+  - keysym: udiaeresis
+    workspace: ü
+  - keysym: ssharp
+    workspace: ß
+
+background_image_path: ~/.backgrounds/{{background_image|basename}}
+background_command: feh --no-fehbg --bg-fill {{background_image_path}}
+
+timer_folder: ~/.timer
+timer_i3block_socket: "{{timer_folder}}/i3block.sock"
+timer_config: {}
+
+todo_folder: ~/.todo
+todo_i3block_socket: "{{todo_folder}}/i3block.sock"
+
+vncserver_options: |
+  -desktop %H%i
+  -auth %h/.Xauthority%i
+  -geometry {{home_vncserver_geometry}}
+  -depth 24
+  -rfbwait 30000
+  -rfbunixpath %h/.vnc/socket%i
+  -nolisten tcp
+  -pn
+  -localhost
+  -SecurityTypes None
+  {% if not home_vncserver_allow_resize %}
+  -AcceptSetDesktopSize=0
+  {% endif %}

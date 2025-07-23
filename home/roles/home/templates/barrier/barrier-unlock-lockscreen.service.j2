@@ -1,0 +1,17 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=barrier unlock lockscreen until pipe is closed
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=fish -c "not test -p .barrier-unlock-lockscreen.fifo && mkfifo .barrier-unlock-lockscreen.fifo; test -p .barrier-unlock-lockscreen.fifo"
+ExecStartPost=systemctl --user stop lockscreen.service
+ExecStartPost=systemctl --user start barrierc@localhost.service
+ExecStart=sh -c "cat < .barrier-unlock-lockscreen.fifo"
+ExecStopPost=systemctl --user start lockscreen.service
+ExecStopPost=systemctl --user stop barrierc@localhost.service
+
+[Install]
+WantedBy=graphical-session.target

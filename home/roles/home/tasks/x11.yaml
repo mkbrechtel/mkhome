@@ -1,0 +1,45 @@
+---
+
+- name: Xresources
+  template:
+    src: x11/Xresources.j2
+    dest: ~/.Xresources
+  notify: xsession reload
+
+- name: Xmodmap
+  template:
+    src: x11/Xmodmap.j2
+    dest: ~/.Xmodmap
+  notify: xsession reload
+
+- name: xsession reload script
+  template:
+    src: x11/xsession.reload.fish.j2
+    dest: ~/.xsession.reload.fish
+    mode: 0755
+  notify: xsession reload
+
+- name: xsession reload service
+  template:
+    src: x11/xsession-reload.service.j2
+    dest: ~/.config/systemd/user/xsession-reload.service
+    mode: 0755
+  notify: systemd daemon-reload
+
+- name: xsession reload service enabled
+  systemd:
+    name: xsession-reload.service
+    enabled: true
+    scope: user
+
+- name: xsession systemd target
+  template:
+    src: x11/xsession.target.j2
+    dest: ~/.config/systemd/user/xsession.target
+  notify: systemd daemon-reload
+
+- name: xsession script
+  template:
+    src: x11/xsession.j2
+    dest: ~/.xsession
+    mode: 0755

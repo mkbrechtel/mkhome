@@ -1,0 +1,13 @@
+[Unit]
+Description=i3 Window Manager for Display %i
+After=vncserver@%i.service
+
+[Service]
+Environment=DISPLAY=%i
+Environment=XAUTHORITY=%h/.Xauthority%i
+Type=exec
+ExecStart=i3
+ExecReload=i3-msg reload
+
+[Install]
+WantedBy=default.target

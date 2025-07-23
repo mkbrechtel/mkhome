@@ -1,0 +1,12 @@
+---
+
+- name: kitty config directory
+  file:
+    path: ~/.config/kitty
+    state: directory
+
+- name: kitty config
+  template:
+    src: kitty/kitty.conf.j2
+    dest: ~/.config/kitty/kitty.conf
+    mode: 0755

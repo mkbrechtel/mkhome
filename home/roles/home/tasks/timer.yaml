@@ -1,0 +1,31 @@
+---
+
+- name: timer directory
+  file:
+    path: "{{timer_folder}}"
+    state: directory
+
+- name: timer config
+  copy:
+    content: "{{timer_config}}"
+    dest: "{{timer_folder}}/config.json"
+
+- name: timer activity timeclock  directory
+  file:
+    path: "{{timer_folder}}/activity.timeclock.d"
+    state: directory
+
+- name: timer activity list directory
+  file:
+    path: "{{timer_folder}}/activity.lists"
+    state: directory
+
+- name: timer default activities
+  copy:
+    content: "{{ default_activities | join('\n') }}"
+    dest: "{{timer_folder}}/activity.lists/10-default"
+
+- name: timer activity i3blocks linefile
+  shell: echo ☆ > {{timer_folder}}/activity.i3blocks
+  args:
+    creates: "{{timer_folder}}/activity.i3blocks"

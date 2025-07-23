@@ -1,0 +1,42 @@
+---
+
+- name: workspace app service
+  template:
+    src: workspaces/workspace-app.service.j2
+    dest: ~/.config/systemd/user/workspace-app@.service
+    mode: 0755
+  notify: systemd daemon-reload
+
+- name: workspaces directory
+  file:
+    path: ~/.workspaces
+    state: directory
+
+- name: workspace directory
+  file:
+    path: ~/.workspaces/{{workspace}}
+    state: directory
+  with_items: "{{ workspaces }}"
+  loop_control:
+    loop_var: workspace
+
+- name: workspace focus scripts
+  template:
+    src: workspaces/workspace.focus.fish.j2
+    dest: ~/.workspaces/{{workspace}}/focus
+    mode: 0755
+  with_items: "{{ workspaces }}"
+  loop_control:
+    loop_var: workspace
+
+- name: workspace space shortcut scripts
+  template:
+    src: workspaces/workspace.space.fish.j2
+    dest: ~/.workspaces/{{workspace}}/space
+    mode: 0755
+  with_items: "{{ workspaces }}"
+  loop_control:
+    loop_var: workspace
+  when:
+    - workspaces[workspace]
+    - '"type" in workspaces[workspace]'

@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=X session reload settings
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.xsession.reload.fish
+#Restart=always
+#RestartSec=60s
+
+[Install]
+WantedBy=graphical-session.target

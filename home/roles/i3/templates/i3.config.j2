@@ -1,0 +1,370 @@
+{{ ansible_managed | comment }}
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+{% set workspace_switcher = "exec --no-startup-id i3-workspace-switcher" %}
+{% set on_focus_workspace = "exec --no-startup-id on-focus-workspace" %}
+
+### Font
+font {{i3_font}}
+
+
+### Modifier Key
+set $mod Mod4
+set $plexmod Mod3
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+### default/local mode
+
+## special keys
+bindsym XF86Sleep exec {{lockscreen_lock_command}}
+bindsym XF86Mail exec {{mail_command}}
+bindsym XF86HomePage exec {{default_browser}}
+bindsym XF86Calculator exec {{calculator_command}}
+
+## Special modes
+bindsym $mod+t mode timer
+bindsym $mod+s mode session
+bindsym $mod+c mode clipboard
+bindcode $mod+49 mode "session"
+
+bindcode $mod+9 exec --no-startup-id ~/.xsession.reload.fish
+
+## Todo
+bindsym $mod+x exec todo finished
+
+## Applications
+bindsym $mod+Return exec "{{default_terminal}}"
+bindsym $mod+b exec "{{default_browser}}"
+bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+e exec rofi -show run
+bindsym $mod+a mode "apps"
+bindsym $mod+space exec "on-space-shortcut"
+
+
+## Workspaces
+bindsym $mod+w {{workspace_switcher}}
+{% for ws in i3_number_workspace_keymaps %}
+bindsym $mod+{{ws.keysym}} workspace "{{ws.workspace}}"
+{% endfor %}
+# focus workspace
+bindsym $mod+Prior workspace next
+bindsym $mod+Next workspace prev
+bindsym $mod+ssharp scratchpad show
+bindsym $mod+g sticky toggle
+
+
+## Layout
+bindsym $mod+l mode "layout"
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+## Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+p focus parent
+# change focus between tiling / floating windows
+bindsym $mod+Tab focus mode_toggle
+
+## Move
+# move window
+bindsym $mod+Control+w exec fish -c "i3-msg move container to workspace (i3-msg -t get_workspaces |  jq --raw-output '.[]|select(.num == -1).name' | rofi -dmenu -p 'move to workspace' )"; mode "default"
+bindsym $mod+Control+Left move left
+bindsym $mod+Control+Down move down
+bindsym $mod+Control+Up move up
+bindsym $mod+Control+Right move right
+bindsym $mod+Control+Tab floating toggle
+{% for ws in i3_number_workspace_keymaps %}
+  bindsym $mod+Control+{{ws.keysym}} move container to workspace "{{ws.workspace}}"; mode "default"
+{% endfor %}
+# move workspace
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+Down move workspace to output down
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+O exec fish -c "i3-msg move workspace to output ( i3-msg -t get_outputs | jq --raw-output '.[]|select(.active == true).name' | rofi -dmenu -p 'move workspace to output' )"; mode "default"
+bindsym $mod+Shift+P move workspace to output primary; mode "default"
+
+## Window
+# The middle button over a titlebar kills the window
+bindsym --release button2 kill
+# The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+button2 kill
+bindsym $mod+BackSpace kill
+bindsym $mod+q kill
+bindsym $mod+f fullscreen
+bindsym $mod+r mode resize
+
+# free keys
+# $mod+i
+# $mod+j
+# $mod+k
+# $mod+n
+# $mod+m
+# $mod+o
+# $mod+u
+# $mod+adiaeresis
+# $mod+odiaeresis
+# $mod+udiaeresis
+# $mod+comma
+# $mod+period
+# $mod+numbersign
+# $mod+Home
+# $mod+End
+# $mod+Pause
+# $mod+Delete
+# $mod+Insert
+# $mod+Print
+# $mod+Scroll_Lock
+# $mod+minus
+# $mod+plus
+# $mod+less
+
+## stuff that is available in default and remote mode
+{% macro overall() %}
+
+  bindsym $plexmod+space exec on-space-shortcut
+  bindsym $plexmod+BackSpace kill
+  bindsym $plexmod+Tab {{workspace_switcher}}
+
+  {% for ws in i3_number_workspace_keymaps %}
+  bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
+  {% endfor %}
+  {% for ws in i3_letter_workspace_keymaps %}
+  bindsym $plexmod+{{ws.keysym}} workspace "{{ws.workspace}}"
+  {% endfor %}
+  # focus workspace
+  bindsym $plexmod+Prior workspace next
+  bindsym $plexmod+Next workspace prev
+
+  # focus output
+  bindsym $plexmod+Shift+p focus output primary
+  bindsym $plexmod+Shift+o exec fish -c "i3-msg focus output ( i3-msg -t get_outputs | jq --raw-output '.[]|select(.active == true).name' | rofi -dmenu -p 'focus output' )"
+  bindsym $plexmod+Left focus output left
+  bindsym $plexmod+Down focus output down
+  bindsym $plexmod+Up focus output up
+  bindsym $plexmod+Right focus output right
+
+  # Special modes
+  bindcode $plexmod+49 mode "session"
+
+{% endmacro %}
+{{ overall() }}
+
+
+### remote mode
+mode "remote" {
+
+  bindcode $mod+9 mode "default"
+  bindsym XF86Sleep exec {{lockscreen_lock_command}}
+
+  # The middle button over a titlebar kills the window
+  bindsym --release button2 kill
+
+  {{ overall() }}
+
+}
+
+
+
+### Applications mode
+mode "apps" {
+{% for a in application_shortcuts | dict2items %}
+  bindsym {{a.key}} exec {{a.value}}; mode "default"
+{% endfor %}
+  bindsym Escape mode "default"
+}
+
+
+
+### Session
+mode "session" {
+  bindsym q exit
+  bindsym r reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
+  bindsym R reload; exec --no-startup-id ~/.xsession.reload.fish; mode "default"; {{on_focus_workspace}}
+  bindsym s exec --no-startup-id {{system_suspend_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym l exec --no-startup-id {{lockscreen_lock_command}}; mode "default"; {{on_focus_workspace}}
+  bindcode 49 exec --no-startup-id {{lockscreen_lock_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym b exec --no-startup-id xsetroot -solid black; mode "default"; {{on_focus_workspace}}
+  bindsym e exec --no-startup-id xset s on; exec --no-startup-id xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display_sleeptime | int }}; mode "default"; {{on_focus_workspace}}
+  bindsym d exec --no-startup-id xset s off; exec --no-startup-id xset dpms 0 0 0; mode "default"; {{on_focus_workspace}}
+  bindsym Shift+R exec --no-startup-id {{system_reboot_command}}; mode "default"; {{on_focus_workspace}}
+  bindsym Shift+P exec --no-startup-id {{system_poweroff_command}}; mode "default"; {{on_focus_workspace}}
+
+  # back to normal: Escape
+  bindsym Escape mode "default"; {{on_focus_workspace}}
+}
+
+
+### Todo
+mode "todo" {
+  bindsym a exec "timer select_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym e exec "timer end_activity"; mode "default"; {{on_focus_workspace}}
+  bindsym w exec "todo workspace"; mode "default"; {{on_focus_workspace}}
+
+  # back to normal: Escape
+  bindsym Escape mode "default"; {{on_focus_workspace}}
+}
+
+### Clipboard
+mode "clipboard" {
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+
+
+### Layout
+# set default layout to tabbed
+workspace_layout tabbed
+
+mode "layout" {
+  bindsym s layout stacking; mode "default";
+  bindsym t layout tabbed; mode "default";
+  bindsym e layout toggle split; mode "default";
+  bindsym h layout splith; mode "default"
+  bindsym v layout splitv; mode "default"
+  bindsym m exec --no-startup-id select-screenlayout; {{on_focus_workspace}}
+
+  bindsym r mode remote
+  bindsym b mode bar
+
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+
+mode "bar" {
+  bindsym h bar mode hide; mode "default"
+  bindsym d bar mode dock; mode "default"
+
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+
+
+### Resize window mode
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+
+  # Pressing left will shrink the window’s width.
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym $left    resize shrink width 10 px or 10 ppt
+  # Pressing down will grow the window’s height.
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym $down    resize grow height 10 px or 10 ppt
+  # Pressing up will shrink the window’s height.
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym $up  resize shrink height 10 px or 10 ppt
+  # Pressing right will grow the window’s width.
+  bindsym Right      resize grow width 10 px or 10 ppt
+  bindsym $right resize grow width 10 px or 10 ppt
+
+  bindsym 1 resize set 10 ppt 10 ppt; mode "default"
+  bindsym 2 resize set 20 ppt 20 ppt; mode "default"
+  bindsym 3 resize set 30 ppt 30 ppt; mode "default"
+  bindsym 4 resize set 40 ppt 40 ppt; mode "default"
+  bindsym 5 resize set 50 ppt 50 ppt; mode "default"
+  bindsym 6 resize set 60 ppt 60 ppt; mode "default"
+  bindsym 7 resize set 70 ppt 70 ppt; mode "default"
+  bindsym 8 resize set 80 ppt 80 ppt; mode "default"
+  bindsym 9 resize set 90 ppt 90 ppt; mode "default"
+  bindsym 0 resize set 100 ppt 100 ppt; mode "default"
+
+  bindsym v resize set 640 480; mode "default"
+  bindsym y resize set 870 628; mode "default"
+
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+
+
+
+### Bar
+bar {
+{% if i3_hide_bar %}
+  mode invisible
+  hidden_state hide
+{% endif %}
+
+  position top
+
+  strip_workspace_numbers no
+
+  tray_output primary
+
+  status_command i3blocks
+
+  colors {
+    background #000000
+    statusline #ffffff
+    separator #666666
+
+    # <colorclass> <border> <background> <text>
+    focused_workspace  {{home_base_color_hue|hsv2rgb(50,60)}} {{home_base_color_hue|hsv2rgb(66,47)}} #ffffff
+    active_workspace   #333333 #696969 #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2f343a #900000 #ffffff
+    binding_mode       #2f343a #900000 #ffffff
+  }
+}
+
+
+
+### Design
+
+# class     border  backgr. text    indicator child_border
+client.focused    {{home_base_color_hue|hsv2rgb(50,60)}} {{home_base_color_hue|hsv2rgb(66,47)}} #ffffff {{home_base_color_hue|hsv2rgb(81,91)}}   {{home_base_color_hue|hsv2rgb(66,47)}}
+client.focused_inactive #333333 #6A6A6A #ffffff #505050   #6A6A6A
+client.unfocused  #333333 #222222 #888888 #2E2E2E   #222222
+client.urgent     #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+{% if not i3_hide_border_one_window %}
+default_border normal
+hide_edge_borders both
+{% else %}
+default_border none
+hide_edge_borders smart
+{% endif %}
+
+default_floating_border normal
+
+### general settings
+
+focus_on_window_activation urgent
+for_window [all] title_window_icon on
+
+
+### Application specific rule
+
+for_window [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$"] border none
+for_window [window_role="^About$"] floating enable
+for_window [class="^Pavu"] floating enable
+for_window [class="^Paman$"] floating enable
+for_window [class="^Blueman"] floating enable
+for_window [class="^URxvt$" title="^tmux-workspace$"] border none
+for_window [class="^zoom$" title="^zoom$"] floating enable
+
+### assign apps to workspaces
+assign [class="^netzdrive$"] → netzdrive
+assign [class="^TelegramDesktop$"] → tg
+assign [class="^Signal$"] → signal
+assign [class="^Element$"] → matrix
+assign [class="^thunderbird$"] → mail
+assign [class="^zoom$" ] → zoom
+assign [class="^Wfica_"] → citrix
+assign [title="^Citrix maximized probe window$"] → citrix
+# vncviewer workspaces
+{% for workspace in workspaces|dict2items|json_query("[?value.type=='vncviewer'].key") %}
+{% set ws = workspaces[workspace] %}
+assign [class="^(?:Tiger)?V[Nn][Cc] ?[Vv]iewer$" title="^{{ws.host}}:{{ws.display|default(home_vncserver_display_number)}}"] → {{workspace}}
+{% endfor %}

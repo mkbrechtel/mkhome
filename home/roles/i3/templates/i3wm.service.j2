@@ -1,0 +1,13 @@
+[Unit]
+Description=i3 Window Manager
+PartOf=graphical-session.target
+Wants=i3-watchers.service
+
+[Service]
+Type=exec
+ExecStart=i3
+ExecReload=i3-msg reload
+ExecStopPost=/bin/systemctl --user stop graphical-session.target
+
+[Install]
+RequiredBy=xsession.target

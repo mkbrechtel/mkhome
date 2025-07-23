@@ -1,0 +1,14 @@
+---
+
+- name: screenlayout service
+  template:
+    src: screenlayout/screenlayout.service.j2
+    dest: ~/.config/systemd/user/screenlayout@.service
+    mode: 0755
+  notify: systemd daemon-reload
+
+# - name: autoconfigure default screenlayout
+#   systemd:
+#     name: screenlayout@default.service
+#     enabled: true
+#     scope: user

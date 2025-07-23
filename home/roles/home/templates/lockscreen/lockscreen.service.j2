@@ -1,0 +1,19 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Screensaver
+PartOf=graphical-session.target
+
+[Service]
+Type=notify
+ExecStart=xsecurelock -- systemd-notify --ready
+NotifyAccess=all
+EnvironmentFile=%h/.lockscreen.env
+
+ExecStartPost=numlockx off
+ExecStartPost=xset dpms $XSECURELOCK_AUTH_TIMEOUT $XSECURELOCK_AUTH_TIMEOUT $XSECURELOCK_AUTH_TIMEOUT
+ExecStopPost=xset dpms {{ display_sleeptime | int }} {{ display_sleeptime | int }} {{ display_sleeptime | int }}
+ExecStopPost=xset dpms force on
+
+[Install]
+WantedBy=graphical-session.target

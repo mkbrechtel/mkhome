@@ -1,0 +1,112 @@
+{{ ansible_managed | comment }}
+
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+{% if i3blocks_with_1life %}
+[1life]
+full_text=❤️ 1
+{% endif %}
+
+{% if i3blocks_ntfy_url is defined and i3blocks_ntfy_url %}
+# todo
+[ntfy]
+command=i3blocks-ntfy.sh {{ i3blocks_ntfy_url | quote }}
+interval=persist
+{% endif %}
+
+{% if i3blocks_with_timer %}
+[timer]
+command=i3block-socket-watcher {{timer_i3block_socket}}
+interval=persist
+markup=pango
+{% endif %}
+
+{% if i3blocks_with_user %}
+[user]
+label=🪪
+command=echo "$USER"
+interval=once
+{% endif %}
+
+{% if i3blocks_with_host %}
+[host]
+label=🖥️
+command=echo "`hostname -s`"
+interval=once
+{% endif %}
+
+[load_average]
+label=⚙️
+interval=10
+
+[memory]
+label=📇
+interval=30
+
+[memory]
+label=🧮
+instance=swap
+interval=30
+
+[disk]
+label=📂
+interval=30
+
+{% if i3blocks_with_battery %}
+[battery]
+label=⚡
+#instance=1
+interval=30
+{% endif %}
+
+{% if i3blocks_with_volume %}
+[volume]
+#label=VOL
+label=♪
+instance=Master
+#instance=PCM
+interval=once
+signal=10
+{% endif %}
+
+{% if i3blocks_with_date %}
+[date]
+label=📅
+command=date '+%Y-%m-%d W%V %a'
+interval=1
+{% endif %}
+
+{% if i3blocks_with_time %}
+[time]
+label=⌚
+command=date '+%H:%M %Z'
+interval=1
+{% endif %}

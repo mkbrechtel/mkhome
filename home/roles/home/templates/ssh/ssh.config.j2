@@ -1,0 +1,12 @@
+{% for hostname in groups.all %}
+Host {{hostname}}
+{% if ssh_over_tor and ('ansible_local' in hostvars[hostname]) and ('tor' in hostvars[hostname].ansible_local) and ('ssh' in hostvars[hostname].ansible_local.tor.tor_hidden_services_hostnames) %}
+  HostName {{hostvars[hostname].ansible_local.tor.tor_hidden_services_hostnames.ssh}}
+  ProxyCommand nc -x 127.0.0.1:9050 -X5 %h %p
+{% elif 'external_ip' in hostvars[hostname] %}
+  HostName {{hostvars[hostname].external_ip}}
+{% endif %}
+{% if 'ssh_proxy_jump' in hostvars[hostname] %}
+  ProxyJump {{hostvars[hostname].ssh_proxy_jump}}
+{% endif %}
+{% endfor %}

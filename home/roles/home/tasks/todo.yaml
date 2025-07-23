@@ -1,0 +1,12 @@
+---
+
+- name: todo directory
+  file:
+    path: "{{todo_folder}}"
+    state: directory
+
+- name: todo file
+  copy:
+    content: ""
+    dest: "{{todo_file}}"
+    force: false

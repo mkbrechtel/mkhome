@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=barrier ssh connection
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=sh -c "sleep infinity | ssh $@" ssh -R 24800:localhost:24800 %i\
+fish -c "\"not test -p .barrier-unlock-lockscreen.fifo && mkfifo .barrier-unlock-lockscreen.fifo; test -p .barrier-unlock-lockscreen.fifo\"";\
+  systemctl --user restart barrier-unlock-lockscreen.service;\
+  exec cat > .barrier-unlock-lockscreen.fifo
+
+[Install]
+WantedBy=graphical-session.target

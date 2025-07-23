@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=barrier server app
+PartOf=graphical-session.target
+After=xsession-reload.service
+
+[Service]
+ExecStart=barriers --no-daemon --enable-crypto --address [::1]:24800  --log %h/.local/share/barrier/barriers.log
+
+[Install]
+WantedBy=graphical-session.target

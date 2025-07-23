@@ -1,0 +1,16 @@
+#!/usr/bin/fish
+
+{{ansible_managed|comment}}
+
+systemctl --user --wait start pathappend.service
+
+{% if not home_xsession_vncviewer %}
+set -x XDG_SESSION_TYPE x11
+systemctl --user import-environment XDG_SESSION_TYPE
+systemctl --user import-environment XDG_SESSION_ID
+exec systemctl --user start --wait xsession.target
+{% else %}
+systemctl --user start vncserver@:{{home_vncserver_display_number}}.service
+i3 -c ~/.config/i3/null.config &
+exec xtigervncviewer ~/.vnc/socket -PasswordFile ~/.vnc/passwd -FullScreen=1 -Maximize=1
+{% endif %}

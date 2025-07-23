@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=xss-lock - use external locker as X screen saver
+Documentation=man:xss-lock(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/xss-lock --verbose --transfer-sleep-lock --session=${XDG_SESSION_ID} -- systemctl --user start lockscreen.service
+
+[Install]
+WantedBy=graphical-session.target

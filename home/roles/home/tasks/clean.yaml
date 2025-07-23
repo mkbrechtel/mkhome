@@ -1,0 +1,28 @@
+---
+
+- name: remove old binaries
+  file:
+    path: ~/bin/{{item}}
+    state: absent
+  loop:
+    - etx
+    - i3-watchers
+    - in2qr
+    - on-focus-workspace
+    - on-space-shortcut
+    - pipe-watcher
+    - select-screenlayout
+    - timer
+
+# - name: stop lockscreen-auto systemd user service
+#   systemd:
+#     name: lockscreen-auto.service
+#     state: stopped
+#     scope: user
+#     enabled: false
+
+- name: remove lockscreen-auto systemd user service
+  file:
+    path: ~/.config/systemd/user/lockscreen-auto.service
+    state: absent
+

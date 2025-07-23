@@ -1,0 +1,9 @@
+---
+
+- name: ensure that all apt package requirements are met
+  apt:
+    pkg:
+      - socat
+      - fish
+      - xsecurelock
+      - xss-lock

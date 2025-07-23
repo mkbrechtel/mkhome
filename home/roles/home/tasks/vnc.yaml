@@ -1,0 +1,19 @@
+---
+
+- name: vnc directory
+  file:
+    path: ~/.vnc
+    state: directory
+    mode: 0700
+
+- name: default vnc client options
+  template:
+    src: vnc/default.tigervnc.j2
+    dest: ~/.vnc/default.tigervnc
+    mode: 0755
+
+- name: vncserver user service
+  template:
+    src: vnc/vncserver@.service.j2
+    dest: ~/.config/systemd/user/vncserver@.service
+  notify: systemd daemon-reload

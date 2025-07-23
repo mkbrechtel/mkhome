@@ -1,0 +1,27 @@
+---
+
+- name: ssh-keys
+  copy:
+    src: ~/ssh-keys/
+    dest: ~/ssh-keys
+    mode: u=rw,g=,o=
+
+- name: ssh auto config
+  template:
+    src: ssh/ssh.config.j2
+    dest: ~/.ssh/config.auto
+
+- name: include ssh auto config
+  lineinfile:
+    path: ~/.ssh/config
+    line: Include config.auto
+    insertbefore: BOF
+    create: true
+
+- name: enable and start ssh-agent user service
+  systemd:
+    name: ssh-agent.service
+    state: started
+    enabled: true
+    scope: user
+  when: ansible_distribution == 'Debian'

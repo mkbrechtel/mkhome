@@ -1,0 +1,8 @@
+#!/usr/bin/fish
+
+set ws (i3-msg -t get_workspaces | jq --raw-output '.[]|select(.focused == true).name')
+
+set space_script ~/.workspaces/$ws/space
+if type -q $space_script
+  systemctl --user restart workspace-app@$ws.service
+end

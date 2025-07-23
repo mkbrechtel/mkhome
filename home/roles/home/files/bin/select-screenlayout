@@ -1,0 +1,13 @@
+#!/usr/bin/fish
+
+function ls-screenlayout
+  cd ~/.screenlayout
+  for file in (find ~/.screenlayout -type f -printf '%P\n')
+    string replace -r '^(.*).sh$' '$1' "$file"
+  end
+end
+
+set screenlayout (ls-screenlayout | rofi -dmenu -p 'select screenlayout')
+~/.screenlayout/$screenlayout.sh
+
+~/.xsession.reload.fish
