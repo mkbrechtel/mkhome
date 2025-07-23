@@ -1,0 +1,4 @@
+---
+timer_folder: ~/.timer
+timer_i3block_socket: "{{timer_folder}}/i3block.sock"
+timer_config: {}

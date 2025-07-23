@@ -1,0 +1,14 @@
+---
+- name: fish config directory
+  file:
+    path: ~/.config/fish
+    state: directory
+
+- name: fish config files
+  template:
+    src: fish/{{ item }}.fish.j2
+    dest: ~/.config/fish/{{ item }}.fish
+  with_items:
+    - fish_title
+    - fish_prompt
+    - fish_greeting

@@ -1,0 +1,6 @@
+---
+- name: install lockscreen packages
+  apt:
+    name: xsecurelock xss-lock socat
+    state: present
+  become: yes

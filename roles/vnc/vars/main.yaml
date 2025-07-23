@@ -1,0 +1,15 @@
+---
+vncserver_options: |
+  -desktop %H%i
+  -auth %h/.Xauthority%i
+  -geometry {{home_vncserver_geometry}}
+  -depth 24
+  -rfbwait 30000
+  -rfbunixpath %h/.vnc/socket%i
+  -nolisten tcp
+  -pn
+  -localhost
+  -SecurityTypes None
+  {% if not home_vncserver_allow_resize %}
+  -AcceptSetDesktopSize=0
+  {% endif %}

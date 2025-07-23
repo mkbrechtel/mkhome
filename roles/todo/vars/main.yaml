@@ -1,0 +1,3 @@
+---
+todo_folder: ~/.todo
+todo_i3block_socket: "{{todo_folder}}/i3block.sock"
