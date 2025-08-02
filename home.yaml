@@ -8,7 +8,7 @@
     - background
     - desktop_apps
     - fish
-    - git
+    #- git
     - i3
     - kitty
     - lockscreen
