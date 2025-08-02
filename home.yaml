@@ -1,0 +1,25 @@
+---
+- name: Deploy home configuration for current user
+  hosts: localhost
+  become: false
+  vars:
+    mkdesk_mode: home
+  roles:
+    - background
+    - desktop_apps
+    - fish
+    - git
+    - i3
+    - kitty
+    - lockscreen
+    - pulseaudio
+    - rofi
+    # - screenlayout
+    # - ssh
+    # - timer
+    # - tmux
+    # - todo
+    # - vnc
+    # - workspaces
+    # - x11
+    # - xfce
