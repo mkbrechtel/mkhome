@@ -97,7 +97,7 @@ desktop_packages:
 
   # tools
   - redshift-gtk
-  - barrier
+  #- barrier  # Not available in current distribution
   - xinput
   - rofi
   - xclip
@@ -126,7 +126,7 @@ desktop_packages:
   - xscreensaver-gl
   - python3
   - mate-power-manager
-  - xautolock
+  #- xautolock  # Not available in Debian 13
   - xss-lock
   - xbacklight
   - i3lock

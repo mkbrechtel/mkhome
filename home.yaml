@@ -19,7 +19,7 @@
     # - timer
     # - tmux
     # - todo
-    # - vnc
-    # - workspaces
+    - vnc
+    - workspaces
     # - x11
     # - xfce

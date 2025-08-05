@@ -2,6 +2,8 @@
 - name: Deploy desk to local system
   hosts: localhost
   become: true
+  vars:
+    mkdesk_mode: home
   roles:
     - desktop_packages
     - zoom

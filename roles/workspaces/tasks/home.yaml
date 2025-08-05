@@ -14,29 +14,26 @@
 
 - name: workspace directory
   file:
-    path: ~/.workspaces/{{workspace}}
+    path: ~/.workspaces/{{item.key}}
     state: directory
-  with_items: "{{ workspaces }}"
-  loop_control:
-    loop_var: workspace
+  with_dict: "{{ workspaces }}"
+  when: workspaces | length > 0
 
 - name: workspace focus scripts
   template:
     src: workspaces/workspace.focus.fish.j2
-    dest: ~/.workspaces/{{workspace}}/focus
+    dest: ~/.workspaces/{{item.key}}/focus
     mode: 0755
-  with_items: "{{ workspaces }}"
-  loop_control:
-    loop_var: workspace
+  with_dict: "{{ workspaces }}"
+  when: workspaces | length > 0
 
 - name: workspace space shortcut scripts
   template:
     src: workspaces/workspace.space.fish.j2
-    dest: ~/.workspaces/{{workspace}}/space
+    dest: ~/.workspaces/{{item.key}}/space
     mode: 0755
-  with_items: "{{ workspaces }}"
-  loop_control:
-    loop_var: workspace
+  with_dict: "{{ workspaces }}"
   when:
-    - workspaces[workspace]
-    - '"type" in workspaces[workspace]'
+    - workspaces | length > 0
+    - item.value is defined
+    - '"type" in item.value'

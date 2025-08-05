@@ -4,7 +4,6 @@ vncserver_options: |
   -auth %h/.Xauthority%i
   -geometry {{home_vncserver_geometry}}
   -depth 24
-  -rfbwait 30000
   -rfbunixpath %h/.vnc/socket%i
   -nolisten tcp
   -pn
