@@ -11,3 +11,7 @@
 - name: i3 reload
   shell: i3-msg reload  
   when: i3_session is defined
+
+- name: xsession reload
+  shell: i3-msg reload
+  failed_when: false
