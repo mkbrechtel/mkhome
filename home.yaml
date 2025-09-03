@@ -5,15 +5,19 @@
   vars:
     mkdesk_mode: home
   roles:
-    - background
-    - desktop_apps
-    - fish
+    - firefox
+    - chromium
+    - micro
+    - lf
+    # - background
+    # - desktop_apps
+    # - fish
     #- git
-    - i3
-    - kitty
-    - lockscreen
-    - pulseaudio
-    - rofi
+    # - i3
+    # - kitty
+    # - lockscreen
+    # - pulseaudio
+    # - rofi
     # - screenlayout
     # - ssh
     # - timer

@@ -1,0 +1,6 @@
+---
+
+- name: Install micro debian package
+  apt:
+    name: micro
+    state: present

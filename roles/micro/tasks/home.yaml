@@ -1,0 +1,16 @@
+---
+
+- name: Config directory
+  file:
+    path: ~/.config/micro
+    state: directory
+
+- name: Settings config
+  copy:
+    content: "{{ micro_settings }}"
+    dest: ~/.config/micro/settings.json
+
+- name: Bindings config
+  copy:
+    content: "{{ micro_bindings }}"
+    dest: ~/.config/micro/bindings.json

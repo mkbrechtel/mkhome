@@ -1,0 +1,11 @@
+---
+- name: Create lf config directory
+  file:
+    path: "~/.config/lf"
+    state: directory
+    mode: "0755"
+
+- name: lf config
+  copy:
+    src: lfrc
+    dest: "~/.config/lf/lfrc"

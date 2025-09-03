@@ -1,0 +1,15 @@
+# Tig configuration file
+# See man tigrc for more options
+
+# Key bindings
+# Bind '+' to add a git note to the current commit
+bind main + !git notes add %(commit)
+bind diff + !git notes add %(commit)
+bind log + !git notes add %(commit)
+bind reflog + !git notes add %(commit)
+
+# Color settings for notes
+color "Notes:" yellow default
+
+# Mouse support
+set mouse = true

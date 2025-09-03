@@ -1,1 +1,10 @@
 ---
+
+- name: Install kitty debian package
+  apt:
+    name: kitty
+
+- name: Set kitty as the default terminal emulator
+  community.general.alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/kitty

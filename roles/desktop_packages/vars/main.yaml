@@ -113,14 +113,6 @@ desktop_packages:
   - sm
   - xloadimage
 
-  # web
-  - firefox-esr
-  - firefox-esr-l10n-de
-  - chromium
-  - chromium-l10n
-  - webext-ublock-origin-firefox
-  - webext-ublock-origin-chromium
-
   # lockscreen
   - mate-screensaver
   - xscreensaver-gl
@@ -133,31 +125,12 @@ desktop_packages:
   - xssproxy
   - xsecurelock
 
-  # xfce
-  - xfce4
-  - xfce4-goodies
-  - xfce4-whiskermenu-plugin
-  - xfce4-smartbookmark-plugin
-  - xfce4-places-plugin
-  - xfce4-datetime-plugin
-  - xfce4-power-manager
-
   # printer
   - system-config-printer
-
-  # i3
-  - i3-wm
-  - i3blocks
-  - i3status
-  - i3pystatus
 
   # themes
   - dmz-cursor-theme
   - gnome-brave-icon-theme
-
-  # terminal emulators
-  - xfce4-terminal
-  - kitty
 
   # drive management
   - gparted

@@ -1,0 +1,5 @@
+---
+- name: Install lf debian package
+  apt:
+    name: lf
+    state: present

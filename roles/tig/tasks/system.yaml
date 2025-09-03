@@ -1,0 +1,6 @@
+---
+
+- name: Install tig debian package
+  apt:
+    name: tig
+    state: present

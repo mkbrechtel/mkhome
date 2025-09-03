@@ -1,0 +1,8 @@
+---
+
+- name: Set Firefox as the default handler for both HTTP and HTTPS
+  community.general.xdg_mime:
+    mime_types:
+      - x-scheme-handler/http
+      - x-scheme-handler/https
+    handler: firefox-esr.desktop

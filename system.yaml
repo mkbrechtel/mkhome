@@ -3,7 +3,6 @@
   hosts: localhost
   become: true
   vars:
-    mkdesk_mode: home
+    mkdesk_mode: system
   roles:
-    - desktop_packages
-    - zoom
+    - kitty

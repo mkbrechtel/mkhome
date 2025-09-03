@@ -1,0 +1,8 @@
+---
+
+- name: Install firefox debian packages
+  apt:
+    name:
+      - firefox-esr
+      - firefox-esr-l10n-de
+      - webext-ublock-origin-firefox
