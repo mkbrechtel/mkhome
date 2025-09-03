@@ -1,6 +1,6 @@
 ---
 - import_tasks: system.yaml
-  when: mkdesk_mode in ['system', 'both']
+  when: mkhome_mode in ['system', 'both']
   
 - import_tasks: home.yaml  
-  when: mkdesk_mode in ['home', 'both']
+  when: mkhome_mode in ['home', 'both']

@@ -3,6 +3,6 @@
   hosts: localhost
   become: true
   vars:
-    mkdesk_mode: system
+    mkhome_mode: system
   roles:
     - kitty
