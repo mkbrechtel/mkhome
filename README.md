@@ -1,3 +1,3 @@
-# desk
+# mkhome
 
-desk is an ansible collection that holds my desktop setup.
+my home directory and work system configuration
