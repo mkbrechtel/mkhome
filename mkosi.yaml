@@ -1,0 +1,10 @@
+---
+- name: Deploy mkosi image configuration
+  hosts: localhost
+  become: false
+  vars:
+    mkhome_mode: mkosi
+  roles:
+    - mkosi
+    - kitty
+    # Add other roles as needed for the image

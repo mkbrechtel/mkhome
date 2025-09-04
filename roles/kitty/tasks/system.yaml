@@ -8,3 +8,15 @@
   community.general.alternatives:
     name: x-terminal-emulator
     path: /usr/bin/kitty
+
+- name: Create system-wide kitty config directory
+  file:
+    path: /etc/xdg/kitty
+    state: directory
+    mode: '0755'
+
+- name: Install kitty system-wide configuration
+  template:
+    src: kitty/kitty.conf.j2
+    dest: /etc/xdg/kitty/kitty.conf
+    mode: '0644'

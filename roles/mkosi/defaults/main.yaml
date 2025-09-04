@@ -1,0 +1,4 @@
+---
+# Default variables for mkosi role
+mkosi_conf_dir: "{{ playbook_dir }}/mkosi.conf.d"
+mkosi_extra_dir: "{{ playbook_dir }}/mkosi.extra"
