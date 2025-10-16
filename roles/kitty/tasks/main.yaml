@@ -1,9 +1,10 @@
 ---
-- import_tasks: system.yaml
-  when: mkhome_mode == 'system'
-  
-- import_tasks: home.yaml  
-  when: mkhome_mode == 'home'
+- import_tasks: install.yaml
+  when: mkhome_install
 
-- import_tasks: mkosi.yaml
-  when: mkhome_mode == 'mkosi'
+- import_tasks: global.yaml
+  when: mkhome_configure_global
+
+- import_tasks: home.yaml
+  when: mkhome_configure_home
+

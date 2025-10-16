@@ -2,32 +2,30 @@
 
 ## Architecture Overview
 
-This Ansible collection manages system and user configurations through a role-based architecture. Each role can operate in different modes depending on the deployment context.
+This Ansible collection manages system and user configurations through a role-based architecture. Each role can be configured using feature flags that control which tasks are executed.
 
-## mkhome_mode Settings
+## Feature Flags
 
-The `mkhome_mode` variable determines how roles behave:
+Roles are controlled by three feature flags:
 
-- **`home`**: Configure user's home directory only
+- **`mkhome_install`**
+  - Runs `tasks/install.yaml` in each role
+  - Installs packages from `apt.txt` via apt
+  - Requires elevated privileges (become: true)
+  - Used by `system.yaml` playbook
+
+- **`mkhome_configure_global`**
+  - Runs `tasks/global.yaml` in each role
+  - Configures system-wide settings in `/etc`
+  - Sets up system services and alternatives
+  - Requires elevated privileges
+  - Used by `system.yaml` playbook and mkosi build process
+
+- **`mkhome_configure_home`**
   - Runs `tasks/home.yaml` in each role
   - Sets up user-specific configurations
   - Does not require elevated privileges
   - Used by `home.yaml` playbook
-
-- **`system`**: Install system packages and configure system-wide settings
-  - Runs `tasks/system.yaml` in each role
-  - Installs packages via apt
-  - Configures system-wide settings
-  - Requires elevated privileges (become: true)
-  - Used by `system.yaml` playbook
-  - Also installs mkosi package for image building
-
-- **`mkosi`**: Configure for mkosi image build
-  - Runs `tasks/mkosi.yaml` in each role
-  - Templates mkosi configuration fragments into `image/` directory
-  - Adds packages to mkosi package lists
-  - Creates system-wide configurations for the image
-  - Used by `mkosi.yaml` playbook
 
 ## Role Structure
 
@@ -35,20 +33,32 @@ Each role follows this standard structure:
 
 ```
 roles/role_name/
+├── apt.txt             # Debian packages for this role (one per line, # comments allowed)
 ├── tasks/
-│   ├── main.yaml       # Conditional imports based on mkhome_mode
-│   ├── home.yaml       # User-specific configurations (optional)
-│   ├── system.yaml     # System packages and configs (optional)
-│   └── mkosi.yaml      # mkosi image configurations (optional)
+│   ├── main.yaml       # Conditional imports based on feature flags
+│   ├── install.yaml    # Package installation only (optional)
+│   ├── global.yaml     # System-wide configuration (optional)
+│   └── home.yaml       # User-specific configurations (optional)
 ├── defaults/
 │   └── main.yaml       # Default variables
 ├── handlers/
 │   └── main.yaml       # Event handlers (optional)
 ├── templates/
-│   ├── ...             # Regular templates
-│   └── mkosi/          # mkosi-specific templates (optional)
+│   └── ...             # Regular templates
 └── vars/
     └── main.yaml       # Role variables (optional)
+```
+
+### Package Management with apt.txt
+
+Each role should have an `apt.txt` file listing Debian packages to install, one per line. Comments starting with `#` are allowed.
+
+Example `apt.txt`:
+```
+# Window manager packages
+i3-wm
+i3blocks
+i3status
 ```
 
 ### tasks/main.yaml Pattern
@@ -57,25 +67,53 @@ Every role's main task file should follow this pattern:
 
 ```yaml
 ---
-- import_tasks: system.yaml
-  when: mkhome_mode == 'system'
-  
-- import_tasks: home.yaml  
-  when: mkhome_mode == 'home'
+- import_tasks: install.yaml
+  when: mkhome_install
 
-- import_tasks: mkosi.yaml
-  when: mkhome_mode == 'mkosi'
+- import_tasks: global.yaml
+  when: mkhome_configure_global
+
+- import_tasks: home.yaml
+  when: mkhome_configure_home
 ```
 
 Only include the imports for task files that exist. For example, a role that only configures user settings would only have the home.yaml import.
 
 ### Task File Purposes
 
-- **system.yaml**: 
-  - Install packages from package managers
+- **install.yaml**:
+  - Read and install packages from `apt.txt`
+  - Package installation only
+
+Example `install.yaml`:
+```yaml
+---
+- name: Install debian packages
+  apt:
+    pkg: "{{ lookup('file', role_path + '/apt.txt') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | list }}"
+```
+
+- **global.yaml**:
   - Configure system-wide settings in `/etc`
   - Set up system services
+  - Configure system-level alternatives
   - Create system users/groups
+
+Example `global.yaml`:
+```yaml
+---
+- name: Create system-wide config directory
+  file:
+    path: /etc/xdg/myapp
+    state: directory
+    mode: '0755'
+
+- name: Install system-wide configuration
+  template:
+    src: myapp.conf.j2
+    dest: /etc/xdg/myapp/myapp.conf
+    mode: '0644'
+```
 
 - **home.yaml**:
   - Configure user dotfiles in `~/.config`
@@ -83,44 +121,84 @@ Only include the imports for task files that exist. For example, a role that onl
   - Create user directories
   - Install user-level configurations
 
-- **mkosi.yaml**:
-  - Template mkosi configuration drop-ins
-  - Add packages to `image/mkosi.packages.d/`
-  - Configure image-specific settings
-  - Ensure consistent base image configuration
 
 ## Adding a New Role
 
 1. Create the role directory structure
-2. Add conditional imports in `tasks/main.yaml`
-3. Implement appropriate task files based on what the role configures
-4. For mkosi support, create `tasks/mkosi.yaml` and `templates/mkosi/` directory
-5. Add the role to relevant playbooks (`home.yaml`, `system.yaml`, `mkosi.yaml`)
+2. Create `apt.txt` with required Debian packages (one per line, comments with `#`)
+3. Add conditional imports in `tasks/main.yaml`
+4. Implement appropriate task files based on what the role configures:
+   - `install.yaml`: Read `apt.txt` and install packages
+   - `global.yaml`: Configure system-wide settings in `/etc`
+   - `home.yaml`: Configure user-specific settings
+5. Add the role to relevant playbooks (`home.yaml`, `system.yaml`)
+
+**Note**: Packages from `apt.txt` files are automatically discovered by the `mkosi.configure` script during image builds.
+
+## Playbook Examples
+
+### home.yaml - User Configuration Only
+```yaml
+---
+- name: Deploy home configuration for current user
+  hosts: localhost
+  become: false
+  vars:
+    mkhome_configure_home: true
+  roles:
+    - firefox
+    - micro
+```
+
+### system.yaml - Full System Setup
+```yaml
+---
+- name: Deploy system packages and configuration
+  hosts: localhost
+  become: true
+  vars:
+    mkhome_install: true
+    mkhome_configure_global: true
+  roles:
+    - kitty
+    - i3
+```
 
 ## mkosi Integration
 
-The mkosi mode enables building consistent system images. When running in mkosi mode:
+mkosi builds system images by running Ansible inside the build environment. Package discovery and system configuration are both automated:
 
-1. The `mkosi` role sets up the base configuration in `image/`
-2. Each included role adds its packages and configurations via drop-in files
-3. The resulting image contains all system-level configurations but no user-specific settings
+### Build Process
 
-Example mkosi task file:
+1. **Package Discovery** (`mkosi.configure`):
+   - Executed by mkosi before building the image
+   - Scans all `roles/*/apt.txt` files
+   - Injects discovered packages into mkosi's configuration
+   - Packages are deduplicated and sorted
 
-```yaml
----
-- name: Create mkosi drop-in directory for packages
-  file:
-    path: "{{ playbook_dir }}/image/mkosi.packages.d"
-    state: directory
-    mode: '0755'
+2. **System Configuration** (`mkosi.postinst`):
+   - Executed after packages and trees are installed
+   - Ansible is installed in mkosi's tools tree
+   - Runs `ansible-playbook system.yaml --extra-vars="mkhome_configure_global=true"`
+   - Ansible connects to the build environment via chroot
+   - All roles' `global.yaml` tasks configure system files in the image
 
-- name: Add role packages to mkosi image
-  template:
-    src: mkosi/10-rolename.conf.j2
-    dest: "{{ playbook_dir }}/image/mkosi.packages.d/10-rolename.conf"
-    mode: '0644'
-```
+### Configuration Files
+
+- **mkosi.conf**: Base mkosi configuration
+  - `ConfigureScripts=mkosi.configure` - Package discovery
+  - `PostInstallationScripts=mkosi.postinst` - Ansible execution
+  - `ToolsTreePackages=ansible` - Ansible in tools tree
+
+- **mkosi.configure**: Python script that discovers packages from apt.txt files
+
+- **mkosi.postinst**: Bash script that runs Ansible with mkhome_configure_global=true
+
+This architecture ensures:
+- Packages are automatically discovered from apt.txt files
+- System configuration reuses the same Ansible roles as live systems
+- No duplication between live system and image configuration
+- Ansible runs inside mkosi's controlled environment
 
 ## Best Practices
 
@@ -128,4 +206,6 @@ Example mkosi task file:
 2. Use defaults for configurable values
 3. Document role variables in defaults/main.yaml
 4. Test roles in all applicable modes
-5. Use consistent naming conventions for mkosi drop-in files
+5. Always create an `apt.txt` file for roles that require Debian packages
+6. Use comments in `apt.txt` to document package purposes
+7. The `mkosi.configure` script automatically handles all package discovery for mkosi images

@@ -3,7 +3,7 @@
   hosts: localhost
   become: false
   vars:
-    mkhome_mode: home
+    mkhome_configure_home: true
   roles:
     - firefox
     - chromium

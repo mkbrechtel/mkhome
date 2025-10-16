@@ -1,22 +1,14 @@
 ---
 
-- name: Install kitty debian package
-  apt:
-    name: kitty
-
 - name: Set kitty as the default terminal emulator
   community.general.alternatives:
     name: x-terminal-emulator
     path: /usr/bin/kitty
-
-- name: Create system-wide kitty config directory
-  file:
-    path: /etc/xdg/kitty
-    state: directory
-    mode: '0755'
+    link: /usr/bin/x-terminal-emulator
 
 - name: Install kitty system-wide configuration
   template:
     src: kitty/kitty.conf.j2
     dest: /etc/xdg/kitty/kitty.conf
     mode: '0644'
+  when: not (mkosi_build | default(false))

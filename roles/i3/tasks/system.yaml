@@ -1,9 +1,0 @@
----
-
-- name: Install i3 debian packages
-  apt:
-    pkg:
-      - i3-wm
-      - i3blocks
-      - i3status
-      - i3pystatus

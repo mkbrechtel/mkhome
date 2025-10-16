@@ -1,6 +1,0 @@
----
-
-- name: Install pass debian packages
-  apt:
-    name: pass
-    state: present

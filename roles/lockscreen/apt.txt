@@ -1,0 +1,4 @@
+# Lockscreen packages
+xsecurelock
+xss-lock
+socat

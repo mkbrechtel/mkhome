@@ -1,0 +1,4 @@
+---
+- name: Install git debian packages
+  apt:
+    pkg: "{{ lookup('file', role_path + '/apt.txt') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | list }}"

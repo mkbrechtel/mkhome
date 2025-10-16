@@ -1,4 +1,7 @@
 ---
+# Packages are automatically discovered from roles/*/apt.txt by mkosi.configure script
+# No Ansible tasks needed for package collection
+
 - name: Create mkosi.conf.d directory for configuration drop-ins
   file:
     path: "{{ mkosi_conf_dir }}"

@@ -1,8 +1,9 @@
 ---
-- name: Deploy desk to local system
+- name: Deploy system packages and configuration
   hosts: localhost
   become: true
   vars:
-    mkhome_mode: system
+    mkhome_install: true
+    mkhome_configure_global: true
   roles:
     - kitty

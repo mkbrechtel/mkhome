@@ -1,6 +1,9 @@
 ---
-- import_tasks: system.yaml
-  when: mkhome_mode in ['system', 'both']
-  
-- import_tasks: home.yaml  
-  when: mkhome_mode in ['home', 'both']
+- import_tasks: install.yaml
+  when: mkhome_install
+
+- import_tasks: global.yaml
+  when: mkhome_configure_global
+
+- import_tasks: home.yaml
+  when: mkhome_configure_home

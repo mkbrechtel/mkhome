@@ -1,0 +1,2 @@
+# tig - text-mode interface for git
+tig
