@@ -1,1 +1,2 @@
-# No packages needed for x11 role
+# X11 server and utilities
+xserver-xorg

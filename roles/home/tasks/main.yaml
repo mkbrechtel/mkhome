@@ -1,0 +1,3 @@
+---
+# This role serves as a meta-role that includes all other roles
+# All functionality is handled through role dependencies in meta/main.yaml

@@ -26,9 +26,11 @@ def main():
     # Read the current mkosi configuration from stdin
     config = json.load(sys.stdin)
 
-    # Find the script's directory (where mkosi.configure is located)
-    script_dir = Path(__file__).parent.resolve()
-    roles_dir = script_dir / 'roles'
+    # Find the script's directory using SRCDIR environment variable
+    # mkosi sets $SRCDIR to the directory mkosi was invoked from
+    import os
+    srcdir = os.getenv('SRCDIR', Path(__file__).parent.resolve())
+    roles_dir = Path(srcdir) / 'roles'
 
     # Find all apt.txt files in the roles directory
     apt_txt_files = list(roles_dir.glob('*/apt.txt'))
@@ -45,7 +47,9 @@ def main():
     # Get existing packages from config (if any)
     existing_packages = config.get('Packages', [])
     if isinstance(existing_packages, str):
-        existing_packages = [pkg.strip() for pkg in existing_packages.split(',') if pkg.strip()]
+        existing_packages = [pkg.strip() for pkg in existing_packages.split() if pkg.strip()]
+    elif existing_packages is None:
+        existing_packages = []
 
     # Combine and deduplicate
     combined_packages = sorted(set(existing_packages + all_packages))

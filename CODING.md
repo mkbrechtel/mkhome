@@ -131,7 +131,10 @@ Example `global.yaml`:
    - `install.yaml`: Read `apt.txt` and install packages
    - `global.yaml`: Configure system-wide settings in `/etc`
    - `home.yaml`: Configure user-specific settings
-5. Add the role to relevant playbooks (`home.yaml`, `system.yaml`)
+5. Add the role to relevant playbooks:
+   - `home.yaml`: For user-specific configuration
+   - `system.yaml`: For full system setup (install + global configuration)
+   - `mkosi.postinst`: If the role has `global.yaml` tasks that should be included in mkosi images
 
 **Note**: Packages from `apt.txt` files are automatically discovered by the `mkosi.configure` script during image builds.
 
@@ -164,6 +167,28 @@ Example `global.yaml`:
     - i3
 ```
 
+### mkosi.postinst - System Image Configuration
+The `mkosi.postinst` script is an executable Ansible playbook that configures the system image during the mkosi build process. It includes only roles that have `global.yaml` tasks that should be executed during image creation.
+
+Example structure:
+```yaml
+#!/bin/bash -c "exec ansible-playbook \"$0\" \"$@\""
+---
+- name: Configure system image for mkosi build
+  hosts: localhost
+  become: false
+  connection: community.general.chroot
+  vars:
+    mkhome_configure_global: true
+  roles:
+    - kitty
+    - mkosi
+    - x11
+    - xfce
+```
+
+The shebang uses bash to execute ansible-playbook on the script itself, ignoring any arguments passed by mkosi.
+
 ## mkosi Integration
 
 mkosi builds system images by running Ansible inside the build environment. Package discovery and system configuration are both automated:
@@ -178,10 +203,10 @@ mkosi builds system images by running Ansible inside the build environment. Pack
 
 2. **System Configuration** (`mkosi.postinst`):
    - Executed after packages and trees are installed
-   - Ansible is installed in mkosi's tools tree
-   - Runs `ansible-playbook system.yaml --extra-vars="mkhome_configure_global=true"`
-   - Ansible connects to the build environment via chroot
-   - All roles' `global.yaml` tasks configure system files in the image
+   - Self-executing Ansible playbook script
+   - Uses bash shebang to invoke ansible-playbook on itself
+   - Ansible connects to the build environment via chroot connection
+   - All roles listed in the playbook with `global.yaml` tasks configure system files in the image
 
 ### Configuration Files
 
@@ -192,7 +217,7 @@ mkosi builds system images by running Ansible inside the build environment. Pack
 
 - **mkosi.configure**: Python script that discovers packages from apt.txt files
 
-- **mkosi.postinst**: Bash script that runs Ansible with mkhome_configure_global=true
+- **mkosi.postinst**: Self-executing Ansible playbook that configures the system with mkhome_configure_global=true
 
 This architecture ensures:
 - Packages are automatically discovered from apt.txt files
