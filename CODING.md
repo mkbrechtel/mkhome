@@ -220,32 +220,15 @@ mkosi builds system images by running Ansible inside the build environment. Pack
 
 ### Build Process
 
-1. **Package Discovery** (`mkosi.configure`):
+1. **Package Discovery** (`mkosi.configure.d/apt.txt.py`):
    - Executed by mkosi before building the image
    - Scans all `roles/*/apt.txt` files
    - Injects discovered packages into mkosi's configuration
    - Packages are deduplicated and sorted
 
-2. **System Configuration** (`mkosi.postinst`):
+2. **System Configuration** (`mkosi.postinst.d/ansible.yaml`):
    - Executed after packages and trees are installed
    - Self-executing Ansible playbook script
    - Uses bash shebang to invoke ansible-playbook on itself
    - Ansible connects to the build environment via chroot connection
-   - All roles listed in the playbook with `global.yaml` tasks configure system files in the image
-
-### Configuration Files
-
-- **mkosi.conf**: Base mkosi configuration
-  - `ConfigureScripts=mkosi.configure` - Package discovery
-  - `PostInstallationScripts=mkosi.postinst` - Ansible execution
-  - `ToolsTreePackages=ansible` - Ansible in tools tree
-
-- **mkosi.configure**: Python script that discovers packages from apt.txt files
-
-- **mkosi.postinst**: Self-executing Ansible playbook that configures the system with mkhome_configure_global=true
-
-This architecture ensures:
-- Packages are automatically discovered from apt.txt files
-- System configuration reuses the same Ansible roles as live systems
-- No duplication between live system and image configuration
-- Ansible runs inside mkosi's controlled environment
+   - All roles listed in the home role with the `mkhome_configure_global` tasks configure system files in the image
