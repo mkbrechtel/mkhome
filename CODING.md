@@ -29,7 +29,9 @@ Roles are controlled by three feature flags:
 
 ## Role Structure
 
-Each role follows this standard structure:
+### Standard Roles
+
+Each standard role follows this structure:
 
 ```
 roles/role_name/
@@ -48,6 +50,32 @@ roles/role_name/
 └── vars/
     └── main.yaml       # Role variables (optional)
 ```
+
+### Meta Roles
+
+Meta roles aggregate multiple standard roles through dependencies. They don't contain tasks themselves but serve as convenient bundles.
+
+```
+roles/meta_role_name/
+├── meta/
+│   └── main.yaml       # Role dependencies
+└── tasks/
+    └── main.yaml       # Empty or minimal (just comments)
+```
+
+Example `meta/main.yaml`:
+```yaml
+---
+dependencies:
+  - role: firefox
+  - role: kitty
+  - role: git
+```
+
+The `home` meta role includes all roles needed for a complete user environment. Use meta roles to:
+- Create logical groupings of related functionality
+- Simplify playbook definitions
+- Maintain consistent role sets across environments
 
 ### Package Management with apt.txt
 
@@ -131,10 +159,7 @@ Example `global.yaml`:
    - `install.yaml`: Read `apt.txt` and install packages
    - `global.yaml`: Configure system-wide settings in `/etc`
    - `home.yaml`: Configure user-specific settings
-5. Add the role to relevant playbooks:
-   - `home.yaml`: For user-specific configuration
-   - `system.yaml`: For full system setup (install + global configuration)
-   - `mkosi.postinst`: If the role has `global.yaml` tasks that should be included in mkosi images
+5. Add the role to the `home` meta role in `roles/home/meta/main.yaml`
 
 **Note**: Packages from `apt.txt` files are automatically discovered by the `mkosi.configure` script during image builds.
 
@@ -224,13 +249,3 @@ This architecture ensures:
 - System configuration reuses the same Ansible roles as live systems
 - No duplication between live system and image configuration
 - Ansible runs inside mkosi's controlled environment
-
-## Best Practices
-
-1. Keep role tasks focused and single-purpose
-2. Use defaults for configurable values
-3. Document role variables in defaults/main.yaml
-4. Test roles in all applicable modes
-5. Always create an `apt.txt` file for roles that require Debian packages
-6. Use comments in `apt.txt` to document package purposes
-7. The `mkosi.configure` script automatically handles all package discovery for mkosi images
