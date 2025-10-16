@@ -1,7 +1,3 @@
 ---
-- name: Install debian packages
-  apt:
-    pkg:
-      - openscad
-      - freecad
-      - fonts-osifont
+- import_tasks: install.yaml
+  when: mkhome_install

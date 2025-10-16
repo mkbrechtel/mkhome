@@ -1,0 +1,2 @@
+# Screensaver packages - note: this role removes certain packages
+# No packages to install via apt.txt, only removals

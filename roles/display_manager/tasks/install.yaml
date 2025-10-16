@@ -1,0 +1,14 @@
+---
+- name: make sure no other display managers are installed
+  apt:
+    pkg:
+      - slim
+      - gdm3
+      - kdm
+      - sddm
+    state: absent
+
+- name: Install debian packages
+  apt:
+    pkg: "{{ lookup('file', role_path + '/apt.txt') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | list }}"
+  notify: restart lightdm

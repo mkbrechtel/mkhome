@@ -1,6 +1,3 @@
 ---
-- name: debian packages
-  apt:
-    pkg:
-      - binwalk
-      - testdisk # photorec
+- import_tasks: install.yaml
+  when: mkhome_install

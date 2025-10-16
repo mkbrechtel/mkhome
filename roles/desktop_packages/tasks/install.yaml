@@ -1,0 +1,9 @@
+---
+- name: Install debian packages
+  apt:
+    pkg: "{{ lookup('file', role_path + '/apt.txt') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | list }}"
+
+- name: ensure dunst package is absent for nicer notifications
+  apt:
+    pkg: dunst
+    state: absent

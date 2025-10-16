@@ -1,0 +1,7 @@
+---
+- name: ensure old screensavers are absent
+  apt:
+    pkg:
+      - light-locker
+      - xscreensaver
+    state: absent

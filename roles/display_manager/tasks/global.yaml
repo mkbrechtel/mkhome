@@ -1,30 +1,8 @@
 ---
-
 - name: assert valid state
   assert:
     that: display_manager_state in _display_manager_valid_states
     msg: "'display_manager_state' must be one of: {{_display_manager_valid_states | join(', ') }}"
-
-- name: make sure no other display managers are installed
-  apt:
-    pkg:
-      - slim
-      - gdm3
-      - kdm
-      - sddm
-    state: absent
-
-- name: install packages
-  apt:
-    pkg:
-      - xserver-xorg
-      - xserver-xorg-video-all
-      - xserver-xorg-input-all
-      - x11-xserver-utils
-      - lightdm
-      - lightdm-gtk-greeter
-      - onboard
-  notify: restart lightdm
 
 - import_tasks: maintenance.yml
   when: display_manager_state == 'maintenance'
@@ -64,11 +42,18 @@
     src: "{{display_manager_background_image}}"
     dest: "{{ display_manager_background_image_path }}"
 
-- name: lightdm started
+- name: lightdm started and enabled
   service:
     name: lightdm
     state: started
     enabled: yes
+  when: ansible_connection != 'chroot'
+
+- name: lightdm enabled (chroot build)
+  service:
+    name: lightdm
+    enabled: yes
+  when: ansible_connection == 'chroot'
 
 - meta: flush_handlers
 
