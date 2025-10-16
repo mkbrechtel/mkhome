@@ -1,0 +1,13 @@
+gvfs
+gvfs-backends
+gvfs-fuse
+zip
+unzip
+catfish
+thunar
+thunar-archive-plugin
+unison-gtk
+xarchiver
+gparted
+gnome-disk-utility
+baobab

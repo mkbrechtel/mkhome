@@ -1,2 +1,1 @@
-# Micro text editor
 micro

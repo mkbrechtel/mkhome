@@ -1,0 +1,8 @@
+---
+- name: Install in2qr script to /usr/local/bin
+  copy:
+    src: files/bin/in2qr
+    dest: /usr/local/bin/in2qr
+    mode: '0755'
+    owner: root
+    group: root

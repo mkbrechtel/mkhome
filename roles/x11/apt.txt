@@ -1,2 +1,11 @@
-# X11 server and utilities
 xserver-xorg
+xinput
+xclip
+xbindkeys
+xdotool
+xkbset
+numlockx
+x11-utils
+xloadimage
+arandr
+unclutter

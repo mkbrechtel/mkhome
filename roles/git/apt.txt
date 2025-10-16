@@ -1,2 +1,4 @@
-# Git version control
 git
+gitk
+git-annex
+datalad

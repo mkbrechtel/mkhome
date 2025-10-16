@@ -1,2 +1,1 @@
-# mkosi image builder
 mkosi

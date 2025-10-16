@@ -1,8 +1,9 @@
 ---
-
 micro_settings:
   softwrap: true
   wordwrap: true
+  autosave: 1
+  reload: "auto"
 
 micro_bindings:
   Alt-/: "lua:comment.comment"

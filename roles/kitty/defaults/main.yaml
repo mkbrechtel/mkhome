@@ -1,4 +1,4 @@
 ---
 # Default variables for kitty role
 kitty_font_family: Hack
-kitty_font_size: 11
+kitty_font_size: 12

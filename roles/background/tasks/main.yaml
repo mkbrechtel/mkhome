@@ -1,6 +1,3 @@
 ---
-- import_tasks: install.yaml
-  when: mkhome_install
-  
 - import_tasks: home.yaml  
   when: mkhome_configure_home

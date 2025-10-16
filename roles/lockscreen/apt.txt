@@ -2,3 +2,10 @@
 xsecurelock
 xss-lock
 socat
+mate-screensaver
+xscreensaver-gl
+mate-power-manager
+xss-lock
+xbacklight
+i3lock
+xssproxy

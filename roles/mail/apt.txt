@@ -1,0 +1,5 @@
+thunderbird
+thunderbird-l10n-de
+evolution
+evolution-ews
+evolution-plugins

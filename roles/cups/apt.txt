@@ -1,2 +1,2 @@
-# CUPS printing system
 cups
+system-config-printer

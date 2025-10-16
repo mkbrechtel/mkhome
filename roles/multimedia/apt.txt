@@ -1,0 +1,28 @@
+# base
+pipewire-audio
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+wireplumber
+vlc-plugin-pipewire
+
+# control
+pasystray
+pavucontrol
+
+# apps
+audacity
+sound-juicer
+vlc
+vlc-l10n
+vlc-plugin-pipewire
+brasero
+
+#libdvd-pkg
+
+# streaming
+obs-studio
+obs-cli
+obs-plugins
+obs-pipewire-audio-capture

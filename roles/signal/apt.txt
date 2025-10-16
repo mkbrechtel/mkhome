@@ -1,2 +1,0 @@
-# Signal desktop messaging client
-# Note: signal-desktop requires external repository setup and is installed via install.yaml

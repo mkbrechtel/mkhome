@@ -1,1 +1,2 @@
-# No packages needed for chromium role
+chromium
+chromium-l10n

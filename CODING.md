@@ -6,13 +6,7 @@ This Ansible collection manages system and user configurations through a role-ba
 
 ## Feature Flags
 
-Roles are controlled by three feature flags:
-
-- **`mkhome_install`**
-  - Runs `tasks/install.yaml` in each role
-  - Installs packages from `apt.txt` via apt
-  - Requires elevated privileges (become: true)
-  - Used by `system.yaml` playbook
+Roles are controlled by two feature flags:
 
 - **`mkhome_configure_global`**
   - Runs `tasks/global.yaml` in each role
@@ -27,6 +21,16 @@ Roles are controlled by three feature flags:
   - Does not require elevated privileges
   - Used by `home.yaml` playbook
 
+## Package Installation
+
+Package installation is centralized in the `packages` role, which automatically discovers and installs all packages from `apt.txt` files across all roles. The `packages` role is controlled by the `mkhome_install` flag:
+
+- **`mkhome_install`**
+  - Runs the `packages` role
+  - Installs all packages from all `roles/*/apt.txt` files
+  - Requires elevated privileges (become: true)
+  - Used by `system.yaml` playbook
+
 ## Role Structure
 
 ### Standard Roles
@@ -38,7 +42,6 @@ roles/role_name/
 ├── apt.txt             # Debian packages for this role (one per line, # comments allowed)
 ├── tasks/
 │   ├── main.yaml       # Conditional imports based on feature flags
-│   ├── install.yaml    # Package installation only (optional)
 │   ├── global.yaml     # System-wide configuration (optional)
 │   └── home.yaml       # User-specific configurations (optional)
 ├── defaults/
@@ -95,9 +98,6 @@ Every role's main task file should follow this pattern:
 
 ```yaml
 ---
-- import_tasks: install.yaml
-  when: mkhome_install
-
 - import_tasks: global.yaml
   when: mkhome_configure_global
 
@@ -108,18 +108,6 @@ Every role's main task file should follow this pattern:
 Only include the imports for task files that exist. For example, a role that only configures user settings would only have the home.yaml import.
 
 ### Task File Purposes
-
-- **install.yaml**:
-  - Read and install packages from `apt.txt`
-  - Package installation only
-
-Example `install.yaml`:
-```yaml
----
-- name: Install debian packages
-  apt:
-    pkg: "{{ lookup('file', role_path + '/apt.txt') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | list }}"
-```
 
 - **global.yaml**:
   - Configure system-wide settings in `/etc`
@@ -156,12 +144,11 @@ Example `global.yaml`:
 2. Create `apt.txt` with required Debian packages (one per line, comments with `#`)
 3. Add conditional imports in `tasks/main.yaml`
 4. Implement appropriate task files based on what the role configures:
-   - `install.yaml`: Read `apt.txt` and install packages
    - `global.yaml`: Configure system-wide settings in `/etc`
    - `home.yaml`: Configure user-specific settings
 5. Add the role to the `home` meta role in `roles/home/meta/main.yaml`
 
-**Note**: Packages from `apt.txt` files are automatically discovered by the `mkosi.configure` script during image builds.
+**Note**: Packages from `apt.txt` files are automatically discovered and installed by the `packages` role and by the `mkosi.configure` script during image builds.
 
 ## Playbook Examples
 
@@ -188,6 +175,7 @@ Example `global.yaml`:
     mkhome_install: true
     mkhome_configure_global: true
   roles:
+    - packages  # Must be first to install all packages
     - kitty
     - i3
 ```

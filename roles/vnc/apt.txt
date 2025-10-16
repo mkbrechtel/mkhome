@@ -1,1 +1,7 @@
-# No packages needed for vnc role
+tigervnc-common
+tigervnc-scraping-server
+tigervnc-standalone-server
+tigervnc-viewer
+tigervnc-xorg-extension
+ssvnc
+socat

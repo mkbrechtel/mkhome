@@ -104,7 +104,6 @@ desktop_packages:
   - arandr
   - xbindkeys
   - xdotool
-  - xplanet
   - xkbset
   - numlockx
   - unclutter
@@ -129,8 +128,6 @@ desktop_packages:
   - system-config-printer
 
   # themes
-  - dmz-cursor-theme
-  - gnome-brave-icon-theme
 
   # drive management
   - gparted

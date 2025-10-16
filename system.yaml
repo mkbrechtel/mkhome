@@ -1,9 +1,0 @@
----
-- name: Deploy system packages and configuration
-  hosts: localhost
-  become: true
-  vars:
-    mkhome_install: true
-    mkhome_configure_global: true
-  roles:
-    - kitty

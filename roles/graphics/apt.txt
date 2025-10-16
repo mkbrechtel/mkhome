@@ -1,0 +1,13 @@
+eog
+evince
+xfce4-screenshooter
+evince
+gimp
+gimp-help-de
+inkscape
+gthumb
+krita
+krita-l10n
+# Required for in2qr script
+qrencode
+xloadimage

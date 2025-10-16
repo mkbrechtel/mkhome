@@ -3,7 +3,6 @@
   template:
     src: update-zoom.sh.j2
     dest: /usr/local/sbin/update-zoom
-    mode: 04755 # with setuid
 
 - name: Update Zoom sudoers config
   template:

@@ -1,0 +1,5 @@
+---
+- name: install all mkhome apt packages
+  apt:
+    pkg: "{{ lookup('pipe', 'find ' + role_path + '/.. -name apt.txt -exec cat {} +') | regex_replace('#.*', '') | split('\n') | select('match', '^\\s*\\S+') | map('trim') | unique | list }}"
+  when: mkhome_install

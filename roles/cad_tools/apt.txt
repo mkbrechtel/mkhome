@@ -1,4 +1,3 @@
 # CAD and design tools
 openscad
 freecad
-fonts-osifont

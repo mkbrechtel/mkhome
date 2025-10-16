@@ -18,8 +18,8 @@
     dconf_id: screensaver
     dconf_lock_settings:
       /org/mate/screensaver:
-        idle-activation-enabled: 'true'
-        lock-enabled: 'true'
+        idle-activation-enabled: "true"
+        lock-enabled: "true"
         mode:
           - single
         themes:
