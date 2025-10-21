@@ -16,21 +16,21 @@ because i'm tired of:
 
 the name stands for 9[^1] d's that define the project:
 
-***dd*-able** - the core philosophy: stream and copy filesystems with dd, pv, and friends
+_**dd**-able_ - the core philosophy: stream and copy filesystems with dd, pv, and friends
 
-***D*ebian-based** - built on Debian's stable package ecosystem
+_**D**ebian-based_ - built on Debian's stable package ecosystem
 
-**system*d* ecosystem** - mkosi, systemd-repart, systemd-homed, systemd-sysext, systemd-confext, etc.
+_system**d** ecosystem_ - mkosi, systemd-repart, systemd-homed, systemd-sysext, systemd-confext, etc.
 
-***d*istribution** - a complete Linux distro, not just a collection of tools
+_**d**istribution_ - a complete Linux distro, not just a collection of tools
 
-***d*eclarative** - everything configured as code with mkosi and systemd-repart
+_**d**eclarative_ - everything configured as code with mkosi and systemd-repart
 
-***d*eployable** - easy deployment methods: disk images, incus images, OCI images, etc.
+_**d**eployable_ - easy deployment methods: disk images, incus images, OCI images, etc.
 
-***d*isaster-recoverable** - with restic and borg backups, A/B partitions, and trivial rollback
+_**d**isaster-recoverable_ - with restic and borg backups, A/B partitions, and trivial rollback
 
-***d*ev/**d**aily ***d*esktop** - for both development environments and daily desktop use
+_dev/daily **d**esktop_ - for both development environments and daily desktop use
 
 ## profiles
 
