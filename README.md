@@ -79,4 +79,30 @@ based on [my](https://mkbrechtel.dev) personal home directory and desktop setup 
 
 works for me. might work for you. no promises.
 
+## environment
+You need mkosi installed. I currently develop in Debian Trixie. Install with:
+```bash
+apt-get install mkosi
+```
+
+## build
+You can build with mkosi:
+```bash
+mkosi
+```
+
+## test
+Run the test VM with:
+```bash
+mkosi vm
+```
+
+## issues
+If you have an issue, please make a pull request with the issue in a markdown file inside the `issues/` folder.
+
+## license
+LGPL-2.1+, see [LICENSE file](./LICENSE)
+
+## footnotes
+
 [^1]: n may vary
