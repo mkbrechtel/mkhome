@@ -1,0 +1,6 @@
+overlay /var overlay lowerdir=/var,upperdir=/tmp/var.overlay.upper,workdir=/tmp/var.overlay.work 0 2
+overlay /opt overlay lowerdir=/opt,upperdir=/tmp/opt.overlay.upper,workdir=/tmp/opt.overlay.work 0 2
+overlay /root overlay lowerdir=/root,upperdir=/tmp/root.overlay.upper,workdir=/tmp/root.overlay.work 0 2
+overlay /home overlay lowerdir=/home,upperdir=/tmp/home.overlay.upper,workdir=/tmp/home.overlay.work 0 2
+tmpfs /mnt tmpfs defaults 0 2
+tmpfs /media tmpfs defaults 0 2
