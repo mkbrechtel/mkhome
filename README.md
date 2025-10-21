@@ -20,7 +20,7 @@ _**dd**-able_ - the core philosophy: stream and copy filesystems with dd, pv, an
 
 _**D**ebian-based_ - built on Debian's stable package ecosystem
 
-_system**d** ecosystem_ - mkosi, systemd-repart, systemd-homed, systemd-sysext, systemd-confext, etc.
+_system**d** ecosystem utilizing_ - mkosi, systemd-repart, systemd-homed, systemd-sysext, systemd-confext, etc.
 
 _**d**istribution_ - a complete Linux distro, not just a collection of tools
 
