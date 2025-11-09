@@ -1,0 +1,5 @@
+[Content]
+Packages=apt
+CleanPackageMetadata=no
+WithRecommends=false
+WithDocs=false
