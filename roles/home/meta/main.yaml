@@ -3,21 +3,16 @@ dependencies:
   # Foundation layer - X11, display management, audio
   - role: x11
   - role: display_manager
-  - role: pulseaudio
   - role: cups
 
   # Desktop environment and window management
   - role: i3
   - role: xfce
   - role: rofi
-  - role: icon_theme
 
   # Desktop behavior
   - role: background
   - role: lockscreen
-#  - role: screensaver
-  - role: screenlayout
-  - role: unclutter
   - role: workspaces
 
   # Terminal and shell environment
@@ -29,13 +24,8 @@ dependencies:
   - role: git
   - role: tig
   - role: ssh
-  - role: pass
   - role: micro
   - role: lf
-
-  # Productivity utilities
-  - role: todo
-  - role: timer
 
   # Web browsers
   - role: firefox
@@ -50,12 +40,10 @@ dependencies:
   - role: libreoffice
 
   # Desktop applications and packages
-  - role: desktop_apps
   - role: desktop_packages
 
   # Remote access
   - role: vnc
-  - role: barrier
 
   # Specialized tools
   - role: cad_tools
