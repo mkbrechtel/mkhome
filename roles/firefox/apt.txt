@@ -1,3 +1,0 @@
-firefox-esr
-firefox-esr-l10n-de
-webext-ublock-origin-firefox

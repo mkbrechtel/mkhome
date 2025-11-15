@@ -1,5 +1,0 @@
----
-- name: ensure dunst package is absent for nicer notifications
-  apt:
-    pkg: dunst
-    state: absent

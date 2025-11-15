@@ -1,3 +1,0 @@
-simple-scan
-gscan2pdf
-xsane

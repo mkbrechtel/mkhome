@@ -1,3 +1,0 @@
----
-background_image_path: ~/.backgrounds/{{background_image|basename}}
-background_command: feh --no-fehbg --bg-fill {{background_image_path}}

@@ -1,6 +1,0 @@
----
-- import_tasks: install.yaml
-  when: mkhome_install
-
-- import_tasks: global.yaml
-  when: mkhome_configure_global

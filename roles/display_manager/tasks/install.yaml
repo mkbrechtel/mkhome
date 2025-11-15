@@ -1,9 +1,0 @@
----
-- name: make sure no other display managers are installed
-  apt:
-    pkg:
-      - slim
-      - gdm3
-      - kdm
-      - sddm
-    state: absent

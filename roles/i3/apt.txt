@@ -1,5 +1,0 @@
-# i3 window manager and related tools
-i3-wm
-i3blocks
-i3status
-i3pystatus

@@ -1,6 +1,0 @@
----
-- name: restart lightdm
-  service:
-    name: lightdm
-    state: restarted
-  when: ansible_connection != 'chroot'

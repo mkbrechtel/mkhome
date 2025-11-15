@@ -1,3 +1,0 @@
-# Data recovery and forensics tools
-binwalk
-testdisk # photorec

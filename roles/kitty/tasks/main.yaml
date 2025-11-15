@@ -1,7 +1,0 @@
----
-- import_tasks: global.yaml
-  when: mkhome_configure_global
-
-- import_tasks: home.yaml
-  when: mkhome_configure_home
-

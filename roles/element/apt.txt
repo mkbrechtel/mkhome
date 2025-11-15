@@ -1,3 +1,0 @@
-# Element desktop messaging client
-# Note: element-desktop requires external repository setup and is installed via install.yaml
-apt-transport-https

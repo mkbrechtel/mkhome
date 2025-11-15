@@ -1,2 +1,0 @@
-# dconf configuration system
-dconf-cli

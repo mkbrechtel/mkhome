@@ -1,2 +1,0 @@
-# Zoom update script dependencies
-sudo
