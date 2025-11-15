@@ -1,222 +1,242 @@
-# mkhome Development Guidelines
+# d9 Development Guidelines
 
 ## Architecture Overview
 
-This Ansible collection manages system and user configurations through a role-based architecture. Each role can be configured using feature flags that control which tasks are executed.
+d9 is a pure mkosi-based Debian system with declarative configuration. All package management and system configuration is handled through mkosi configuration files and build scripts.
 
-## Feature Flags
-
-Roles are controlled by two feature flags:
-
-- **`mkhome_configure_global`**
-  - Runs `tasks/global.yaml` in each role
-  - Configures system-wide settings in `/etc`
-  - Sets up system services and alternatives
-  - Requires elevated privileges
-  - Used by `system.yaml` playbook and mkosi build process
-
-- **`mkhome_configure_home`**
-  - Runs `tasks/home.yaml` in each role
-  - Sets up user-specific configurations
-  - Does not require elevated privileges
-  - Used by `home.yaml` playbook
-
-## Package Installation
-
-Package installation is centralized in the `packages` role, which automatically discovers and installs all packages from `apt.txt` files across all roles. The `packages` role is controlled by the `mkhome_install` flag:
-
-- **`mkhome_install`**
-  - Runs the `packages` role
-  - Installs all packages from all `roles/*/apt.txt` files
-  - Requires elevated privileges (become: true)
-  - Used by `system.yaml` playbook
-
-## Role Structure
-
-### Standard Roles
-
-Each standard role follows this structure:
+## Directory Structure
 
 ```
-roles/role_name/
-├── apt.txt             # Debian packages for this role (one per line, # comments allowed)
-├── tasks/
-│   ├── main.yaml       # Conditional imports based on feature flags
-│   ├── global.yaml     # System-wide configuration (optional)
-│   └── home.yaml       # User-specific configurations (optional)
-├── defaults/
-│   └── main.yaml       # Default variables
-├── handlers/
-│   └── main.yaml       # Event handlers (optional)
-├── templates/
-│   └── ...             # Regular templates
-└── vars/
-    └── main.yaml       # Role variables (optional)
+d9/
+├── mkosi.conf                    # Main mkosi configuration
+├── mkosi.build                   # Template rendering build script
+├── mkosi.conf.d/                 # Package configuration (one file per role)
+│   ├── firefox.conf             # Firefox packages
+│   ├── kitty.conf               # Kitty terminal packages
+│   ├── xfce.conf                # Xfce desktop packages
+│   └── ...                      # One conf file per logical role
+├── mkosi.postinst.d/            # Post-install scripts
+│   ├── system-config.sh         # System configuration (alternatives, dconf)
+│   └── locales.sh               # Locale generation
+├── mkosi.repart/                # Partition definitions
+│   ├── 00-esp.conf              # EFI System Partition
+│   └── 20-root.conf             # Root partition (EROFS)
+├── mkosi.images/                # Image definitions
+│   ├── base/                    # Base system image
+│   ├── initrd/                  # Initramfs image
+│   └── rescue/                  # Rescue system image
+├── mkosi.files/                 # Static file overlays
+│   ├── etc/                     # System configuration files
+│   │   ├── xdg/                # XDG base directory configs
+│   │   ├── lightdm/            # Display manager config
+│   │   ├── dconf/              # dconf databases
+│   │   └── systemd/            # systemd configuration
+│   ├── opt/                     # Optional software
+│   │   └── backgrounds/        # Desktop backgrounds
+│   └── usr/                     # User utilities
+│       ├── local/bin/          # Local scripts
+│       └── share/              # Shared data
+├── src/                         # Source files for build
+│   ├── d9.yaml                  # Central configuration file
+│   └── templates/               # Jinja2 templates
+│       ├── kitty.conf.j2
+│       ├── lightdm.conf.j2
+│       ├── xfce4-panel.xml.j2
+│       └── ...
+└── roles/                       # [DEPRECATED] Old Ansible roles
 ```
 
-### Meta Roles
+## Configuration Management
 
-Meta roles aggregate multiple standard roles through dependencies. They don't contain tasks themselves but serve as convenient bundles.
+### Package Management
+
+Packages are declaratively defined in `mkosi.conf.d/*.conf` files. Each file corresponds to a logical role or component:
+
+**Example**: `mkosi.conf.d/firefox.conf`
+```ini
+[Content]
+Packages=firefox-esr firefox-esr-l10n-de webext-ublock-origin-firefox
+```
+
+All packages are automatically installed by mkosi during the image build process.
+
+### Configuration Files
+
+Configuration is managed through two mechanisms:
+
+#### 1. Static Files
+
+Static configuration files are placed in `mkosi.files/` and copied verbatim during the build:
 
 ```
-roles/meta_role_name/
-├── meta/
-│   └── main.yaml       # Role dependencies
-└── tasks/
-    └── main.yaml       # Empty or minimal (just comments)
+mkosi.files/etc/pam.d/lightdm          → /etc/pam.d/lightdm
+mkosi.files/etc/dconf/profile/user     → /etc/dconf/profile/user
+mkosi.files/usr/local/bin/in2qr        → /usr/local/bin/in2qr
 ```
 
-Example `meta/main.yaml`:
+#### 2. Template Rendering
+
+Dynamic configuration files use Jinja2 templates that are rendered during the build using `mkosi.build`:
+
+**Configuration**: `src/d9.yaml`
 ```yaml
----
-dependencies:
-  - role: firefox
-  - role: kitty
-  - role: git
+kitty:
+  font_family: "Hack"
+  font_size: 12
 ```
 
-The `home` meta role includes all roles needed for a complete user environment. Use meta roles to:
-- Create logical groupings of related functionality
-- Simplify playbook definitions
-- Maintain consistent role sets across environments
-
-### Package Management with apt.txt
-
-Each role should have an `apt.txt` file listing Debian packages to install, one per line. Comments starting with `#` are allowed.
-
-Example `apt.txt`:
-```
-# Window manager packages
-i3-wm
-i3blocks
-i3status
+**Template**: `src/templates/kitty.conf.j2`
+```jinja2
+font_family {{font_family}}
+font_size {{font_size}}
 ```
 
-### tasks/main.yaml Pattern
-
-Every role's main task file should follow this pattern:
-
-```yaml
----
-- import_tasks: global.yaml
-  when: mkhome_configure_global
-
-- import_tasks: home.yaml
-  when: mkhome_configure_home
+**Rendered output**: `mkosi.files/etc/xdg/kitty/kitty.conf`
+```
+font_family Hack
+font_size 12
 ```
 
-Only include the imports for task files that exist. For example, a role that only configures user settings would only have the home.yaml import.
-
-### Task File Purposes
-
-- **global.yaml**:
-  - Configure system-wide settings in `/etc`
-  - Set up system services
-  - Configure system-level alternatives
-  - Create system users/groups
-
-Example `global.yaml`:
-```yaml
----
-- name: Create system-wide config directory
-  file:
-    path: /etc/xdg/myapp
-    state: directory
-    mode: '0755'
-
-- name: Install system-wide configuration
-  template:
-    src: myapp.conf.j2
-    dest: /etc/xdg/myapp/myapp.conf
-    mode: '0644'
-```
-
-- **home.yaml**:
-  - Configure user dotfiles in `~/.config`
-  - Set up user-specific settings
-  - Create user directories
-  - Install user-level configurations
-
-
-## Adding a New Role
-
-1. Create the role directory structure
-2. Create `apt.txt` with required Debian packages (one per line, comments with `#`)
-3. Add conditional imports in `tasks/main.yaml`
-4. Implement appropriate task files based on what the role configures:
-   - `global.yaml`: Configure system-wide settings in `/etc`
-   - `home.yaml`: Configure user-specific settings
-5. Add the role to the `home` meta role in `roles/home/meta/main.yaml`
-
-**Note**: Packages from `apt.txt` files are automatically discovered and installed by the `packages` role and by the `mkosi.configure` script during image builds.
-
-## Playbook Examples
-
-### home.yaml - User Configuration Only
-```yaml
----
-- name: Deploy home configuration for current user
-  hosts: localhost
-  become: false
-  vars:
-    mkhome_configure_home: true
-  roles:
-    - firefox
-    - micro
-```
-
-### system.yaml - Full System Setup
-```yaml
----
-- name: Deploy system packages and configuration
-  hosts: localhost
-  become: true
-  vars:
-    mkhome_install: true
-    mkhome_configure_global: true
-  roles:
-    - packages  # Must be first to install all packages
-    - kitty
-    - i3
-```
-
-### mkosi.postinst - System Image Configuration
-The `mkosi.postinst` script is an executable Ansible playbook that configures the system image during the mkosi build process. It includes only roles that have `global.yaml` tasks that should be executed during image creation.
-
-Example structure:
-```yaml
-#!/bin/bash -c "exec ansible-playbook \"$0\" \"$@\""
----
-- name: Configure system image for mkosi build
-  hosts: localhost
-  become: false
-  connection: community.general.chroot
-  vars:
-    mkhome_configure_global: true
-  roles:
-    - kitty
-    - mkosi
-    - x11
-    - xfce
-```
-
-The shebang uses bash to execute ansible-playbook on the script itself, ignoring any arguments passed by mkosi.
-
-## mkosi Integration
-
-mkosi builds system images by running Ansible inside the build environment. Package discovery and system configuration are both automated:
+The `mkosi.build` script automatically renders all templates before the mkosi build starts.
 
 ### Build Process
 
-1. **Package Discovery** (`mkosi.configure.d/apt.txt.py`):
-   - Executed by mkosi before building the image
-   - Scans all `roles/*/apt.txt` files
-   - Injects discovered packages into mkosi's configuration
-   - Packages are deduplicated and sorted
+The build process follows these steps:
 
-2. **System Configuration** (`mkosi.postinst.d/ansible.yaml`):
-   - Executed after packages and trees are installed
-   - Self-executing Ansible playbook script
-   - Uses bash shebang to invoke ansible-playbook on itself
-   - Ansible connects to the build environment via chroot connection
-   - All roles listed in the home role with the `mkhome_configure_global` tasks configure system files in the image
+1. **Template Rendering** (`mkosi.build`):
+   - Loads configuration from `src/d9.yaml`
+   - Renders all Jinja2 templates from `src/templates/`
+   - Outputs rendered files to `mkosi.files/etc/`
+
+2. **mkosi Build**:
+   - Installs all packages from `mkosi.conf.d/*.conf` files
+   - Copies files from `mkosi.files/` to the image
+   - Executes `mkosi.postinst.d/` scripts
+
+3. **Post-Install** (`mkosi.postinst.d/system-config.sh`):
+   - Updates dconf databases
+   - Configures update-alternatives
+   - Enables systemd services (via presets)
+
+## Adding New Functionality
+
+### Adding a New Component
+
+To add a new component or application:
+
+1. **Create package configuration** in `mkosi.conf.d/`:
+   ```bash
+   # mkosi.conf.d/myapp.conf
+   [Content]
+   Packages=myapp myapp-plugins
+   ```
+
+2. **Add static configuration files** (if any):
+   ```bash
+   mkosi.files/etc/myapp/myapp.conf
+   ```
+
+3. **Or create a template** (if dynamic):
+   ```bash
+   # src/templates/myapp.conf.j2
+   setting={{my_setting}}
+   ```
+
+4. **Add configuration variables** to `src/d9.yaml`:
+   ```yaml
+   myapp:
+     my_setting: "value"
+   ```
+
+5. **Update mkosi.build** to render your template:
+   ```python
+   ("myapp.conf.j2", "etc/myapp/myapp.conf", "myapp"),
+   ```
+
+### Modifying Configuration
+
+To change system configuration:
+
+1. Edit `src/d9.yaml` to change values
+2. Run `./mkosi.build` to re-render templates
+3. Rebuild the image with `mkosi`
+
+### Customization
+
+Users can customize their system by:
+
+1. Forking the repository
+2. Editing `src/d9.yaml` with their preferences
+3. Adding/removing packages in `mkosi.conf.d/`
+4. Adding custom scripts to `mkosi.files/usr/local/bin/`
+5. Building with `mkosi`
+
+## System Integration
+
+### Systemd Services
+
+Services are enabled via systemd presets in:
+```
+mkosi.files/etc/systemd/system-preset/90-d9.preset
+```
+
+Example:
+```
+enable lightdm.service
+enable bluetooth.service
+```
+
+### Update-alternatives
+
+Alternative selections are configured in `mkosi.postinst.d/system-config.sh`:
+
+```bash
+update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 50
+```
+
+## Migration from Ansible-based mkhome
+
+For users migrating from the old Ansible-based system:
+
+1. The new system uses pure mkosi configuration
+2. All configuration is now system-wide in `/etc`
+3. Run `clean-mkhome-after-d9-migration` to remove old user configs
+4. The old `roles/`, Ansible playbooks, and `apt.txt` files are deprecated
+
+## Build Requirements
+
+- mkosi (latest version)
+- python3-jinja2 (for template rendering)
+- python3-yaml (for configuration parsing)
+
+## Building the Image
+
+```bash
+# Render templates
+./mkosi.build
+
+# Build the image
+mkosi
+
+# Test in a VM
+mkosi qemu
+```
+
+## Key Differences from Ansible Approach
+
+| Aspect | Old (Ansible) | New (Pure mkosi) |
+|--------|--------------|------------------|
+| Package management | `roles/*/apt.txt` discovered dynamically | `mkosi.conf.d/*.conf` declarative |
+| Configuration | Ansible tasks with `global.yaml` and `home.yaml` | Static files + Jinja2 templates |
+| Template engine | Ansible Jinja2 + filters | Pure Jinja2 |
+| Build system | `mkosi.configure` + `mkosi.postinst.d/ansible.yaml` | `mkosi.build` + shell postinst |
+| Configuration location | Split between `/etc` and `~/.config` | All in `/etc` (system-wide) |
+| User customization | Ansible variables + home playbook | Fork and edit `src/d9.yaml` |
+
+## Philosophy
+
+- **Declarative**: Everything is configuration, not code
+- **Pure mkosi**: No external config management tools
+- **Global configuration**: System-wide settings in `/etc`
+- **Reproducible**: Same config = same image
+- **Simple**: Python + Jinja2 + mkosi, nothing more

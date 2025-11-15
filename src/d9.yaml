@@ -1,0 +1,43 @@
+# d9 Central Configuration File
+# This file contains all configuration variables for template rendering
+
+# Kitty Terminal Configuration
+kitty:
+  font_family: "Hack"
+  font_size: 12
+
+# Display Manager Configuration
+display_manager:
+  state: "multiuser"  # Options: multiuser, autologin, maintenance
+  autologin_user: ""  # Leave empty for multiuser mode
+  background_image: "Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg"
+  background_image_path: "/opt/backgrounds/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg"
+  setup_commands: []  # Optional list of setup commands
+
+# X11 Configuration
+x11:
+  touchpad:
+    tapping: true
+    natural_scrolling: false
+
+# Xfce Configuration
+xfce:
+  lock_panel: false
+  unlocked_users: "root"
+  panel_on_top: true
+  use_compositing: true
+  application_starters:
+    - firefox-esr
+    - chromium
+    - xfce4-terminal
+
+# Zoom Configuration
+zoom:
+  deb_url: "https://zoom.us/client/latest/zoom_amd64.deb"
+
+# Screensaver Configuration
+screensaver:
+  enforce_settings: false
+  locktime: 10
+  theme: "screensavers-popsquares"
+  sleeptime: 10

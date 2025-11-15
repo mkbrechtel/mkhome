@@ -1,0 +1,13 @@
+# d9 systemd preset
+# This file defines which services should be enabled by default
+
+# Display Manager
+enable lightdm.service
+
+# Desktop services
+enable cups.service
+enable bluetooth.service
+
+# Disable unwanted services
+disable apache2.service
+disable nginx.service

@@ -53,17 +53,21 @@ desktop distribution for normie users and power users alike
 
 ## how it works
 
-with mkosi you can create awesome customized desktop images.
+**Pure mkosi architecture** - everything is configured declaratively through mkosi configuration files
 
-with systemd-repart you can create disk and disk image partitions declaratively.
+**Jinja2 templating** - configuration files are rendered from templates using a central d9.yaml config
 
-with systemd-homed your home directory lives on a LUKS-encrypted image or storage medium.
+**Static file overlays** - mkosi.files/ directory contains all system configuration in /etc
 
-with systemd-sysext and systemd-confext you can layer extensions and configs.
+**Declarative packages** - mkosi.conf.d/ contains one file per component defining required packages
 
-with pv you can see how quickly a file transfer progresses.
+**systemd-repart** - disk and partition layout defined declaratively
 
-with restic and borg you can do incremental stream backups and restores.
+**systemd-homed** - home directories on LUKS-encrypted images (optional)
+
+**systemd-sysext/confext** - layer extensions and configs (future)
+
+**restic and borg** - incremental stream backups and restores
 
 ## reproducibility
 
@@ -79,23 +83,60 @@ based on [my](https://mkbrechtel.dev) personal home directory and desktop setup 
 
 works for me. might work for you. no promises.
 
-## environment
-You need mkosi installed. I currently develop in Debian Trixie. Install with:
+## requirements
+
+- mkosi (latest version recommended)
+- python3-jinja2 (for template rendering)
+- python3-yaml (for configuration parsing)
+
+Install on Debian Trixie:
 ```bash
-apt-get install mkosi
+apt-get install mkosi python3-jinja2 python3-yaml
 ```
 
 ## build
-You can build with mkosi:
+
+Build the image in two steps:
+
 ```bash
+# 1. Render configuration templates
+./mkosi.build
+
+# 2. Build the image
 mkosi
 ```
 
+Or combine both:
+```bash
+./mkosi.build && mkosi
+```
+
 ## test
+
 Run the test VM with:
 ```bash
-mkosi vm
+mkosi qemu
 ```
+
+## configuration
+
+All system configuration is centralized in `src/d9.yaml`. Edit this file to customize:
+
+- Display manager settings (autologin, background image)
+- Desktop environment preferences (Xfce panel, compositing)
+- Terminal settings (Kitty font, size)
+- Application defaults
+
+After editing, re-run `./mkosi.build` to regenerate configuration files.
+
+## migration from ansible-based mkhome
+
+If you're migrating from the previous Ansible-based system:
+
+1. The system now uses pure mkosi configuration
+2. All configs are system-wide in `/etc` (no more per-user configs)
+3. Old `roles/` directory and Ansible playbooks are deprecated
+4. Run `clean-mkhome-after-d9-migration` script to clean up old user configs
 
 ## issues
 If you have an issue, please make a pull request with the issue in a markdown file inside the `issues/` folder.

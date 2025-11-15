@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wget -O /opt/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
+exec dpkg -i /opt/zoom.deb

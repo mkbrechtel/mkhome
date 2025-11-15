@@ -1,0 +1,106 @@
+#!/bin/bash
+#
+# clean-mkhome-after-d9-migration
+#
+# This script cleans up home directory configuration files that were previously
+# managed by the Ansible-based mkhome system and are now handled globally in /etc
+#
+# After the migration to pure mkosi, many configurations have moved from
+# user home directories to system-wide /etc directories. This script removes
+# the old user-specific files to prevent conflicts.
+#
+
+set -e
+
+echo "=============================================="
+echo "d9 Migration Cleanup Script"
+echo "Cleaning up old mkhome configuration files"
+echo "=============================================="
+echo
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Check if running as regular user
+if [ "$EUID" -eq 0 ]; then
+    echo -e "${RED}ERROR: Do not run this script as root!${NC}"
+    echo "This script should be run as the user whose home directory needs cleanup."
+    exit 1
+fi
+
+echo "This script will remove old user configuration files that are now managed globally."
+echo "The following directories and files will be removed from your home directory:"
+echo
+echo "  - ~/.config/kitty/kitty.conf (now in /etc/xdg/kitty/)"
+echo "  - ~/.config/xfce4/xfconf/xfce-perchannel-xml/ (now in /etc/xdg/xfce4/)"
+echo "  - ~/.config/xfce4/panel/ (now in /etc/xdg/xfce4/)"
+echo "  - ~/.config/dconf/ (now in /etc/dconf/)"
+echo "  - Other Ansible-managed configurations"
+echo
+
+read -p "Do you want to continue? (yes/no): " -r
+echo
+if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
+    echo "Aborted."
+    exit 0
+fi
+
+# Function to safely remove file or directory
+safe_remove() {
+    local path="$1"
+    local desc="$2"
+
+    if [ -e "$path" ]; then
+        echo -e "${YELLOW}Removing${NC}: $desc"
+        echo "  Path: $path"
+        rm -rf "$path"
+        echo -e "${GREEN}✓ Removed${NC}"
+        echo
+    fi
+}
+
+# Kitty configuration
+safe_remove "$HOME/.config/kitty/kitty.conf" "Kitty terminal configuration"
+
+# Xfce4 panel configuration
+safe_remove "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml" "Xfce4 panel configuration"
+safe_remove "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" "Xfce4 window manager configuration"
+safe_remove "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml" "Xfce4 desktop configuration"
+safe_remove "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" "Xfce4 power manager configuration"
+safe_remove "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" "Xfce4 settings configuration"
+
+# Xfce4 panel plugin configuration
+safe_remove "$HOME/.config/xfce4/panel/datetime-10.rc" "Xfce4 datetime plugin configuration"
+safe_remove "$HOME/.config/xfce4/panel/whiskermenu-1.rc" "Xfce4 whisker menu configuration"
+
+# Xfce4 kiosk configuration
+safe_remove "$HOME/.config/xfce4/kiosk/kioskrc" "Xfce4 kiosk configuration"
+
+# dconf configuration
+safe_remove "$HOME/.config/dconf/user" "dconf user database"
+
+# X11 configuration (if somehow in home)
+safe_remove "$HOME/.config/xorg.conf.d/" "X11 configuration"
+
+# Any ansible-managed markers
+safe_remove "$HOME/.ansible-managed" "Ansible management marker"
+safe_remove "$HOME/.mkhome-configured" "mkhome configuration marker"
+
+echo
+echo "=============================================="
+echo -e "${GREEN}Cleanup completed successfully!${NC}"
+echo "=============================================="
+echo
+echo "Next steps:"
+echo "  1. Log out and log back in for changes to take full effect"
+echo "  2. Verify that your desktop environment loads correctly"
+echo "  3. Check that system-wide configurations in /etc are being used"
+echo
+echo "If you experience any issues, you can restore your settings by:"
+echo "  - Restoring from backup if you made one"
+echo "  - Re-running the old mkhome playbook (if still available)"
+echo "  - Manually reconfiguring affected applications"
+echo
