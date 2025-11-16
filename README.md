@@ -75,6 +75,12 @@ an interesting research question is if we can make the images fully reproducible
 - make them be based only on reproducibly built Debian packages
 - make the build of the images also reproducible so we can build the same images based on the same sources in an 1:1 way
 
+## non-issues
+
+*image size*: i need a full operating system that comes with everything i might possibly need. the goal is to ship a system where you do not need to install anything else.
+
+if you are concerned about this, you can use other distributions.
+
 ## origin
 
 based on [my](https://mkbrechtel.dev) personal home directory and desktop setup i developed over a long time.
