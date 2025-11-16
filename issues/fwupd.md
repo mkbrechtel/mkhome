@@ -1,0 +1,5 @@
+firmware updates
+
+- fwupd
+
+GUi?
