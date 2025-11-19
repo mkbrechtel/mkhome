@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+"""Post-removal script for d9-tmux."""
+
+import sys
+import shutil
+from pathlib import Path
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(0)
+
+    action = sys.argv[1]
+
+    if action == 'purge':
+        # Import d9lib only if available (may be removed already)
+        try:
+            from d9lib import ucf_remove
+            ucf_remove('/etc/tmux.conf', 'd9-tmux', purge=True)
+        except ImportError:
+            # Fallback if d9lib is not available
+            import subprocess
+            subprocess.run(['ucf', '--purge', '/etc/tmux.conf'], check=False)
+            subprocess.run(['ucfr', '--purge', 'd9-tmux', '/etc/tmux.conf'], check=False)
+
+        # Remove cache directory
+        cache_dir = Path('/var/cache/d9-tmux')
+        if cache_dir.exists():
+            shutil.rmtree(cache_dir)
+
+        # Purge debconf data
+        try:
+            from debconf import Debconf
+            db = Debconf()
+            db.purge()
+        except ImportError:
+            pass
+
+
+if __name__ == '__main__':
+    main()

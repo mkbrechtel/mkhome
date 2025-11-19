@@ -1,0 +1,7 @@
+# Central configuration for d9 Debian Pure Blend
+# This file contains default values that can be overridden via debconf
+
+tmux:
+  # HSL hue value for color scheme (0-360)
+  # Common values: 210 (blue), 120 (green), 0 (red), 180 (cyan)
+  color_hue: 210

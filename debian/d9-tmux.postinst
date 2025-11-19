@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+"""Post-installation script for d9-tmux."""
+
+import sys
+from debconf import Debconf
+from d9lib import load_config, get_config_value, render_template, generate_color_scheme, ucf_install
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(0)
+
+    action = sys.argv[1]
+
+    if action != 'configure':
+        return
+
+    # Load defaults from central configuration
+    config = load_config('d9-tmux')
+    default_hue = get_config_value(config, 'tmux', 'color_hue', default=210)
+
+    # Get debconf values (overrides defaults)
+    # In non-interactive environments (like containers), debconf may not work
+    hue = default_hue
+    try:
+        db = Debconf()
+        hue_choice = db.get('d9-tmux/color-scheme-hue')
+
+        # Extract hue number from "210 (blue)" format
+        if hue_choice:
+            hue = int(hue_choice.split()[0])
+    except Exception:
+        # Debconf not available, use defaults
+        pass
+
+    # Generate color scheme using d9lib
+    colors = generate_color_scheme(hue)
+
+    # Render template using d9lib
+    render_template(
+        '/usr/share/d9-tmux/templates/etc/tmux.conf.j2',
+        '/var/cache/d9-tmux/tmux.conf',
+        **colors
+    )
+
+    # Install with UCF using d9lib
+    ucf_install(
+        '/var/cache/d9-tmux/tmux.conf',
+        '/etc/tmux.conf',
+        'd9-tmux'
+    )
+
+
+if __name__ == '__main__':
+    main()

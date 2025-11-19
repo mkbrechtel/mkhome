@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+export PYBUILD_NAME=d9lib
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_configure:
+	# debian/control already generated before dpkg-buildpackage
+	dh_auto_configure
+
+override_dh_auto_build:
+	# Nothing to build for metapackages
+
+override_dh_auto_install:
+	dh_auto_install
+
+	# Install d9-common
+	install -d debian/d9-common/usr/lib/python3/dist-packages/d9lib
+	install -m 644 src/d9lib/*.py debian/d9-common/usr/lib/python3/dist-packages/d9lib/
+	install -d debian/d9-common/usr/share/d9-common
+	install -m 644 config.yaml debian/d9-common/usr/share/d9-common/config.yaml
+
+	# Install d9-tmux
+	install -d debian/d9-tmux/usr/share/d9-tmux/templates
+	cp -r templates/tmux/etc debian/d9-tmux/usr/share/d9-tmux/templates/
+	install -d debian/d9-tmux/var/cache/d9-tmux
+
+override_dh_auto_clean:
+	dh_auto_clean
+	# Clean up generated control file (optional, for rebuilds)
+	# /usr/share/blends-dev/blend-gen-control --clean

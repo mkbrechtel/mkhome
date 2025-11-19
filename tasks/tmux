@@ -1,0 +1,7 @@
+Task: Tmux
+Description: Terminal multiplexer for d9
+ Tmux terminal multiplexer with configurable color schemes
+ and sensible default settings.
+
+Depends: d9-common
+Recommends: tmux

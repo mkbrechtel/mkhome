@@ -1,0 +1,11 @@
+Task: Common
+Description: Common libraries and utilities for d9
+ Provides shared Python libraries for template rendering,
+ configuration management, and color scheme generation used
+ by all d9 packages.
+
+Depends: python3
+Depends: python3-jinja2
+Depends: python3-yaml
+Depends: python3-debconf
+Depends: ucf

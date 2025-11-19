@@ -1,0 +1,8 @@
+Template: d9-tmux/color-scheme-hue
+Type: select
+Choices: 210 (blue), 120 (green), 0 (red), 180 (cyan), 270 (purple), 30 (orange), 60 (yellow), 300 (magenta)
+Default: 210 (blue)
+Description: tmux color scheme hue
+ Choose the base hue for your tmux color scheme (HSL hue value).
+ The system will automatically generate a harmonious color scheme
+ based on this hue value.
