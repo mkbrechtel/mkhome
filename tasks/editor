@@ -1,0 +1,6 @@
+Task: Editor
+Description: Editor packages
+
+Recommends: nano
+Recommends: micro
+Recommends: neovim

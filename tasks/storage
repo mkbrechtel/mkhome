@@ -1,0 +1,15 @@
+Task: Storage
+Description: Storage packages
+
+Recommends: lvm2
+Recommends: mdadm
+Recommends: cryptsetup
+Recommends: systemd-repart
+Recommends: parted
+Recommends: gdisk
+Recommends: fdisk
+Recommends: gpart
+Recommends: disktype
+Recommends: dislocker
+Recommends: kpartx
+Recommends: mtd-utils

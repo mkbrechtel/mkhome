@@ -1,0 +1,17 @@
+Task: Profile Forensics
+Description: Profile Forensics packages
+
+Recommends: forensics-all
+Recommends: forensics-extra
+Recommends: forensics-all-gui
+Recommends: ext4magic
+Recommends: extundelete
+Recommends: testdisk
+Recommends: fatcat
+Recommends: gddrescue
+Recommends: ddrutility
+Recommends: scalpel
+Recommends: sleuthkit
+Recommends: wireshark
+Recommends: binwalk
+Recommends: hexwalk

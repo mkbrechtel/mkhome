@@ -1,0 +1,9 @@
+Task: Zip
+Description: Zip packages
+
+Recommends: 7zip
+Recommends: zstd
+Recommends: xz-utils
+Recommends: gzip
+Recommends: zip
+Recommends: unzip

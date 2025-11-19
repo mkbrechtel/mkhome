@@ -1,0 +1,5 @@
+Task: Desktop Gnome
+Description: Desktop Gnome packages
+
+Recommends: gnome
+Recommends: dconf-cli

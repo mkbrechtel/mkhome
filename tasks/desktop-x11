@@ -1,0 +1,18 @@
+Task: Desktop X11
+Description: Desktop X11 packages
+
+Recommends: xserver-xorg
+Recommends: xserver-xorg-video-all
+Recommends: xserver-xorg-input-all
+Recommends: x11-xserver-utils
+Recommends: x11-utils
+Recommends: xinput
+Recommends: xclip
+Recommends: xbindkeys
+Recommends: xdotool
+Recommends: xkbset
+Recommends: numlockx
+Recommends: xloadimage
+Recommends: arandr
+Recommends: feh
+Recommends: onboard

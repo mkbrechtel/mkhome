@@ -1,0 +1,21 @@
+Task: Versioning
+Description: Versioning packages
+
+Recommends: git
+Recommends: git-annex
+Recommends: git-mediawiki
+Recommends: git-lfs
+Recommends: git-email
+Recommends: git-credential-oauth
+Recommends: git-delete-merged-branches
+Recommends: git-delta
+Recommends: git-extras
+Recommends: git-flow
+Recommends: gitbrute
+Recommends: git-doc
+Recommends: gitmagic
+Recommends: gcli
+Recommends: tig
+Recommends: datalad
+Recommends: bup
+Recommends: subversion

@@ -1,0 +1,6 @@
+Task: Desktop Scanner
+Description: Desktop Scanner packages
+
+Recommends: simple-scan
+Recommends: gscan2pdf
+Recommends: xsane

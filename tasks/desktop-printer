@@ -1,0 +1,5 @@
+Task: Desktop Printer
+Description: Desktop Printer packages
+
+Recommends: cups
+Recommends: system-config-printer

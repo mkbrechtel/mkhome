@@ -1,0 +1,6 @@
+Task: Desktop Git
+Description: Desktop Git packages
+
+Recommends: gitk
+Recommends: git-cola
+Recommends: git-gui

@@ -1,0 +1,12 @@
+Task: Profile Documentation
+Description: Profile Documentation packages
+ Includes: Manual & Info Systems
+
+Recommends: man-db
+Recommends: gtkman
+Recommends: info
+Recommends: manpages
+Recommends: manpages-de
+Recommends: manpages-posix
+Recommends: manpages-posix-dev
+Recommends: freebsd-manpages

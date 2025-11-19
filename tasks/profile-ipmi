@@ -1,0 +1,6 @@
+Task: Profile Ipmi
+Description: Profile Ipmi packages
+
+Recommends: ipmitool
+Recommends: ipmiutil
+Recommends: freeipmi-tools

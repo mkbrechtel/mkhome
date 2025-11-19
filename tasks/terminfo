@@ -1,0 +1,4 @@
+Task: Terminfo
+Description: Terminfo packages
+
+Recommends: kitty-terminfo

@@ -1,0 +1,10 @@
+Task: Desktop Xfce
+Description: Desktop Xfce packages
+
+Recommends: xfce4
+Recommends: xfce4-goodies
+Recommends: xfce4-whiskermenu-plugin
+Recommends: xfce4-smartbookmark-plugin
+Recommends: xfce4-places-plugin
+Recommends: xfce4-datetime-plugin
+Recommends: xfce4-power-manager

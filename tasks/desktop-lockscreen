@@ -1,0 +1,12 @@
+Task: Desktop Lockscreen
+Description: Desktop Lockscreen packages
+
+Recommends: xsecurelock
+Recommends: xss-lock
+Recommends: mate-screensaver
+Recommends: xscreensaver-gl
+Recommends: mate-power-manager
+Recommends: xss-lock
+Recommends: xbacklight
+Recommends: i3lock
+Recommends: xssproxy

@@ -1,0 +1,18 @@
+Task: Tools
+Description: Tools packages
+
+Recommends: man-db
+Recommends: diffutils
+Recommends: gawk
+Recommends: grep
+Recommends: less
+Recommends: mc
+Recommends: sed
+Recommends: tmux
+Recommends: lf
+Recommends: fzf
+Recommends: eza
+Recommends: glow
+Recommends: gum
+Recommends: gnupg
+Recommends: pass

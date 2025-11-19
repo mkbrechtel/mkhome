@@ -1,0 +1,4 @@
+Task: Kernel
+Description: Kernel packages
+
+Recommends: linux-image-generic

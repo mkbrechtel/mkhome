@@ -1,0 +1,5 @@
+Task: Desktop Display
+Description: Desktop Display packages
+
+Recommends: gdm3
+Recommends: arandr

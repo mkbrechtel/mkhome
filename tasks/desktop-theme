@@ -1,0 +1,5 @@
+Task: Desktop Theme
+Description: Desktop Theme packages
+
+Recommends: dmz-cursor-theme
+Recommends: gnome-brave-icon-theme

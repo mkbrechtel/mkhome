@@ -1,0 +1,9 @@
+Task: Profile Vpn
+Description: Profile Vpn packages
+
+Recommends: wireguard
+Recommends: openvpn
+Recommends: openvpn3-client
+Recommends: miredo
+Recommends: anytun
+Recommends: babeld

@@ -1,0 +1,14 @@
+Task: Apt
+Description: Apt packages
+
+Recommends: apt
+Recommends: apt-transport-https
+Recommends: aptitude
+Recommends: apt-file
+Recommends: apt-build
+Recommends: apt-listbugs
+Recommends: apt-listchanges
+Recommends: apt-offline
+Recommends: apt-venv
+Recommends: aptly
+Recommends: debian-goodies

@@ -1,0 +1,16 @@
+Task: Desktop Graphics
+Description: Desktop Graphics packages
+
+Recommends: inkscape
+Recommends: eog
+Recommends: evince
+Recommends: xfce4-screenshooter
+Recommends: evince
+Recommends: gimp
+Recommends: gimp-help-de
+Recommends: gthumb
+Recommends: krita
+Recommends: krita-l10n
+Recommends: qrencode
+Recommends: xloadimage
+Recommends: dmtx-utils

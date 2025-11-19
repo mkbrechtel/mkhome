@@ -1,0 +1,5 @@
+Task: Desktop Qutebrowser
+Description: Desktop Qutebrowser packages
+
+Recommends: qutebrowser
+Recommends: libjs-pdf

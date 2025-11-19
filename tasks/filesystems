@@ -1,0 +1,20 @@
+Task: Filesystems
+Description: Filesystems packages
+
+Recommends: btrfs-progs
+Recommends: e2fsprogs
+Recommends: xfsprogs
+Recommends: xfsdump
+Recommends: dislocker
+Recommends: fatresize
+Recommends: fatsort
+Recommends: dosfstools
+Recommends: apfsprogs
+Recommends: genromfs
+Recommends: erofs-utils
+Recommends: squashfs-tools
+Recommends: squashfs-tools-ng
+Recommends: xorriso
+Recommends: genisoimage
+Recommends: ntfs-3g
+Recommends: ntfs2btrfs

@@ -1,0 +1,5 @@
+Task: Desktop Debian
+Description: Desktop Debian packages
+
+Recommends: debian-goodies
+Recommends: debconf-utils

@@ -1,0 +1,15 @@
+Task: Desktop Files
+Description: Desktop Files packages
+
+Recommends: gvfs
+Recommends: gvfs-backends
+Recommends: gvfs-fuse
+Recommends: catfish
+Recommends: thunar
+Recommends: thunar-archive-plugin
+Recommends: unison-gtk
+Recommends: xarchiver
+Recommends: gparted
+Recommends: gnome-disk-utility
+Recommends: baobab
+Recommends: rclone-browser

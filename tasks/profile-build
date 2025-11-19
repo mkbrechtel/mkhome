@@ -1,0 +1,6 @@
+Task: Profile Build
+Description: Profile Build packages
+
+Recommends: build-essential
+Recommends: cmake
+Recommends: ninja-build

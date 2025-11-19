@@ -1,0 +1,6 @@
+Task: Profile Containers
+Description: Profile Containers packages
+
+Recommends: podman
+Recommends: buildah
+Recommends: docker-compose

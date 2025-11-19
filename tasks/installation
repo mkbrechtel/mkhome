@@ -1,0 +1,6 @@
+Task: Installation
+Description: Installation packages
+
+Recommends: mkosi
+Recommends: debootstrap
+Recommends: arch-install-scripts

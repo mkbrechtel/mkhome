@@ -1,0 +1,6 @@
+Task: Ansible
+Description: Ansible packages
+
+Recommends: ansible
+Recommends: ansible-lint
+Recommends: ansible-mitogen

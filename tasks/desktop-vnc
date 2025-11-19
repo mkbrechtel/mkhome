@@ -1,0 +1,10 @@
+Task: Desktop Vnc
+Description: Desktop Vnc packages
+
+Recommends: tigervnc-common
+Recommends: tigervnc-scraping-server
+Recommends: tigervnc-standalone-server
+Recommends: tigervnc-viewer
+Recommends: tigervnc-xorg-extension
+Recommends: ssvnc
+Recommends: x11vnc

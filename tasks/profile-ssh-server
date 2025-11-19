@@ -1,0 +1,4 @@
+Task: Profile Ssh Server
+Description: Profile Ssh Server packages
+
+Recommends: RemoveFiles=/etc/ssh/ssh_host_*

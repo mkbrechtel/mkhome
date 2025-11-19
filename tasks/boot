@@ -1,0 +1,9 @@
+Task: Boot
+Description: Boot packages
+
+Recommends: grub-efi
+Recommends: grub-efi-amd64
+Recommends: grub-efi-amd64-signed
+Recommends: tpm2-tools
+Recommends: shim-signed
+Recommends: systemd-boot

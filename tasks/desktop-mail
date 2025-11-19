@@ -1,0 +1,8 @@
+Task: Desktop Mail
+Description: Desktop Mail packages
+
+Recommends: thunderbird
+Recommends: thunderbird-l10n-de
+Recommends: evolution
+Recommends: evolution-ews
+Recommends: evolution-plugins

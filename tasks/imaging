@@ -1,0 +1,13 @@
+Task: Imaging
+Description: Imaging packages
+
+Recommends: gddrescue
+Recommends: pv
+Recommends: qemu-utils
+Recommends: guestfs-tools
+Recommends: guestfish
+Recommends: partimage
+Recommends: bup
+Recommends: zsync
+Recommends: casync
+Recommends: wodim

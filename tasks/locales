@@ -1,0 +1,6 @@
+Task: Locales
+Description: Locales packages
+
+Recommends: Locale=de_DE.UTF-8
+Recommends: LocaleMessages=C.UTF-8
+Recommends: Keymap=de

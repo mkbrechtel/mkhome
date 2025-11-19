@@ -1,0 +1,7 @@
+Task: Desktop I3
+Description: Desktop I3 packages
+
+Recommends: i3-wm
+Recommends: i3blocks
+Recommends: i3status
+Recommends: i3pystatus

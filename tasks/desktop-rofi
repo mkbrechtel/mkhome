@@ -1,0 +1,4 @@
+Task: Desktop Rofi
+Description: Desktop Rofi packages
+
+Recommends: rofi

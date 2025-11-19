@@ -1,0 +1,21 @@
+Task: Desktop Multimedia
+Description: Desktop Multimedia packages
+
+Recommends: pipewire
+Recommends: pipewire-audio
+Recommends: pipewire-alsa
+Recommends: pipewire-jack
+Recommends: pipewire-pulse
+Recommends: wireplumber
+Recommends: pasystray
+Recommends: pavucontrol
+Recommends: audacity
+Recommends: sound-juicer
+Recommends: vlc
+Recommends: vlc-l10n
+Recommends: vlc-plugin-pipewire
+Recommends: brasero
+Recommends: obs-studio
+Recommends: obs-cli
+Recommends: obs-plugins
+Recommends: obs-pipewire-audio-capture

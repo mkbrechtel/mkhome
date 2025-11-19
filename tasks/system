@@ -1,0 +1,12 @@
+Task: System
+Description: System packages
+
+Recommends: systemd
+Recommends: udev
+Recommends: dbus-broker
+Recommends: polkitd
+Recommends: login
+Recommends: sudo
+Recommends: hwinfo
+Recommends: util-linux
+Recommends: incus-agent

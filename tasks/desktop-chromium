@@ -1,0 +1,5 @@
+Task: Desktop Chromium
+Description: Desktop Chromium packages
+
+Recommends: chromium
+Recommends: chromium-l10n

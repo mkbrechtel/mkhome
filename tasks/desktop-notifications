@@ -1,0 +1,4 @@
+Task: Desktop Notifications
+Description: Desktop Notifications packages
+
+Recommends: notify-osd

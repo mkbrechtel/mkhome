@@ -1,0 +1,6 @@
+Task: Profile Incus
+Description: Profile Incus packages
+
+Recommends: incus
+Recommends: incus-client
+Recommends: distrobuilder

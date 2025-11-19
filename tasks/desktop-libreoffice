@@ -1,0 +1,12 @@
+Task: Desktop Libreoffice
+Description: Desktop Libreoffice packages
+
+Recommends: libreoffice
+Recommends: libreoffice-writer
+Recommends: libreoffice-calc
+Recommends: libreoffice-draw
+Recommends: libreoffice-impress
+Recommends: libreoffice-gtk3
+Recommends: libreoffice-l10n-de
+Recommends: libreoffice-help-de
+Recommends: libreoffice-gnome

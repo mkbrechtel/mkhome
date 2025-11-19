@@ -1,0 +1,5 @@
+Task: Desktop Cad
+Description: Desktop Cad packages
+
+Recommends: openscad
+Recommends: freecad

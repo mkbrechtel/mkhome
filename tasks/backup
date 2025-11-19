@@ -1,0 +1,11 @@
+Task: Backup
+Description: Backup packages
+
+Recommends: backupninja
+Recommends: restic
+Recommends: duplicity
+Recommends: trickle
+Recommends: rdiff-backup
+Recommends: genisoimage
+Recommends: borgbackup
+Recommends: rsync

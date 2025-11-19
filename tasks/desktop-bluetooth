@@ -1,0 +1,5 @@
+Task: Desktop Bluetooth
+Description: Desktop Bluetooth packages
+
+Recommends: bluetooth
+Recommends: blueman

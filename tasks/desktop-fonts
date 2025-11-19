@@ -1,0 +1,13 @@
+Task: Desktop Fonts
+Description: Desktop Fonts packages
+
+Recommends: fonts-recommended
+Recommends: fonts-font-awesome
+Recommends: fonts-symbola
+Recommends: fonts-noto-color-emoji
+Recommends: fonts-firacode
+Recommends: fonts-hack
+Recommends: fonts-inconsolata
+Recommends: fonts-terminus
+Recommends: fonts-opendyslexic
+Recommends: fonts-osifont

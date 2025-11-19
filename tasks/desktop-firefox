@@ -1,0 +1,6 @@
+Task: Desktop Firefox
+Description: Desktop Firefox packages
+
+Recommends: firefox-esr
+Recommends: firefox-esr-l10n-de
+Recommends: webext-ublock-origin-firefox
