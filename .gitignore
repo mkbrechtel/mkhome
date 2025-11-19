@@ -2,3 +2,10 @@ __pycache__
 /mkosi.output
 /mkosi.cache
 debian/control
+debian/.debhelper/
+debian/*.debhelper
+debian/*.debhelper.log
+debian/*.substvars
+debian/*/
+debian/debhelper-build-stamp
+debian/files
