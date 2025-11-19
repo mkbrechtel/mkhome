@@ -1,7 +1,7 @@
 Task: Shell
 Description: Shell packages
+ Provides various shell environments.
 
 Recommends: bash
 Recommends: fish
 Recommends: elvish
-Recommends: RootShell=/usr/bin/fish

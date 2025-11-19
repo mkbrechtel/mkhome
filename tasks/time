@@ -1,6 +1,6 @@
 Task: Time
-Description: Time packages
+Description: Time and timezone packages
+ Provides time synchronization and timezone data packages.
 
 Recommends: systemd-timesyncd
 Recommends: tzdata
-Recommends: Timezone=Europe/Berlin

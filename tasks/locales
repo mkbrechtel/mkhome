@@ -1,6 +1,7 @@
 Task: Locales
-Description: Locales packages
+Description: Locales and keyboard configuration
+ Provides locale and keyboard configuration packages.
 
-Recommends: Locale=de_DE.UTF-8
-Recommends: LocaleMessages=C.UTF-8
-Recommends: Keymap=de
+Depends: locales
+Depends: keyboard-configuration
+Depends: console-setup

@@ -1,4 +1,5 @@
 Task: Profile Ssh Server
-Description: Profile Ssh Server packages
+Description: SSH server packages and configuration
+ Provides OpenSSH server for remote access.
 
-Recommends: RemoveFiles=/etc/ssh/ssh_host_*
+Depends: openssh-server

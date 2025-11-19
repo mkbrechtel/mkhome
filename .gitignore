@@ -1,3 +1,4 @@
 __pycache__
 /mkosi.output
 /mkosi.cache
+debian/control
