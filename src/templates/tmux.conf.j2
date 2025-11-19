@@ -1,0 +1,46 @@
+# tmux configuration
+# Generated from d9 base color hue: {{base_color_hue}}
+
+set -g default-terminal "screen-256color"
+
+# Status bar colors - derived from base color hue
+set -g status-style bg={{base_color_hue|hsv2rgb(80,40)}},fg={{base_color_hue|hsv2rgb(80,100)}}
+
+# Active window colors
+setw -g window-status-current-style bg={{base_color_hue|hsv2rgb(80,60)}},fg={{base_color_hue|hsv2rgb(0,100)}}
+
+# Inactive window colors
+setw -g window-status-style bg={{base_color_hue|hsv2rgb(80,20)}},fg={{base_color_hue|hsv2rgb(80,80)}}
+
+# Pane border colors
+set -g pane-border-style fg={{base_color_hue|hsv2rgb(80,30)}}
+set -g pane-active-border-style fg={{base_color_hue|hsv2rgb(80,70)}}
+
+# Message colors
+set -g message-style bg={{base_color_hue|hsv2rgb(80,50)}},fg={{base_color_hue|hsv2rgb(0,100)}}
+
+# Command line colors
+set -g message-command-style bg={{base_color_hue|hsv2rgb(80,40)}},fg={{base_color_hue|hsv2rgb(80,100)}}
+
+# Enable mouse support
+set -g mouse on
+
+# Start window numbering at 1
+set -g base-index 1
+set -g pane-base-index 1
+
+# Renumber windows when one is closed
+set -g renumber-windows on
+
+# Set window title
+set -g set-titles on
+set -g set-titles-string '#T'
+
+# Status bar
+set -g status-left-length 40
+set -g status-left '#[fg={{base_color_hue|hsv2rgb(0,100)}}]#S #[fg={{base_color_hue|hsv2rgb(80,80)}}]| '
+set -g status-right '#[fg={{base_color_hue|hsv2rgb(80,80)}}]%H:%M %d-%b-%y'
+
+# Activity monitoring
+setw -g monitor-activity on
+set -g visual-activity off

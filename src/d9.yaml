@@ -1,6 +1,11 @@
 # d9 Central Configuration File
 # This file contains all configuration variables for template rendering
 
+# Base Color Configuration
+# All UI elements derive their colors from this single hue value (0-360)
+# Examples: blue=219, green=120, red=0, purple=270
+base_color_hue: 219
+
 # Kitty Terminal Configuration
 kitty:
   font_family: "Hack"
