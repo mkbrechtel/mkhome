@@ -1,0 +1,7 @@
+Task: Base
+Description: Base system packages for d9
+ Core metapackage that provides essential d9 system components and
+ recommended packages for a minimal functional d9 installation.
+
+Depends: d9-common
+Recommends: d9-tmux
