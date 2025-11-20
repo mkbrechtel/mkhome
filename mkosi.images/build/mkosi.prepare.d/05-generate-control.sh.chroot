@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "==> Preparing build directory and generating debian/control..."
+
+# Copy source to /opt/d9 to avoid modifying the original
+WORK_DIR="/opt/d9"
+rm -rf "$WORK_DIR"
+cp -a "$SRCDIR" "$WORK_DIR"
+
+cd "$WORK_DIR"
+
+# Remove symlink if it exists
+rm -f debian/control
+
+# Configure apt to disable sandboxing (needed in mkosi build environment)
+export APT_CONFIG=/tmp/apt-no-sandbox.conf
+cat > "$APT_CONFIG" <<EOF
+APT::Sandbox::User "root";
+EOF
+
+# Generate debian/control from tasks files using blend-gen-control
+fakeroot /usr/share/blends-dev/blend-gen-control -r stable -S -c -t
+
+echo "==> debian/control generated successfully in $WORK_DIR"

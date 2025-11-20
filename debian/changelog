@@ -6,4 +6,4 @@ d9 (0.1.0-dev1) unstable; urgency=medium
   * debconf integration for user preferences
   * UCF-managed configuration files
 
- -- d9 Team <d9@example.com>  Wed, 19 Nov 2025 00:00:00 +0000
+ -- d9 dev <d9@mkbrechtel.dev>  Wed, 19 Nov 2025 00:00:00 +0000
